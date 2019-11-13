@@ -11,8 +11,8 @@ import com.opensymphony.xwork2.ModelDriven;
  *
  * @param <T>
  */
+//实现模型驱动，将数据封装成一个对象
 public class BaseAction<T> extends ActionSupport implements ModelDriven<T> {
-	public static final String HOME = "home";
 	
 	//模型对象
 	protected T model;

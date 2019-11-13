@@ -15,5 +15,14 @@
 		<!-- 商品管理 -->
 		<action name="productAction_*" class="productAction" method="{1}">
 		</action>
+		
+		<!-- 订单管理 -->
+		<action name="orderAction_*" class="orderAction" method="{1}">
+		</action>
+		
+		
+		<!-- 后台订单管理 -->
+		<action name="adminOrderAction_*" class="adminOrderAction" method="{1}">
+		</action>
 	</package>
 </struts>

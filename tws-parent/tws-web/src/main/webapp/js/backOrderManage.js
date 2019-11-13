@@ -142,8 +142,12 @@ searchBtn.onclick = function () {
             },
             success: function (getComResult) {
                 if (getComResult.code == "1" || getComResult.code == 1) {
+                	console.log("pageIndex:"+1);
+                	console.log("每页数量:"+getComResult.count);
+                	console.log(getComResult.data);
+                	console.log("总数："+getComResult.total);
                     //函数调用
-                    goPage(1, getComResult.total, getComResult.data);
+                	 goPage(1, getComResult.count, getComResult.data, getComResult.total);
                 } else {
                     alert(getComResult.msg);
                 }
@@ -157,7 +161,10 @@ searchBtn.onclick = function () {
 
 //获取拼接表格行 
 var getTable = function (i, page, orders) {
-    console.log("999___i：" + i + "page：" + page);
+    console.log("生成表格：" );
+    console.log("i为页数*page"+i);
+    console.log("page:"+page);
+    console.log(orders);
     var thHtml =
         "<tr>" +
         "<th style='width:150px;'>" +
@@ -175,8 +182,8 @@ var getTable = function (i, page, orders) {
         "<th style='width:100px;'>操作状态</th>" +
         "</tr>";
     var tdHtml = "";
-    var b = i + page;
-    for (i; i < b; i++) {
+//    var b = i + page;
+    for (i = 0; i <orders.length; i++) {
         if (orders[i].state == -1) {
             tdHtml +=
                 "<tr>" +
@@ -191,7 +198,7 @@ var getTable = function (i, page, orders) {
                 "<span class='title'>" + orders[i].pname + "</span>" +
                 "</td>" +
                 "<td class='price'>" +
-                "¥<span>" + orders[i].price + "</span>" +
+                "¥<span>" + orders[i].subtotal + "</span>" +
                 "</td>" +
                 "<td class='style'>" +
                 "<span>" + orders[i].classify1 + "</span>" +
@@ -200,7 +207,7 @@ var getTable = function (i, page, orders) {
                 "<span>" + orders[i].classify2 + "</span>" +
                 "</td>" +
                 "<td class='amount'>" +
-                "<span>" + orders[i].subtotal + "</span>" +
+                "<span>" + orders[i].pnum + "</span>" +
                 "</td>" +
                 "<td class='status'>" +
                 "<button>" + '发货' + "</button>" +
@@ -221,7 +228,7 @@ var getTable = function (i, page, orders) {
                 "<span class='title'>" + orders[i].pname + "</span>" +
                 "</td>" +
                 "<td class='price'>" +
-                "¥<span>" + orders[i].price + "</span>" +
+                "¥<span>" + orders[i].subtotal + "</span>" +
                 "</td>" +
                 "<td class='style'>" +
                 "<span>" + orders[i].classify1 + "</span>" +
@@ -230,7 +237,7 @@ var getTable = function (i, page, orders) {
                 "<span>" + orders[i].classify2 + "</span>" +
                 "</td>" +
                 "<td class='amount'>" +
-                "<span>" + orders[i].subtotal + "</span>" +
+                "<span>" + orders[i].pnum + "</span>" +
                 "</td>" +
                 "<td class='status'>" +
                 "<span>" + '已确认收货' + "</span>" +
@@ -251,7 +258,7 @@ var getTable = function (i, page, orders) {
                 "<span class='title'>" + orders[i].pname + "</span>" +
                 "</td>" +
                 "<td class='price'>" +
-                "¥<span>" + orders[i].price + "</span>" +
+                "¥<span>" + orders[i].subtotal + "</span>" +
                 "</td>" +
                 "<td class='style'>" +
                 "<span>" + orders[i].classify1 + "</span>" +
@@ -260,7 +267,7 @@ var getTable = function (i, page, orders) {
                 "<span>" + orders[i].classify2 + "</span>" +
                 "</td>" +
                 "<td class='amount'>" +
-                "<span>" + orders[i].subtotal + "</span>" +
+                "<span>" + orders[i].pnum + "</span>" +
                 "</td>" +
                 "<td class='status'>" +
                 "<span>" + '已发货' + "</span>" +
@@ -280,6 +287,12 @@ var getTable = function (i, page, orders) {
 //js分页
 //el:分页容器 count:总记录数 pageStep:每页显示多少个 pageNum:第几页 fnGo:分页跳转函数
 var jsPage = function (el, count, pageStep, pageNum, fnGo) {
+	console.log("分页——————————");
+	console.log(el);
+	console.log("count:总记录数:"+count);
+	console.log("pageStep:每页显示多少个 :"+pageStep);
+	console.log("第几页："+pageNum);
+	
     this.getLink = function (fnGo, index, pageNum, text, orders) {
         var s = '<a href="#p' + index + '" onclick="' + fnGo + '(' + index + ');" ';
         if (index == pageNum) {
@@ -293,6 +306,7 @@ var jsPage = function (el, count, pageStep, pageNum, fnGo) {
     //总页数
     var pageNumAll = Math.ceil(count / pageStep);
     if (pageNumAll == 1) {
+    	var divPage = document.getElementById(el);
         divPage.innerHTML = '';
         return;
     }
@@ -332,6 +346,12 @@ var jsPage = function (el, count, pageStep, pageNum, fnGo) {
 
 //展示订单内容
 function goPage(pageIndex, pageStep, orders, allLength) {
+	console.log("展示——————————————————————");
+	console.log("pageIndex:"+pageIndex);
+	console.log("每页数量:"+pageStep);
+	console.log(orders);
+	console.log("总数："+allLength);
+	
     document.querySelector('table').innerHTML = getTable((pageIndex - 1) * pageStep, pageStep, orders) //传参数为第n页的第一件商品的
     jsPage('divPage', allLength, pageStep, pageIndex, 'getOrders');
     //删除数组
@@ -346,7 +366,8 @@ function goPage(pageIndex, pageStep, orders, allLength) {
                 delArray[arrIndex++] = tab.rows[i].cells[0].getElementsByTagName('img')[0].alt;
             }
         }
-        console.log("删除接口" + delArray);
+        var object ={};
+        object['itemJSON']=delArray;
         if (delArray.length != 0) {
             $.ajax({
                 url: 'adminOrderAction_deleteOrderItemById.action',//删除订单的接口
@@ -354,13 +375,14 @@ function goPage(pageIndex, pageStep, orders, allLength) {
                 cache: false,//是否缓存
                 dataType: 'json',//返回值的类型
                 data: {
-                    "itemJSON": delArray
+                    "itemJSON": JSON.stringify(object)
                 },
+                traditional: true,
                 success: function (getComResult) {
                     if (getComResult.code == "1" || getComResult.code == 1) {
                         //函数调用
                         console.log("页数" + pageIndex);
-                        goPage(pageIndex, getComResult.count, getComResult.orders, getComResult.allLength);
+                        getOrders(pageIndex);
                     } else {
                         alert(getComResult.msg);
                     }
@@ -437,10 +459,34 @@ function getOrders(pageIndex) {
         },
         success: function (getComResult) {
             if (getComResult.code == "1" || getComResult.code == 1) {
+//            	console.log("pageIndex:"+pageIndex);
+//            	console.log("每页数量:"+getComResult.count);
+//            	console.log(getComResult.data);
+//            	console.log("总数："+getComResult.total);
+            	
                 //函数调用
-                goPage(pageIndex, getComResult.total, getComResult.data);
+            	 goPage(pageIndex, getComResult.count, getComResult.data, getComResult.total);
             } else {
+                var thHtml =
+                    "<tr>" +
+                    "<th style='width:150px;'>" +
+                    "<input type='checkbox' class='all' id='checkAll'/>" +
+                    "<span>全选&nbsp&nbsp&nbsp&nbsp</span>" +
+                    "<img src='../image/dele.png'/>" +
+                    "<span id='delete'>&nbsp删除</span>" +
+                    "</th>" +
+                    "<th style='width:100px;'>用户名</th>" +
+                    "<th style='width:280px;'>商品</th>" +
+                    "<th style='width:100px;'>价格</th>" +
+                    "<th style='width:110px;'>商品分类1</th>" +
+                    "<th style='width:110px;'>商品分类2</th>" +
+                    "<th style='width:75px;'>数量</th>" +
+                    "<th style='width:100px;'>操作状态</th>" +
+                    "</tr>";
+                document.querySelector('table').innerHTML= thHtml;
                 alert(getComResult.msg);
+                
+                
             }
         },
         error: function () {

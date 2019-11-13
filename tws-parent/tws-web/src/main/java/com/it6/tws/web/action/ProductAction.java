@@ -1,6 +1,7 @@
 package com.it6.tws.web.action;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -112,7 +113,6 @@ public class ProductAction extends BaseAction<Product> {
 	 * 首页搜索商品
 	 */
 	public String searchProductInHome(){
-		System.out.println(model.getPname());
 		List<Product> products=productService.findProductByProName(model.getPname());
 		ServletActionContext.getResponse().setContentType("application/json; charset=UTF-8");
 		rest.setCode(1);
@@ -224,11 +224,11 @@ public class ProductAction extends BaseAction<Product> {
 		ServletActionContext.getResponse().setContentType("application/json; charset=UTF-8");
 		rest.setCode(1);
 		rest.setMsg("成功传输商品编号");
-		JSONObject json= JSONObject.fromObject(rest);
-		String jsonStr=json.toString();
+		JSONObject json= JSONObject.fromObject(rest);   //将对象转换为json格式
+		String jsonStr=json.toString();      //再将json转换为string类型
 		
 		try {
-			ServletActionContext.getResponse().getWriter().write(jsonStr);
+			ServletActionContext.getResponse().getWriter().write(jsonStr);  //通过响应头发送到前台
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -276,6 +276,7 @@ public class ProductAction extends BaseAction<Product> {
 		rest.setMsg("成功返回商品详情");
 		JSONObject json= JSONObject.fromObject(rest);
 		json.put("data", products);
+		json.put("username", user.getUsername());
 		json.put("classify1", split1);
 		json.put("classify2", split2);
 		json.put("historyData", historyProductList);

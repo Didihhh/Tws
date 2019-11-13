@@ -24,19 +24,20 @@ import net.sf.json.JSONObject;
 @Controller
 @Scope("prototype")
 public class UserAction extends BaseAction<User> {
-	
 	@Autowired
 	private IUserService userService;
 	
 	@Autowired
 	private RestResponse<Product> rest;
 	
-
+	private String oldPassword;
+	
+	private String newPassword;
 	/**
 	 * 用户登录
 	 */
 	public String login(){
-		User user = userService.login(model);		
+		User user = userService.login(model);	   //将数据传输给service层	
 		ServletActionContext.getResponse().setContentType("application/json; charset=UTF-8");
 		JSONObject json;
 		if(user !=null){
@@ -50,11 +51,10 @@ public class UserAction extends BaseAction<User> {
 			rest.setMsg("账号或者密码错误");
 			
 		}
-		json= JSONObject.fromObject(rest);
+		json= JSONObject.fromObject(rest);      //将对象转换为json格式
 		try {		
-			String jsonStr=json.toString();
-			ServletActionContext.getResponse().getWriter().write(jsonStr);
-			
+			String jsonStr=json.toString();     //将json转换为string类型
+			ServletActionContext.getResponse().getWriter().write(jsonStr);    //通过响应头发送到前台
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -91,8 +91,82 @@ public class UserAction extends BaseAction<User> {
 		return null;
 	}
 
+	
+	/**
+	 * 修改用户的默认地址，电话
+	 */
+	public String updateAddress() {
+		User user = (User) ServletActionContext.getRequest().getSession().getAttribute("loginUser");
+		user.setAutoaddress(model.getAutoaddress());
+		user.setAutopconsignee(model.getAutopconsignee());
+		user.setAutotelephone(model.getAutotelephone());
+		userService.updateAddress(user);
 
+
+		rest.setCode(1);
+		rest.setMsg("修改成功");
+		ServletActionContext.getResponse().setContentType("application/json; charset=UTF-8");
+		String jsonStr= JSONObject.fromObject(rest).toString();
+		try {		
+			ServletActionContext.getResponse().getWriter().write(jsonStr);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
 	
+	/**
+	 * 修改用户的用户名
+	 */
+	public String updateUserName() {
+		User user = (User) ServletActionContext.getRequest().getSession().getAttribute("loginUser");
+		user.setUsername(model.getUsername());
+		userService.updateAddress(user);
+
+
+		rest.setCode(1);
+		rest.setMsg("修改成功");
+		ServletActionContext.getResponse().setContentType("application/json; charset=UTF-8");
+		String jsonStr= JSONObject.fromObject(rest).toString();
+		try {		
+			ServletActionContext.getResponse().getWriter().write(jsonStr);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
 	
+	/**
+	 * 修改用户的密码
+	 */
+	public String updatePassword() {
+		User u = (User) ServletActionContext.getRequest().getSession().getAttribute("loginUser");
+		u.setPassword(oldPassword);
+		User user = userService.login(u);	   //将数据传输给service层	
+		ServletActionContext.getResponse().setContentType("application/json; charset=UTF-8");
+		JSONObject json;
+		if(user !=null){
+			u.setPassword(newPassword);
+			userService.updateAddress(u);
+			rest.setCode(1);
+			rest.setMsg("修改密码成功");
+			
+		}else{
+			rest.setCode(0);
+			rest.setMsg("密码错误");
+			
+		}
+		json= JSONObject.fromObject(rest);      //将对象转换为json格式
+		try {		
+			String jsonStr=json.toString();     //将json转换为string类型
+			ServletActionContext.getResponse().getWriter().write(jsonStr);    //通过响应头发送到前台
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
 
 }
