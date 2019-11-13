@@ -63,5 +63,11 @@ public class OrderServiceImpl implements IOrderService {
 			String telephone) {
 		return orderDao.addToOredrsInCast(jsonArray,total,address,pconsignee,telephone);
 	}
+	@Override
+	public void deleteOrderItemById(String itemid) {
+		orderDao.deleteOrderItemById(itemid);
+		// TODO Auto-generated method stub
+		
+	}
 
 }
