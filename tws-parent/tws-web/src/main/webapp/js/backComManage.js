@@ -3,8 +3,8 @@ var getComResult = {
     "code": "1",
     "msg": "成功",
     "count": 4,//每页数量
-    "allLength": 10,
-    "orders": [
+    "total": 10,
+    "data": [
         {
             imgUrl: '../image/pic1.jpg',
             title: '面卡其2019新款泫雅风条纹宽松打底针织衫长袖平色字母套头毛衣女fadsfdsajk手段狠辣尽快',
@@ -46,66 +46,6 @@ var getComResult = {
             title: '面卡其2019新款泫雅风条纹宽松打底针织衫长袖平色字母套头毛衣女fadsfdsajk手段狠辣尽快',
             goodsStatus: "1",
             id: 4,
-            price: '79.00',
-            disPrice: '69.00',
-            isCount: 1,
-            address: '广东广州',
-            styleOne: '尺寸,36码,37码,38码',
-            styleTwo: '颜色,白色,黑色,米色',
-        },
-        {
-            imgUrl: '../image/pic1.jpg',
-            title: '面卡其2019新款泫雅风条纹宽松打底针织衫长袖平色字母套头毛衣女fadsfdsajk手段狠辣尽快',
-            goodsStatus: "1",
-            id: 5,
-            price: '79.00',
-            disPrice: '69.00',
-            isCount: 1,
-            address: '广东广州',
-            styleOne: '尺寸,36码,37码,38码',
-            styleTwo: '颜色，白色，黑色，米色09-09',
-        },
-        {
-            imgUrl: '../image/pic1.jpg',
-            title: '面卡其2019新款泫雅风条纹宽松打底针织衫长袖平色字母套头毛衣女fadsfdsajk手段狠辣尽快',
-            goodsStatus: "1",
-            id: 6,
-            price: '79.00',
-            disPrice: '69.00',
-            isCount: 1,
-            address: '广东广州',
-            styleOne: '尺寸,36码,37码,38码',
-            styleTwo: '颜色,白色,黑色,米色',
-        },
-        {
-            imgUrl: '../image/pic1.jpg',
-            title: '面卡其2019新款泫雅风条纹宽松打底针织衫长袖平色字母套头毛衣女fadsfdsajk手段狠辣尽快',
-            goodsStatus: "2",
-            id: 7,
-            price: '79.00',
-            disPrice: '69.00',
-            isCount: 1,
-            address: '广东广州',
-            styleOne: '尺寸,36码,37码,38码',
-            styleTwo: '颜色,白色,黑色,米色',
-        },
-        {
-            imgUrl: '../image/pic1.jpg',
-            title: '面卡其2019新款泫雅风条纹宽松打底针织衫长袖平色字母套头毛衣女fadsfdsajk手段狠辣尽快',
-            goodsStatus: "2",
-            id: 8,
-            price: '79.00',
-            disPrice: '69.00',
-            isCount: 1,
-            address: '广东广州',
-            styleOne: '尺寸,36码,37码,38码',
-            styleTwo: '颜色,白色,黑色,米色',
-        },
-        {
-            imgUrl: '../image/pic1.jpg',
-            title: '面卡其2019新款泫雅风条纹宽松打底针织衫长袖平色字母套头毛衣女fadsfdsajk手段狠辣尽快',
-            goodsStatus: "2",
-            id: 9,
             price: '79.00',
             disPrice: '69.00',
             isCount: 1,
@@ -200,7 +140,7 @@ searchBtn.onclick = function () {
             success: function (getComResult) {
                 if (getComResult.code == "1" || getComResult.code == 1) {
                     //函数调用
-                    goPage(1, getComResult.count, getComResult.orders);
+                    goPage(1, getComResult.count, getComResult.data, getComResult.total);
                 } else {
                     alert(getComResult.msg);
                 }
@@ -208,7 +148,7 @@ searchBtn.onclick = function () {
             error: function () {
                 if (getComResult.code == "1" || getComResult.code == 1) {
                     //函数调用
-                    goPage(1, getComResult.count, getComResult.orders, getComResult.allLength);
+                    goPage(1, getComResult.count, getComResult.data, getComResult.total);
                 } else {
                     alert(getComResult.msg);
                 }
@@ -239,8 +179,8 @@ var getTable = function (i, page, orders) {
         "<th style='width:100px;font-weight:normal;'>操作状态</th>" +
         "</tr>";
     var tdHtml = "";
-    var b = i + page;
-    for (i; i < b; i++) {
+    //var b = i + page;
+    for (i = 0; i < orders.length; i++) {
         var comName = '';
         if (orders[i].goodsStatus == 0) {
             comName = '生活家电';
@@ -308,6 +248,7 @@ var jsPage = function (el, count, pageStep, pageNum, fnGo) {
     //总页数
     var pageNumAll = Math.ceil(count / pageStep);
     if (pageNumAll == 1) {
+        var divPage = document.getElementById(el);
         divPage.innerHTML = '';
         return;
     }
@@ -361,7 +302,9 @@ function goPage(pageIndex, pageStep, orders, allLength) {
                 delArray[arrIndex++] = tab.rows[i].cells[0].getElementsByTagName('img')[0].alt.split("/")[1];
             }
         }
-        console.log("删除接口" + delArray);
+        var object = {};
+        object['itemJSON'] = delArray;
+        console.log("删除接口" + JSON.stringify(object));
         if (delArray.length != 0) {
             $.ajax({
                 url: 'productAction_recommendProduct.action',//页面一进来的接口
@@ -369,14 +312,14 @@ function goPage(pageIndex, pageStep, orders, allLength) {
                 cache: false,//是否缓存
                 dataType: 'json',//返回值的类型
                 data: {
-                    "index": delArray
+                    "index": JSON.stringify(object)
                 },
                 success: function (getComResult) {
                     if (getComResult.code == "1" || getComResult.code == 1) {
                         //函数调用
                         console.log("删除调用接口成功！");
                         console.log("页数" + pageIndex);
-                        goPage(pageIndex, getComResult.count, getComResult.orders, getComResult.allLength);
+                        getOrders(pageIndex);
                     } else {
                         alert(getComResult.msg);
                     }
@@ -386,7 +329,7 @@ function goPage(pageIndex, pageStep, orders, allLength) {
                         //函数调用
                         console.log("删除调用接口成功！");
                         console.log("页数" + pageIndex);
-                        goPage(pageIndex, getComResult.count, getComResult.orders, getComResult.allLength);
+                        getOrders(pageIndex);
                     } else {
                         alert(getComResult.msg);
                     }
@@ -578,7 +521,7 @@ function getOrders(pageIndex) {
         success: function (getComResult) {
             if (getComResult.code == "1" || getComResult.code == 1) {
                 //函数调用
-                goPage(pageIndex, getComResult.count, getComResult.orders);
+                goPage(pageIndex, getComResult.count, getComResult.data, getComResult.total);
             } else {
                 alert(getComResult.msg);
             }
@@ -586,7 +529,7 @@ function getOrders(pageIndex) {
         error: function () {
             if (getComResult.code == "1" || getComResult.code == 1) {
                 //函数调用
-                goPage(pageIndex, getComResult.count, getComResult.orders, getComResult.allLength);
+                goPage(pageIndex, getComResult.count, getComResult.data, getComResult.total);
             } else {
                 alert(getComResult.msg);
             }
@@ -601,93 +544,6 @@ addCom.onclick = function () {
     shade.className = "db";
     document.getElementsByTagName("body")[0].style.overflow = "hidden";
     reset();
-    //var save = document.getElementById("save");
-
-    // 点击新增按钮
-    // save.onclick = function () {
-    // var coverLis = document.getElementById("cover").getElementsByTagName("li");
-    // var classify = coverLis[0].getElementsByTagName("b")[0];
-    // var title = coverLis[4].getElementsByTagName("input")[0];
-    // var oPrice = coverLis[5].getElementsByTagName("input")[0];
-    // var nPrice = coverLis[6].getElementsByTagName("input")[0];
-    // var isPrice = coverLis[7].getElementsByTagName("input")[0];
-    // var address = coverLis[8].getElementsByTagName("input")[0];
-    // var styleOne = coverLis[9].getElementsByTagName("input")[0];
-    // var styleTwo = coverLis[10].getElementsByTagName("input")[0];
-    // var img1 = coverLis[11].getElementsByTagName("img");
-    // var img2 = coverLis[12].getElementsByTagName("img");
-    // if (title.value == "") {
-    //     alert("请输入你需要新增的商品名");
-    // } else if (oPrice.value == "") {
-    //     alert("请输入商品原价");
-    // } else if (nPrice.value == "") {
-    //     alert("请输入打折价");
-    // } else if (isPrice.value == "") {
-    //     alert("请输入当前商品是否打折标识（0为不打折，1为打折）");
-    // } else if (address.value == "") {
-    //     alert("请输入商品发货地");
-    // } else if (styleOne.value == "") {
-    //     alert("请输入商品分类1");
-    // } else if (styleTwo.value == "") {
-    //     alert("请输入商品分类2");
-    // } else if (img1[0].src = "../img/backManage/upload.png") {
-    //     alert("请上传你的商品图片1");
-    // } else if (img1[1].src = "../img/backManage/upload.png") {
-    //     alert("请上传你的商品图片2");
-    // } else if (img1[2].src = "../img/backManage/upload.png") {
-    //     alert("请上传你的商品图片3");
-    // } else if (img2[0].src = "../img/backManage/upload.png") {
-    //     alert("请上传你的商品图片4");
-    // } else if (img2[1].src = "../img/backManage/upload.png") {
-    //     alert("请上传你的商品图片5");
-    // } else {
-    //     //调用接口
-    //     console.log("保存分类：" + status);
-    //     console.log("保存编号：" + id);
-    //     console.log("分类：" + classify.innerText);
-    //     console.log("标题：" + title.value);
-    //     console.log("原价：" + oPrice.value);
-    //     console.log("现价：" + nPrice.value);
-    //     console.log("打折标识：" + isPrice.value);
-    //     console.log("地址：" + address.value);
-    //     console.log("分类1：" + styleOne.value);
-    //     console.log("分类2：" + styleTwo.value);
-    //     $.ajax({
-    //         url: 'productAction_recommendProduct.action',//页面一进来的接口
-    //         type: 'post',//方法
-    //         cache: false,//是否缓存
-    //         dataType: 'json',//返回值的类型
-    //         data: {
-    //             "status": status,
-    //             "id": id,
-    //             "classify": classify.innerText,
-    //             "title": title.value,
-    //             "oPrice": oPrice.value,
-    //             "nPrice": nPrice.value,
-    //             "isPrice": isPrice.value,
-    //             "address": address.value,
-    //             "styleOne": styleOne.value,
-    //             "styleTwo": styleTwo.value
-    //         },
-    //         success: function (getModComResult) {
-    //             if (getModComResult.code == "1" || getModComResult.code == 1) {
-    //                 shade.className = "dn";
-    //                 document.getElementsByTagName("body")[0].style.overflow = "auto";
-    //             } else {
-    //                 alert(getModComResult.msg);
-    //             }
-    //         },
-    //         error: function () {
-    //             if (getModComResult.code == "1" || getModComResult.code == 1) {
-    //                 shade.className = "dn";
-    //                 document.getElementsByTagName("body")[0].style.overflow = "auto";
-    //             } else {
-    //                 alert(getModComResult.msg);
-    //             }
-    //         }
-    //     });
-    // }
-    // }
 }
 
 $("#form1").ajaxForm(function (data) {
@@ -820,69 +676,128 @@ var imgBtn1 = coverLis[11].getElementsByTagName("p");
 var imgUpload1 = coverLis[11].getElementsByTagName("input");
 
 for (var i = 0; i < img1.length; i++) {
-    imgUpload1[i].onchange = uploadImgs(imgUpload1[i], img1[i]);
+    imgUpload1[i].index = i;
+    imgUpload1[i].onchange = function () {
+        var curretIndex = this.index;
+        var file = imgUpload1[this.index].files[0],
+            reader = new FileReader(),
+            image = new Image();
+        // console.log(file);
+        if (file) {
+            EXIF.getData(file, function () {
+                Orientation = EXIF.getTag(this, 'Orientation');
+            });
+            reader.onload = function (ev) {
+                image.src = ev.target.result;
+                image.onload = function () {
+                    var imgWidth = this.width,
+                        imgHeight = this.height;
+                    // 控制上传图片的宽高
+                    if (imgWidth > imgHeight && imgWidth > 750) {
+                        imgWidth = 750;
+                        imgHeight = Math.ceil(750 * this.height / this.width);
+                    } else if (imgWidth < imgHeight && imgHeight > 1334) {
+                        imgWidth = Math.ceil(1334 * this.width / this.height);
+                        imgHeight = 1334;
+                    }
+
+                    var canvas = document.createElement("canvas"),
+                        ctx = canvas.getContext('2d');
+                    canvas.width = imgWidth;
+                    canvas.height = imgHeight;
+                    if (Orientation && Orientation != 1) {
+                        switch (Orientation) {
+                            case 6:     // 旋转90度
+                                canvas.width = imgHeight;
+                                canvas.height = imgWidth;
+                                ctx.rotate(Math.PI / 2);
+                                // (0,-imgHeight) 从旋转原理图那里获得的起始点
+                                ctx.drawImage(this, 0, -imgHeight, imgWidth, imgHeight);
+                                break;
+                            case 3:     // 旋转180度
+                                ctx.rotate(Math.PI);
+                                ctx.drawImage(this, -imgWidth, -imgHeight, imgWidth, imgHeight);
+                                break;
+                            case 8:     // 旋转-90度
+                                canvas.width = imgHeight;
+                                canvas.height = imgWidth;
+                                ctx.rotate(3 * Math.PI / 2);
+                                ctx.drawImage(this, -imgWidth, 0, imgWidth, imgHeight);
+                                break;
+                        }
+                    } else {
+                        ctx.drawImage(this, 0, 0, imgWidth, imgHeight);
+                    }
+                    img1[curretIndex].src = canvas.toDataURL("image/jpeg", 0.8);
+                }
+            }
+            reader.readAsDataURL(file);
+        }
+    }
 }
 
 var img2 = coverLis[12].getElementsByTagName("img");
 var imgBtn2 = coverLis[12].getElementsByTagName("p");
 var imgUpload2 = coverLis[12].getElementsByTagName("input");
 
-
-//上传图片
-function uploadImgs(upload, img) {
-    var file = upload.files[0],
-        reader = new FileReader(),
-        image = new Image();
-
-    if (file) {
-        EXIF.getData(file, function () {
-            Orientation = EXIF.getTag(this, 'Orientation');
-        });
-        reader.onload = function (ev) {
-            image.src = ev.target.result;
-            image.onload = function () {
-                var imgWidth = this.width,
-                    imgHeight = this.height;
-                // 控制上传图片的宽高
-                if (imgWidth > imgHeight && imgWidth > 750) {
-                    imgWidth = 750;
-                    imgHeight = Math.ceil(750 * this.height / this.width);
-                } else if (imgWidth < imgHeight && imgHeight > 1334) {
-                    imgWidth = Math.ceil(1334 * this.width / this.height);
-                    imgHeight = 1334;
-                }
-
-                var canvas = document.createElement("canvas"),
-                    ctx = canvas.getContext('2d');
-                canvas.width = imgWidth;
-                canvas.height = imgHeight;
-                if (Orientation && Orientation != 1) {
-                    switch (Orientation) {
-                        case 6:     // 旋转90度
-                            canvas.width = imgHeight;
-                            canvas.height = imgWidth;
-                            ctx.rotate(Math.PI / 2);
-                            // (0,-imgHeight) 从旋转原理图那里获得的起始点
-                            ctx.drawImage(this, 0, -imgHeight, imgWidth, imgHeight);
-                            break;
-                        case 3:     // 旋转180度
-                            ctx.rotate(Math.PI);
-                            ctx.drawImage(this, -imgWidth, -imgHeight, imgWidth, imgHeight);
-                            break;
-                        case 8:     // 旋转-90度
-                            canvas.width = imgHeight;
-                            canvas.height = imgWidth;
-                            ctx.rotate(3 * Math.PI / 2);
-                            ctx.drawImage(this, -imgWidth, 0, imgWidth, imgHeight);
-                            break;
+for (var i = 0; i < img2.length; i++) {
+    imgUpload2[i].index = i;
+    imgUpload2[i].onchange = function () {
+        var curretIndex = this.index;
+        var file = imgUpload2[this.index].files[0],
+            reader = new FileReader(),
+            image = new Image();
+        // console.log(file);
+        if (file) {
+            EXIF.getData(file, function () {
+                Orientation = EXIF.getTag(this, 'Orientation');
+            });
+            reader.onload = function (ev) {
+                image.src = ev.target.result;
+                image.onload = function () {
+                    var imgWidth = this.width,
+                        imgHeight = this.height;
+                    // 控制上传图片的宽高
+                    if (imgWidth > imgHeight && imgWidth > 750) {
+                        imgWidth = 750;
+                        imgHeight = Math.ceil(750 * this.height / this.width);
+                    } else if (imgWidth < imgHeight && imgHeight > 1334) {
+                        imgWidth = Math.ceil(1334 * this.width / this.height);
+                        imgHeight = 1334;
                     }
-                } else {
-                    ctx.drawImage(this, 0, 0, imgWidth, imgHeight);
+
+                    var canvas = document.createElement("canvas"),
+                        ctx = canvas.getContext('2d');
+                    canvas.width = imgWidth;
+                    canvas.height = imgHeight;
+                    if (Orientation && Orientation != 1) {
+                        switch (Orientation) {
+                            case 6:     // 旋转90度
+                                canvas.width = imgHeight;
+                                canvas.height = imgWidth;
+                                ctx.rotate(Math.PI / 2);
+                                // (0,-imgHeight) 从旋转原理图那里获得的起始点
+                                ctx.drawImage(this, 0, -imgHeight, imgWidth, imgHeight);
+                                break;
+                            case 3:     // 旋转180度
+                                ctx.rotate(Math.PI);
+                                ctx.drawImage(this, -imgWidth, -imgHeight, imgWidth, imgHeight);
+                                break;
+                            case 8:     // 旋转-90度
+                                canvas.width = imgHeight;
+                                canvas.height = imgWidth;
+                                ctx.rotate(3 * Math.PI / 2);
+                                ctx.drawImage(this, -imgWidth, 0, imgWidth, imgHeight);
+                                break;
+                        }
+                    } else {
+                        ctx.drawImage(this, 0, 0, imgWidth, imgHeight);
+                    }
+                    img2[curretIndex].src = canvas.toDataURL("image/jpeg", 0.8);
                 }
-                img.src = canvas.toDataURL("image/jpeg", 0.8);
             }
+            reader.readAsDataURL(file);
         }
-        reader.readAsDataURL(file);
     }
 }
 

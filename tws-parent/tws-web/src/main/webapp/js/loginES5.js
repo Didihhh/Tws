@@ -35,7 +35,10 @@ Login.prototype = {
                         if (LoginResult.code == 1 || LoginResult.code == "1") {
                             alert(LoginResult.msg);
                             window.location.href = "topSearch.html";
-                        } else {
+                        } else if(LoginResult.code == 2 || LoginResult.code == "2"){
+                            alert(LoginResult.msg);
+                            window.location.href = "backOrderManage.html";
+                        }else {
                             alert(LoginResult.msg);
                         }
                     },
