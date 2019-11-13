@@ -1,14 +1,16 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
+	<meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" type="text/css" href="../css/sidebar.css">
+	<title>商品详情</title>
+	<link rel="stylesheet" type="text/css" href="../css/sidebar.css">
+
 </head>
 <body>
     <!-- 侧边栏 -->
-    <div class="sidebar">
+    <div class="">
         <!-- 侧边栏购物车 -->
         <div class="cartBox" id="cartBox">
             <div class="cartHead">
@@ -17,67 +19,18 @@
                 <img src='../image/dele.png'/>
                 <span id='cartDelete'>删除</span>
             </div>
-            <ul class="sCartUl" id="sCartUl">
-                <li>
-                    <input type='checkbox' class='cartCheck' name="cCheck"/>
-                    <img src="../image/pic1.jpg" class="cartPic"/>
-                    <div class="cartClassify">
-                        <span>黑色</span>
-                        <span style="display: block;margin-top:5px;">均码</span>
-                    </div>
-                    <div class="cartNum">
-                        <img src="../image/minus.png" class="cartBtn" id="cSubBtn"/>
-                        <span style="font-size:16px;" id="cartNum">1</span>
-                        <img src="../image/plus.png" class="cartBtn" id="cAddBtn"/>
-                    </div>
-                    &nbsp;
-                    <div class="cartPrice">
-                        ¥<span id="cPirce">30.00</span>
-                    </div>
-                </li>
-                <li>
-                        <input type='checkbox' class='cartCheck' name="cCheck"/>
-                        <img src="../image/pic1.jpg" class="cartPic"/>
-                        <div class="cartClassify">
-                            <span>黑色</span>
-                            <span style="display: block;margin-top:5px;">均码</span>
-                        </div>
-                        <div class="cartNum">
-                            <img src="../image/minus.png" class="cartBtn" id="cSubBtn"/>
-                            <span style="font-size:16px;" id="cartNum">1</span>
-                            <img src="../image/plus.png" class="cartBtn" id="cAddBtn"/>
-                        </div>
-                        &nbsp;
-                        <div class="cartPrice">
-                            ¥<span id="cPirce">30.00</span>
-                        </div>
-                    </li>
-                    <li>
-                            <input type='checkbox' class='cartCheck' name="cCheck"/>
-                            <img src="../image/pic1.jpg" class="cartPic"/>
-                            <div class="cartClassify">
-                                <span>黑色</span>
-                                <span style="display: block;margin-top:5px;">均码</span>
-                            </div>
-                            <div class="cartNum">
-                                <img src="../image/minus.png" class="cartBtn" id="cSubBtn"/>
-                                <span style="font-size:16px;" id="cartNum">1</span>
-                                <img src="../image/plus.png" class="cartBtn" id="cAddBtn"/>
-                            </div>
-                            &nbsp;
-                            <div class="cartPrice">
-                                ¥<span id="cPirce">30.00</span>
-                            </div>
-                        </li>
-                        
+            <span id="emptyFont1">空空如也...</span>
+            <ul class="sCartUl" id="sCartUl">         
             </ul>
             <div class="cartFoot">
-                <span style="margin-left:45px;">已选 </span>
+                <span style="margin-left:47px;">已选 </span>
                 <span id="cartSum">0</span>
                 <span> 件</span>
-                <span style="color:red;margin-left:105px;">¥</span>
-                <span style="color:red" id="cartTotal">200.00</span>
-                <button>结算</button>
+                <div class="totalDiv">
+                    <span id="cartTotal">0.00</span>
+                    <span>¥</span>
+                </div>
+                <button id="accountBtn">结算</button>
             </div>
         </div>
         <!-- 侧边栏历史浏览 -->
@@ -86,80 +39,8 @@
                 <span class="historySpan">我看过的</span>
                 <span id="historyClean">清空</span>
             </div>
-            <span id="emptyFont">空空如也...</span>
+            <span id="emptyFont2">空空如也...</span>
             <ul class="sHistoryUl" id="sHistoryUl">
-                <li>
-                    <img src="../image/pic1.jpg"/>
-                    <span>¥200.00</span>
-                </li>
-                <li>
-                    <img src="../image/pic1.jpg"/>
-                    <span>¥200.00</span>
-                </li>
-                <li>
-                    <img src="../image/pic1.jpg"/>
-                    <span>¥200.00</span>
-                </li>
-                <li>
-                        <img src="../image/pic1.jpg"/>
-                        <span>¥200.00</span>
-                    </li>
-                    <li>
-                        <img src="../image/pic1.jpg"/>
-                        <span>¥200.00</span>
-                    </li>
-                    <li>
-                        <img src="../image/pic1.jpg"/>
-                        <span>¥200.00</span>
-                    </li>
-                    <li>
-                            <img src="../image/pic1.jpg"/>
-                            <span>¥200.00</span>
-                        </li>
-                        <li>
-                            <img src="../image/pic1.jpg"/>
-                            <span>¥200.00</span>
-                        </li>
-                        <li>
-                            <img src="../image/pic1.jpg"/>
-                            <span>¥200.00</span>
-                        </li>
-                        <li>
-                                <img src="../image/pic1.jpg"/>
-                                <span>¥200.00</span>
-                            </li>
-                            <li>
-                                <img src="../image/pic1.jpg"/>
-                                <span>¥200.00</span>
-                            </li>
-                            <li>
-                                <img src="../image/pic1.jpg"/>
-                                <span>¥200.00</span>
-                            </li>
-                            <li>
-                                    <img src="../image/pic1.jpg"/>
-                                    <span>¥200.00</span>
-                                </li>
-                                <li>
-                                    <img src="../image/pic1.jpg"/>
-                                    <span>¥200.00</span>
-                                </li>
-                                <li>
-                                    <img src="../image/pic1.jpg"/>
-                                    <span>¥200.00</span>
-                                </li>
-                                <li>
-                                        <img src="../image/pic1.jpg"/>
-                                        <span>¥200.00</span>
-                                    </li>
-                                    <li>
-                                        <img src="../image/pic1.jpg"/>
-                                        <span>¥200.00</span>
-                                    </li>
-                                    <li>
-                                        <img src="../image/pic1.jpg"/>
-                                        <span>¥200.00</span>
-                                    </li>
             </ul>
         </div>
         <div class="sidebarLeft" id="sidebarLeft">
@@ -168,12 +49,11 @@
             <img src="../image/cart.png" id="cartSty" class="sidebarIcon"/>
             <div style="width:35px;height:1px;margin:0px auto;padding:0px;background-color:#D5D5D5;overflow:hidden;"></div>
             <img src="../image/order.png" id="bagSty" class="sidebarIcon"/>
-        </div>   
+        </div>
     </div>
     <script type="text/javascript" src="../jq/jquery-validation-1.17.0/lib/jquery.js"></script>
     <script type="text/javascript" src="../jq/jquery-validation-1.17.0/dist/jquery.validate.min.js"></script>
     <script type="text/javascript" src="../jq/jquery-3.2.1.min.js"> </script>
-   
     <script type="text/javascript" src="../js/sidebar.js"> </script>
 </body>
 </html>

@@ -5,6 +5,8 @@
     top:0px;
     right:0px;
     z-index:1;
+    /* width:500px; */
+    height:100%;
 }
 .sidebarLeft{
     position:absolute;
@@ -93,6 +95,7 @@
     width:80px;
     height:80px;
     margin:16px -4px;
+    cursor: pointer;
 }
 .cartClassify{
     float: left;
@@ -101,18 +104,19 @@
 }
 .cartNum{
     float: left;
-    margin:39px 17px;
+    margin:39px 15px;
 }
 .cartBtn{
     width:14px;
     height:14px;
     margin-top:1px;
+    margin-left:2px;
     cursor: pointer;
 }
 .cartPrice{
     width:37px;
     float: left;
-    margin:38px 7px;
+    margin:39px 8px;
 }
 .cartFoot{
     width:100%;
@@ -122,13 +126,25 @@
     background-color:#e6e6e6;
     padding-top:10px; 
 }
+.totalDiv{
+    float:left;
+    margin:0px 120px;
+    width:70px;
+}
+.totalDiv span{
+    color:red;
+    margin-left:0px;
+    float:right !important;
+}
 .cartFoot span{
     font-family: "Microsoft Yahei","\5fae\8f6f\96c5\9ed1","\5b8b\4f53";
+    font-size:16px;
+    float:left;
 
 }
 .cartFoot button{
     display:block;
-    margin:15px 44px; 
+    margin:36px 47px; 
     width:250px;
     height:40px;
     background-color:#91C8F0;
@@ -164,10 +180,16 @@
 #historyClean{
     color:red;
     float:right;
-    margin:2px 54px;
+    margin:3px 54px;
+    font-size:16px;
     cursor: pointer;
 }
-#emptyFont{
+#emptyFont1{
+    display:none;
+    margin:300px 118px;
+    font-size:16px;
+}
+#emptyFont2{
     display:none;
     margin:300px 118px;
     font-size:16px;
@@ -180,6 +202,10 @@
     list-style: none;
     float: left;
     margin:8px 7px;
+    cursor: pointer;
+}
+.sHistoryUl li:hover{
+    color:#f50;
 }
 .sHistoryUl li img{
     width:115px;

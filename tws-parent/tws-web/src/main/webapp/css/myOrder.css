@@ -49,12 +49,12 @@
 .orderBox p{
     font-size:20px;
     font-weight:bold;
-    margin:0px 30px;
+    margin:0px 20px;
     color:rgb(44, 45, 46);
 }
 table{
-    width:1000px;
-    margin:35px 30px;
+    width:1050px;
+    margin:35px 20px;
 }
 table tr{
     margin:0px 0px;
@@ -113,6 +113,10 @@ table tr td span{
 }
 .status{
     margin:0px 0px;
+    text-align: center;
+}
+#afterStatus{
+    display:none;
 }
 table tr td button{
     width:68px;
@@ -125,7 +129,7 @@ table tr td button{
     outline: none;
 }
 #divPage{
-    margin:0px 37px;
+    margin:0px -2px;
     float: right;
     padding:0px 0px;
 }

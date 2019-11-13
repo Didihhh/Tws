@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>我的订单</title>
+    <link rel="stylesheet" type="text/css" href="../css/myOrder.css">
+    <link rel="stylesheet" type="text/css" href="../css/sidebar.css">
+</head>
+<body>
+    <div class="mainBox">
+        <div class="topBox">
+            <span>我的订单</span>
+            <div class="search">
+                <input id="searchIp" type="text" placeholder="请输入内容" value=""/>
+                <button id="searchBtn">
+                    搜索订单
+                </button>
+            </div>    
+        </div>
+        <div class="orderBox">
+            <p>全部订单</p>
+            <div style="height:625px;">
+                <table id="orderTable"></table>
+            </div>
+            <div id="divPage"></div>
+        </div>    
+    </div>
+    <!-- 侧边栏 -->
+    <!-- <iframe src="sidebar.html"></iframe> -->
+    <div class="sidebar">
+        <!-- 侧边栏购物车 -->
+        <div class="cartBox" id="cartBox">
+            <div class="cartHead">
+                <input type='checkbox' class='cartAll' id='cartCheckAll'/>
+                <span>全选</span>
+                <img src='../image/dele.png'/>
+                <span id='cartDelete'>删除</span>
+            </div>
+            <span id="emptyFont1">空空如也...</span>
+            <ul class="sCartUl" id="sCartUl">         
+            </ul>
+            <div class="cartFoot">
+                <span style="margin-left:47px;">已选 </span>
+                <span id="cartSum">0</span>
+                <span> 件</span>
+                <div class="totalDiv">
+                    <span id="cartTotal">0.00</span>
+                    <span>¥</span>
+                </div>
+                <button id="accountBtn">结算</button>
+            </div>
+        </div>
+        <!-- 侧边栏历史浏览 -->
+        <div class="historyBox" id="historyBox">
+            <div class="historyHead">
+                <span class="historySpan">我看过的</span>
+                <span id="historyClean">清空</span>
+            </div>
+            <span id="emptyFont2">空空如也...</span>
+            <ul class="sHistoryUl" id="sHistoryUl">
+            </ul>
+        </div>
+        <div class="sidebarLeft" id="sidebarLeft">
+            <img src="../image/history.png" id="historySty" class="sidebarIcon"/>
+            <div style="width:35px;height:1px;margin:0px auto;padding:0px;background-color:#D5D5D5;overflow:hidden;"></div>
+            <img src="../image/cart.png" id="cartSty" class="sidebarIcon"/>
+            <div style="width:35px;height:1px;margin:0px auto;padding:0px;background-color:#D5D5D5;overflow:hidden;"></div>
+            <img src="../image/order.png" id="bagSty" class="sidebarIcon"/>
+        </div>
+    </div>
+    <!-- 侧边栏 -->
+    <script type="text/javascript" src="../jq/jquery-validation-1.17.0/lib/jquery.js"></script>
+    <script type="text/javascript" src="../jq/jquery-validation-1.17.0/dist/jquery.validate.min.js"></script>
+    <script type="text/javascript" src="../jq/jquery-3.2.1.min.js"> </script>
+    <script type="text/javascript" src="../js/myOrder.js"> </script>
+    <script type="text/javascript" src="../js/sidebar.js"> </script>
+</body>
+</html>
