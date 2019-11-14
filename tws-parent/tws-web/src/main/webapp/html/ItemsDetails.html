@@ -66,7 +66,7 @@
 				<dd class="">¥</dd>
 				<dd class="fareSty">0.00</dd>
 			</dl>
-			<form class="formSty" role="form">
+			<form class="formSty" role="form" οnsubmit="return false;">
 				<div class="selectBox">
 					<dl class="" style="margin:19px 0px;">
 						<dt class="selectDt" id="cDt1"></dt>
@@ -96,8 +96,8 @@
 						</dd>	
 					</dl>		
 				</div>
-				<input type="submit" id="buyIpt"  class="buyIpt" value="立即购买" />
-				<input type="submit" id="addIpt" class="addIpt" value="加入购物车" />
+				<input type="button" id="buyIpt"  class="buyIpt" value="立即购买" />
+				<input type="button" id="addIpt" class="addIpt" value="加入购物车" />
 			</form>
 		</div>
 		<div class="watchBox">
@@ -230,22 +230,7 @@
 		</div>
 	</div>	  
  </div>
- <!-- 遮罩层和弹出框 -->
- <div id="mask"></div>
- <form id="buyForm" name="buyForm" method="post" onsubmit="return checkName()">
-	<div class="Fhead"><span class="title">请确认收货地址</span></div>
-	<div class="content">
-		<span id="w1">用 户 名:</span>
-		<input id="username" type="text" name="text1" onblur="checkName()"> 
-		<span id="div1"></span>
-		<div class="formFoot">
-			<input type="reset" value="取消" id="closeBtn">
-			<input type="submit" value="确认修改" id="submitBtn">    
-		</div>
-	</div>
-	<div id="close"></div>
-</form>
- <!-- 侧边栏 -->
+ <!-- 侧边栏及遮罩层 -->
  <!-- <iframe src="sidebar.html"></iframe> -->
  <div class="sidebar">
 	<!-- 侧边栏购物车 -->
@@ -288,7 +273,28 @@
 		<img src="../image/order.png" id="bagSty" class="sidebarIcon"/>
 	</div>
 </div>
-  <!-- 侧边栏 -->
+<!-- 遮罩层和弹出框 -->
+<div id="mask"></div>
+<form id="buyForm" name="buyForm" method="post" onsubmit="">
+   <div class="Fhead"><span class="Ftitle">请确认收货地址</span></div>
+   <div class="content">
+	   <span>收&nbsp;货 &nbsp;人：</span>
+	   <input id="Bconsignee" type="text" name="text1" onblur="">
+	   <br><br><br>
+	   <span>手机号码：</span>
+	   <input id="Bphone" type="text" name="text1" onblur="">
+	   <br><br><br>
+	   <span style="margin-top:24px;display:block;">收货地址：</span>
+	   <textarea id="Baddres" onblur="checkAddress()"></textarea>
+	   <span id="div1"></span>
+	   <div class="formFoot">
+		   <input type="button" value="取消" id="BcloseBtn">
+		   <input type="button" value="确认下单" id="BsubmitBtn">    
+	   </div>
+   </div>
+   <div id="close"></div>
+</form>
+  <!-- 侧边栏及遮罩层 -->
  <script type="text/javascript" src="../jq/jquery-validation-1.17.0/lib/jquery.js"></script>
  <script type="text/javascript" src="../jq/jquery-validation-1.17.0/dist/jquery.validate.min.js"></script>
  <script type="text/javascript" src="../jq/jquery-3.2.1.min.js"> </script>

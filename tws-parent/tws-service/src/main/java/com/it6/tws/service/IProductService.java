@@ -27,4 +27,7 @@ public interface IProductService {
 
 	public Product findProductByPid(String pid);
 
+
+	public void saveProduct(Product model);
+
 }

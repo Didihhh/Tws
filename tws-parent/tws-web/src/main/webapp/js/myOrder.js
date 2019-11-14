@@ -66,6 +66,9 @@ var orderDocking = {
             },
             error: function error() {
                 alert("网络传输有误！请检查网络连接！"); 
+                orderList = orders11;
+                orderTotal = 10;
+                mainStep = 5;
             }
         })
     },
@@ -133,6 +136,34 @@ var orderDocking = {
             }
         })
     },
+    //确认收货
+    confirmGoodsRecommend: function(id) {
+        $.ajax({
+            url:"orderAction_updateOrderItemState.action",//路径
+            type:"post",//方法
+            async:false,//是否缓存
+            dataType:"json",//返回值类型
+            data: {
+                "itemid": id
+            },
+            success: function(getComResult) {
+                //成功
+                if(getComResult.code == "1" ||getComResult.code == 1 ){
+                    alert(getComResult.msg);
+                }
+                else{
+                    alert(getComResult.msg);
+                }
+            },
+            error: function error() {
+                alert("网络传输有误！请检查网络连接！");
+                 //函数调用
+                 orderList = orders11;
+                 orderTotal = parseInt(Ftotal);
+                
+            }
+        })
+    },
 }
 
 
@@ -141,7 +172,7 @@ var orderDocking = {
 var getTable = function(orders){
 	console.log("orders",orders);
     var thHtml = 
-    "<tr>"+
+    "<tr id='Ohead'>"+
         "<th>"+
             "<input type='checkbox' class='all' id='checkAll'/>"+
             "<span>全选&nbsp&nbsp&nbsp&nbsp</span>"+
@@ -251,12 +282,11 @@ function goPage(pageIndex) {
     console.log(this.orderList)
     document.querySelector('table').innerHTML = getTable(this.orderList) //传参数为第n页的第一件商品的
     //赋itemid
-    // console.log($("#orderTable tr"));
-    // $("#orderTable tr").each(function(index){
-    //     console.log($(this));
-    //     // console.log(orderList[index]);
-    //     $(this).attr("itemid",this.orderList[index].itemid)
-    // })
+    $("#orderTable tr").each(function(index){
+        if($(this).attr("id") != "Ohead"){ //除去表头
+            $(this).attr("itemid",orderList[index-1].itemid)
+        }
+    })
     jsPage('divPage', this.orderTotal , this.mainStep , pageIndex, 'goPage');
 }
 function goSearchPage(pageIndex) {
@@ -318,7 +348,9 @@ $(document).ready(function(){
     $("#orderTable tr").each(function(index){
         var after = $(this).find("#afterStatus");
         $(this).find("#statusBtn").click(function(){
-            console.log("ZHI")
+            //调用确认收货接口
+            //id存放在上上级
+            orderDocking.confirmGoodsRecommend($(this).parent().parent().attr('itemid'));
             $(this).css("display","none");
             after.css("display","block");
         })

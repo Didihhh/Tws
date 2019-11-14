@@ -10,6 +10,8 @@ var NowPrice = ""; //记录显示的价格
 var highPri = "";
 var lowPri = "";
 
+var placeOrder = false;//判断是立即购买还是结算，false为立即购买
+
 // 侧边栏全局变量
 
 //模拟数据
@@ -32,7 +34,6 @@ var Dom = {
 
 //获取价格
 function isDiscount(status,market_Price,shop_Price){
-    console.log("打折");
     var bfBox = document.getElementById("bfPriBox");
     var afBox = document.getElementById("afPriBox");
     var bfPri1 = document.getElementById("beforePrice1");
@@ -84,8 +85,6 @@ function getGoodsData(src1,src2,src3,src4,src5,title,address,historyData){
     var titleId = document.getElementById("title");
     var addressId = document.getElementById("address");
     var str = "" //自动生成浏览列表
-
-    console.log(address);
     titleId.innerHTML = title;
     addressId.innerHTML = address;
 
@@ -130,9 +129,7 @@ function getGoodsData(src1,src2,src3,src4,src5,title,address,historyData){
 //加载左边图片
 $("#showButtom ul li img").each(function(index){
     $(this).mouseover(function(){
-        console.log("执行");
         const liNode = $(this);
-        console.log( $(this)[0].src);
         $("#showPic").attr("src", $(this)[0].src);
     })
 })
@@ -148,7 +145,6 @@ function setDifferPrice(shop_price){
 var Docking = {
     //获取详情页信息
     recommend1: function() {
-        console.log("接口recommend1");
         $.ajax({
             url:"productAction_detailProduct.action",//路径
             type:"post",//方法
@@ -313,6 +309,65 @@ var Docking = {
             
         })
     },
+    //获取收货信息
+    getReceivingRecommend:function(){
+        $.ajax({
+            url:"userAction_getUserInform.action",//路径
+            type:"post",//方法
+            async:false,//是否缓存
+            dataType:"json",//返回值类型
+            data:{
+            },
+            success: function(getComResult) {
+                //成功
+                if(getComResult.code == "1" ||getComResult.code == 1 ){
+                    return getComResult.data;
+                }
+                else{
+                    alert(getComResult.msg)
+                }   
+            },
+            error: function error() {
+                alert("网络传输有误！请检查网络连接！");
+            }
+            
+        })
+    },
+    //点击立即购买确认下单
+    buyRecommend:function(num,name,address,phone){
+        console.log("立即购买接口")
+        $.ajax({
+            url:"orderAction_addToOredrsInCart.action",//路径
+            type:"post",//方法
+            async:false,//是否缓存
+            dataType:"json",//返回值类型
+            data:{
+                "pid" : goodsId,
+                "pnum" : num,
+                "classify1" : c1Value,
+                "classify2" : c2Value,
+                "subtotal" : NowPrice,
+                "state" : -1,
+                "pconsignee" : name,
+                "address" : address,
+                "telephone" : phone 
+
+            },
+            success: function(getComResult) {
+                //成功
+                if(getComResult.code == "1" ||getComResult.code == 1 ){
+                    alert(getComResult.msg);
+                }
+                else{
+                    alert(getComResult.msg);
+                }   
+            },
+            error: function error() {
+                alert("网络传输有误！请检查网络连接！");
+            }
+            
+        })
+    },
 }
 
 //加载后执行函数
@@ -335,7 +390,6 @@ $(document).ready(function(){
         $(this).click(function(){
             const liNode = $(this); 
             //将原来显示的内容进行隐藏
-            console.log("点击标签")
             $("div.contentIn").removeClass("contentIn"); 
             //将原来有tabHover属性的标签去掉tabin属性 
             $("#tabarea ul li.tabHover").removeClass("tabHover"); 
@@ -442,64 +496,65 @@ $(document).ready(function(){
         Docking.toDetail($(this).attr('pid'));
     })
 
-    //结算
-    $("#accountBtn").click(function(){
-        var countList = [];//结算商品列表
-        $("#sCartUl li").each(function(index){
-            //被选中的列
-            if($(this).find("input[name='cCheck']:checked").is(":checked")) {
-                var countObj = {
-                            pid : '',
-                            punm : '',
-                            classify1 : '',
-                            classify2 : '',
-                            subtotal : '',
-                            state : ''
-                        };//一组商品对象，必须写在循环里，每次循环都创建新对象，如不创建新对象，只改变值，则数组全是对象最新的值。
-                countObj.pid = $(this).attr('pid');
-                countObj.punm = $(this).find("#cartNum")[0].innerText;
-                countObj.classify1 = $(this).find("#cartClassify1")[0].innerText;
-                countObj.classify2 = $(this).find("#cartClassify2")[0].innerText;
-                countObj.subtotal = $(this).find("#cPirce")[0].innerText;
-                countObj.state = -1;
-                console.log("对象：",countObj);
-                //往结算列表中添加一组数据
-                countList.push(countObj);
-                console.log("数组：",countList);
-                console.log("JSON字符串：",JSON.stringify(countList))
-                //购物车结算接口
-                Docking.CartCountRecommend(countList);
-                $(this).remove();
-            }
-        });
-
-    })
-
     //点击页面跳转
     //遮罩层
     //弹出层
     var sheight = document.documentElement.scrolllHeight;
     var swidth = document.documentElement.scrollWidth;
-    var ilogin = document.getElementById("login");
-    var ibutton = document.getElementById("button");
     var imask = document.getElementById("mask");
     var iclose = document.getElementById("close");
-    var nameform = document.getElementById("nameForm");
-    var nameform = document.getElementById("nameForm");
-    var nameform = document.getElementById("nameForm");
+    var buyform = document.getElementById("buyForm");
 
     var dheight = document.documentElement.clientHeight;
     var dwidth = document.documentElement.clientWidth;
-    //点击购买
+
+    //点击立即购买
     $("#buyIpt").click(function(){
-        console.log("购买")
-        var buyform = document.getElementById("buyForm");
+        placeOrder = false;//判断是立即购买还是结算下单
         buySwift(1,buyform);
+        //调接口取收货信息
+        var Receiving = Docking.getReceivingRecommend();
+        document.getElementById("Bconsignee").value = Receiving.autopconsignee
+        document.getElementById("Bphone").value = Receiving.autotelephone
+        document.getElementById("Baddres").value = Receiving.autoaddress
+    })
+    //点击取消
+    $('#BcloseBtn').click(function(){
+        buySwift(2,buyform);
+        //解除禁止滚动条
+        $(document).unbind("scroll.unable");
+    })
+    //点击遮罩层
+    $('#mask').click(function(){
+        buySwift(2,buyform);
+        //解除禁止滚动条
+        $(document).unbind("scroll.unable");
+    })
+     //点击关闭弹框
+     $('#close').click(function(){
+        buySwift(2,buyform);
+        //解除禁止滚动条
+        $(document).unbind("scroll.unable");
+    })
+    //确认下单
+    $('#BsubmitBtn').click(function(){   
+        console.log("判断",placeOrder)
+        var name = document.getElementById("Bconsignee").value;//收货人
+        var address = document.getElementById("Baddres").value;//地址
+        var phone = document.getElementById("Bphone").value;//电话
+        if(placeOrder == false){//判断是立即购买还是结算下单,调用不同接口
+            Docking.buyRecommend(txt.value,name,address,phone);
+        }else{
+            //购物车结算接口
+            sidebarDocking.CartCountRecommend(countList);
+            $(this).remove();
+        }
+        buySwift(2,buyform);
+        window.parent.location.reload();  //刷新
     })
 
     //遮罩层 #mask用户信息的body里自带。
     function buySwift(now,form){
-        console.log(form)
         var dis;
         if(now == 1){
             dis = "block";
@@ -515,6 +570,11 @@ $(document).ready(function(){
         var jheight = form.offsetHeight;
         form.style.left = (dwidth-jwidth)/2+"px";
         form.style.top = (dheight-jheight)/2+"px";
+        //阻止页面滚动特效
+        var top = $(document).scrollTop();
+        $(document).on('scroll.unable',function (e) {
+            $(document).scrollTop(top);
+        })
     }
 
 

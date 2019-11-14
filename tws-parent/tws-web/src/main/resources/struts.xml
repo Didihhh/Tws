@@ -21,8 +21,12 @@
 		</action>
 		
 		
-		<!-- 后台订单管理 -->
+		<!-- 后台订单管理1-->
 		<action name="adminOrderAction_*" class="adminOrderAction" method="{1}">
+		</action>
+		
+		<!-- 后台商品管理2-->
+		<action name="productManageAction_*" class="productManageAction" method="{1}">
 		</action>
 	</package>
 </struts>

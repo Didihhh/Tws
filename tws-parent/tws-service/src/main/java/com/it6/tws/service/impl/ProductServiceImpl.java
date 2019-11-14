@@ -82,6 +82,13 @@ public class ProductServiceImpl implements IProductService {
 	}
 
 
+	@Override
+	public void saveProduct(Product model) {
+		// TODO Auto-generated method stub
+		productDao.saveProduct(model);
+	}
+
+
 
 
 
