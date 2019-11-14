@@ -156,7 +156,6 @@ public class AdminOrderAction extends BaseAction<OrderItem>{
 	 * 删除订单
 	 */
 	public String deleteOrderItemById(){
-		System.out.println(itemJSON);
 		String itemID=null;
 		ServletActionContext.getResponse().setContentType("application/json; charset=UTF-8");
 		JSONObject jsonObject=null;

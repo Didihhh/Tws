@@ -337,6 +337,35 @@ public class ProductAction extends BaseAction<Product> {
 	
 	
 	/**
+	 * 清空游览记录
+	 */
+	public String clearHistoryProduct(){
+		User user = (User) ServletActionContext.getRequest().getSession().getAttribute("loginUser");
+		int size=20;
+		//定义一个记录历史商品信息的集合
+		List<Product> historyProductList = new ArrayList<Product>();
+		// 获得客户端携带名字叫pids的cookie
+		Cookie[] cookies = ServletActionContext.getRequest().getCookies();
+		String pids="";
+		Cookie cookie_pids = new Cookie(user.getUid(),pids);
+		
+		ServletActionContext.getResponse().setContentType("application/json; charset=UTF-8");
+		rest.setCode(1);
+		rest.setMsg("成功清空游览记录");
+		JSONObject json= JSONObject.fromObject(rest);
+		json.put("historyData", historyProductList);
+		String jsonStr=json.toString();
+		
+		try {
+			ServletActionContext.getResponse().getWriter().write(jsonStr);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	/**
 	 * 获取购物车信息
 	 */
 	public String getCart(){
@@ -438,11 +467,22 @@ public class ProductAction extends BaseAction<Product> {
 			//删除
 			cart.remove(model.getPid());
 		}
+		rest.setCode(1);
+		rest.setMsg("成功删除购物车商品");
 		//将车再次存入session
 		session.setAttribute(user.getUid(), cart);
+		JSONObject json= JSONObject.fromObject(rest);
+		String jsonStr=json.toString();
+		try {
+			ServletActionContext.getResponse().getWriter().write(jsonStr);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return null;
 
 	}
+	
 	/**
 	 * 清空购物车
 	 */

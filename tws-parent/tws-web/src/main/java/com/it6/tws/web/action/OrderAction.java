@@ -34,7 +34,7 @@ public class OrderAction extends BaseAction<OrderItem>{
 	@Autowired
 	private IProductService productService;
 	private Integer currentPage;
-	private Integer pageSize=10;
+	private Integer pageSize=5;
 	private String pname;
 	private String orderJson;
 	private String total;
@@ -49,21 +49,27 @@ public class OrderAction extends BaseAction<OrderItem>{
 		ServletActionContext.getResponse().setContentType("application/json; charset=UTF-8");
 		PageBean pageBean=orderService.getPageBean(currentPage,pageSize,user.getUid());
 		Product pro;
-		MyOrderItem myOrderItem = new MyOrderItem();
+		MyOrderItem myOrderItem=null;
 		List<OrderItem> orderList=null;
 		List<MyOrderItem> myOrderList=new ArrayList<MyOrderItem>();
 		orderList=pageBean.getList();
-		for(OrderItem orderItem:orderList) {
-			pro=productService.findProductByPid(orderItem.getPid());
-			BuildMyOrder build=new BuildMyOrder(orderItem,null,pro,myOrderItem);
-			myOrderItem=build.getMyOrderItem();
-			myOrderList.add(myOrderItem);
+		
+		if(orderList!=null&&orderList.size()>0)
+		{
+			for(OrderItem orderItem:orderList) {
+				myOrderItem = new MyOrderItem();
+				pro=productService.findProductByPid(orderItem.getPid());
+				BuildMyOrder build=new BuildMyOrder(orderItem,null,pro,myOrderItem);
+				myOrderItem=build.getMyOrderItem();
+				myOrderList.add(myOrderItem);
+			}
 		}
 		rest.setCode(1);
 		rest.setMsg("我的订单显示完成");
 		JSONObject json= JSONObject.fromObject(rest);
-		json.put("data", myOrderItem);
+		json.put("data", myOrderList);
 		json.put("username", user.getUsername());
+		json.put("count", pageSize);
 		json.put("total", pageBean.getTotalCount());
 		String jsonStr=json.toString();
 		try {		
@@ -79,25 +85,30 @@ public class OrderAction extends BaseAction<OrderItem>{
 	/**
 	 * 搜索订单
 	 */
-	public String FindOredrsByPname(){
+	public String findOredrsByPname(){
 		User user = (User) ServletActionContext.getRequest().getSession().getAttribute("loginUser");
 		ServletActionContext.getResponse().setContentType("application/json; charset=UTF-8");
 		PageBean pageBean=orderService.getPageBean(currentPage,pageSize,user.getUid(),pname);
 		Product pro;
-		MyOrderItem myOrderItem = new MyOrderItem();
+		MyOrderItem myOrderItem=null;
 		List<OrderItem> orderList=null;
 		List<MyOrderItem> myOrderList=new ArrayList<MyOrderItem>();
 		orderList=pageBean.getList();
-		for(OrderItem orderItem:orderList) {
-			pro=productService.findProductByPid(orderItem.getPid());
-			BuildMyOrder build=new BuildMyOrder(orderItem,null,pro,myOrderItem);
-			myOrderItem=build.getMyOrderItem();
-			myOrderList.add(myOrderItem);
+		if(orderList!=null&&orderList.size()>0)
+		{
+			for(OrderItem orderItem:orderList) {
+				myOrderItem = new MyOrderItem();
+				pro=productService.findProductByPid(orderItem.getPid());
+				BuildMyOrder build=new BuildMyOrder(orderItem,null,pro,myOrderItem);
+				myOrderItem=build.getMyOrderItem();
+				myOrderList.add(myOrderItem);
+			}
 		}
 		rest.setCode(1);
 		rest.setMsg("查找订单成功");
 		JSONObject json= JSONObject.fromObject(rest);
-		json.put("data", myOrderItem);
+		json.put("data", myOrderList);
+		json.put("count", pageSize);
 		json.put("total", pageBean.getTotalCount());
 		String jsonStr=json.toString();
 		try {		
@@ -194,7 +205,8 @@ public class OrderAction extends BaseAction<OrderItem>{
 	 */
 	public String addToOredrsInCast(){
 		String flag=null;
-		JSONArray jsonArray=JSONArray.fromObject(orderJson);
+		JSONObject jsonObject=JSONObject.fromObject(orderJson);
+		JSONArray jsonArray=jsonObject.getJSONArray("orderArray");
 		if(jsonArray.size()>0){
 			flag=orderService.addToOredrsInCast(jsonArray,total,address,pconsignee,telephone);
 		}
@@ -211,6 +223,26 @@ public class OrderAction extends BaseAction<OrderItem>{
 			rest.setMsg("结算失败");
 		}
 		ServletActionContext.getResponse().setContentType("application/json; charset=UTF-8");
+		String jsonStr= JSONObject.fromObject(rest).toString();
+		try {		
+			ServletActionContext.getResponse().getWriter().write(jsonStr);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+		
+	}
+	
+	/**
+	 * 删除订单
+	 */
+	public String deleteOrderItemById(){
+		
+		orderService.deleteOrderItemById(model.getItemid());
+		ServletActionContext.getResponse().setContentType("application/json; charset=UTF-8");
+		rest.setCode(1);
+		rest.setMsg("成功删除我的订单");
 		String jsonStr= JSONObject.fromObject(rest).toString();
 		try {		
 			ServletActionContext.getResponse().getWriter().write(jsonStr);

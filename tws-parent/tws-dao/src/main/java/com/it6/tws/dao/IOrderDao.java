@@ -31,4 +31,6 @@ public interface IOrderDao extends IBaseDao<OrderItem> {
 	String addToOrders(OrderItem orderItem, String address, String pconsignee, String telephone);
 
 	String addToOredrsInCast(JSONArray jsonArray, String total, String address, String pconsignee, String telephone);
+
+	void deleteOrderItemById(String itemid);
 }
