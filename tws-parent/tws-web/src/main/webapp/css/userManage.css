@@ -32,9 +32,9 @@
 #mask{
     background: rgba(0,0,0,0.5);
     opacity:0.75;
-    height:1000px;
+    height:100%;
     width:100%;
-    position:absolute;
+    position:fixed;
     left:0;
     top:0;
     z-index:1000;
@@ -71,6 +71,7 @@
     font-size:20px;
     display: inline;
     margin:0px 12px;
+    border:1.5px solid #cacaca;
 }
 .Fhead{
     width:398px;
@@ -82,6 +83,7 @@
     font-size:20px;
     display:block;
     margin:0px 0px;
+    font-weight: bold;
 }
 .content{
     height:250px;

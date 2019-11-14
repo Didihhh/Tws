@@ -216,3 +216,107 @@
     font-size:13px;
     margin-top:-1px;
 }
+
+/* 遮罩层和弹出框 */
+#mask{
+    background: rgba(0,0,0,0.5);
+    opacity:0.75;
+    height:100%;
+    width:100%;
+    position:fixed;
+    left:0;
+    top:0;
+    z-index:1000;
+    display:none;
+}
+#close{ 
+    background:url("../image/wrong.png") no-repeat; 
+    background-size:66%;
+    width:30px;
+    height:30px; 
+    cursor:pointer; 
+    position:absolute;
+    right:8px; 
+    top:15px; 
+    text-indent:-999em;
+}
+#buyForm{
+    /* border: 1.5px solid #e6e6e6; */
+    padding:0px 0px;
+    height:500px;
+    width:500px;
+    position:fixed;
+    z-index:1001;
+    /* margin:140px 630px;  */  
+    display:none;
+    background-color:white;
+    color:#6b6868;
+}
+#buyForm span{
+    font-size:20px;
+    font-family:微软雅黑;
+}
+.Fhead{
+    width:448px;
+    height:31px;
+    background-color:#dff2ff;
+    padding: 13px 26px;
+}
+.Ftitle{
+    font-size:20px;
+    display:block;
+    margin:0px 0px;
+}
+.content{
+    height:250px;
+    width:420px;
+    margin:44px 68px;
+}
+#Bconsignee{
+    height:36px;
+    width:230px;
+    outline: none;
+    font-size:16px;
+    display: inline;
+    margin:0px 12px;
+    border:1.5px solid #cacaca;
+}
+#Bphone{
+    height:36px;
+    width:230px;
+    outline: none;
+    font-size:16px;
+    display: inline;
+    margin:0px 12px;
+    border:1.5px solid #cacaca;
+}
+#Baddres{
+    height:100px;
+    width:230px;
+    outline: none;
+    font-size:16px;
+    margin:-46px 117px;
+    border:1.5px solid #cacaca;
+}
+#BcloseBtn{
+    height:40px;
+    width:91px;
+    background-color:#cacaca;
+    border-radius: 5px;
+    outline: none;
+    cursor: pointer;
+    margin:95px 0px;
+    font-size:16px;
+    color:#6b6868;
+}
+#BsubmitBtn{
+    height:40px;
+    width:187px;
+    background-color:#f0e688;
+    border-radius: 5px;
+    outline: none;
+    cursor: pointer;
+    margin:0px 69px;
+    font-size:16px;
+    color:#6b6868;
+}
