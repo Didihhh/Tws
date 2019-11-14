@@ -49,7 +49,7 @@ public class ProductManageAction extends BaseAction<Product> {
 		ServletActionContext.getResponse().setContentType("application/json; charset=UTF-8");
 		JSONObject json;
 		System.out.println(pageSize);
-		if(user==null){
+		if(user!=null){
 			rest.setCode(1);
 			rest.setMsg("成功显示所有商品");
 			json= JSONObject.fromObject(rest);
