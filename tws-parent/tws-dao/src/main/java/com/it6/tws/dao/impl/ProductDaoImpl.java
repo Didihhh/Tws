@@ -1,6 +1,7 @@
 package com.it6.tws.dao.impl;
 
 import java.util.List;
+import java.util.UUID;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -67,6 +68,12 @@ public class ProductDaoImpl extends BaseDaoImpl<Product> implements IProductDao{
 		return null;
 	}
 
-
+	@Override
+	public void saveProduct(Product model) {
+		// TODO Auto-generated method stub
+		model.setPid(UUID.randomUUID().toString());
+		model.setPstatus(-1);
+		this.getHibernateTemplate().save(model);
+	}
 
 }

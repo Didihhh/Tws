@@ -29,4 +29,8 @@ public interface IProductDao extends IBaseDao<Product>{
 
 
 	public Product findProductByPid(String pid);
+
+
+
+	public void saveProduct(Product model);
 }
