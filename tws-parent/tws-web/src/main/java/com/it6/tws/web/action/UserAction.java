@@ -28,7 +28,7 @@ public class UserAction extends BaseAction<User> {
 	private IUserService userService;
 	
 	@Autowired
-	private RestResponse<Product> rest;
+	private RestResponse rest;
 	
 	private String oldPassword;
 	
@@ -175,5 +175,29 @@ public class UserAction extends BaseAction<User> {
 		}
 		return null;
 	}
+	
+	/**
+	 * 获得用户信息
+	 */
+	public String getUserInform() {
+		User u = (User) ServletActionContext.getRequest().getSession().getAttribute("loginUser");
+		
+		User user = userService.fingUserByUid(u.getUid());
+		ServletActionContext.getResponse().setContentType("application/json; charset=UTF-8");
+		JSONObject json;
+		rest.setCode(1);
+		rest.setMsg("成功获得用户信息");
+		json= JSONObject.fromObject(rest);      //将对象转换为json格式
+		json.put("data", user);
+		try {		
+			String jsonStr=json.toString();     //将json转换为string类型
+			ServletActionContext.getResponse().getWriter().write(jsonStr);    //通过响应头发送到前台
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
+
 
 }
