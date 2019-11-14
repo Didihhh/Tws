@@ -1,80 +1,80 @@
 //数据
 var getComResult = {
     "code": "1",
-    "msg": "成功",
+    "message": "成功",
     "count": 4,//每页数量
     "total": 10,
     "data": [
         {
-            imgUrl: '../image/pic1.jpg',
+            src1: '../image/pic1.jpg',
             title: '面卡其2019新款泫雅风条纹宽松打底针织衫长袖平色字母套头毛衣女fadsfdsajk手段狠辣尽快',
-            goodsStatus: "0",
-            id: 1,
-            price: '79.00',
-            disPrice: '69.00',
-            isCount: 1,
-            address: '广东广州',
-            styleOne: '尺寸,36码,37码,38码',
-            styleTwo: '颜色,白色,黑色,米色',
+            cid: "0",
+            pid: 1,
+            market_price: '79.00',
+            shop_price: '69.00',
+            pstatus: 1,
+            paddress: '广东广州',
+            classify1: '尺寸,36码,37码,38码',
+            classify2: '颜色,白色,黑色,米色',
         },
         {
-            imgUrl: '../image/pic1.jpg',
+            src1: '../image/pic1.jpg',
             title: '面卡其2019新款泫雅风条纹宽松打底针织衫长袖平色字母套头毛衣女fadsfdsajk手段狠辣尽快',
-            goodsStatus: "0",
-            id: 2,
-            price: '79.00',
-            disPrice: '69.00',
-            isCount: 1,
-            address: '广东广州',
-            styleOne: '尺寸,36码,37码,38码',
-            styleTwo: '颜色,白色,黑色,米色',
+            cid: "0",
+            pid: 2,
+            market_price: '79.00',
+            shop_price: '69.00',
+            pstatus: 1,
+            paddress: '广东广州',
+            classify1: '尺寸,36码,37码,38码',
+            classify2: '颜色,白色,黑色,米色',
         },
         {
-            imgUrl: '../image/pic1.jpg',
+            src1: '../image/pic1.jpg',
             title: '面卡其2019新款泫雅风条纹宽松打底针织衫长袖平色字母套头毛衣女fadsfdsajk手段狠辣尽快',
-            goodsStatus: "0",
-            id: 3,
-            price: '79.00',
-            disPrice: '69.00',
-            isCount: 1,
-            address: '广东广州',
-            styleOne: '尺寸,36码,37码,38码',
-            styleTwo: '颜色,白色,黑色,米色',
+            cid: "0",
+            pid: 3,
+            market_price: '79.00',
+            shop_price: '69.00',
+            pstatus: 1,
+            paddress: '广东广州',
+            classify1: '尺寸,36码,37码,38码',
+            classify2: '颜色,白色,黑色,米色',
         },
         {
-            imgUrl: '../image/pic1.jpg',
+            src1: '../image/pic1.jpg',
             title: '面卡其2019新款泫雅风条纹宽松打底针织衫长袖平色字母套头毛衣女fadsfdsajk手段狠辣尽快',
-            goodsStatus: "1",
-            id: 4,
-            price: '79.00',
-            disPrice: '69.00',
-            isCount: 1,
-            address: '广东广州',
-            styleOne: '尺寸,36码,37码,38码',
-            styleTwo: '颜色,白色,黑色,米色',
+            cid: "1",
+            pid: 4,
+            market_price: '79.00',
+            shop_price: '69.00',
+            pstatus: 1,
+            paddress: '广东广州',
+            classify1: '尺寸,36码,37码,38码',
+            classify2: '颜色,白色,黑色,米色',
         }
 
     ]
 }
 var getModComResult = {
     "code": "1",
-    "msg": "成功",
-    "order":
+    "messge": "成功",
+    "data":
     {
-        imgUrl1: '../image/pic1.jpg',
-        imgUrl2: '../image/pic2.jpg',
-        imgUrl3: '../image/pic3.jpg',
-        imgUrl4: '../image/pic1.jpg',
-        imgUrl5: '../image/pic1.jpg',
+        psrc1: '../image/pic1.jpg',
+        psrc2: '../image/pic2.jpg',
+        psrc3: '../image/pic3.jpg',
+        psrc4: '../image/pic1.jpg',
+        psrc5: '../image/pic1.jpg',
         title: '面卡其2019新款泫雅风条纹宽松打底针织衫长袖平色字母套头毛衣女fadsfdsajk手段狠辣尽快',
-        goodsStatus: "0",
-        id: 1,
-        price: '79.00',
-        disPrice: '69.00',
-        isCount: 1,
-        address: '广东广州',
-        styleOne: '尺寸,36码,37码,38码',
-        styleTwo: '颜色,白色,黑色,米色',
+        cid: "0",
+        pid: 1,
+        market_price: '79.00',
+        shop_price: '69.00',
+        pstatus: 1,
+        paddress: '广东广州',
+        classify1: '尺寸,36码,37码,38码',
+        classify2: '颜色,白色,黑色,米色',
     }
 }
 //点击选择订单管理和商品管理的下拉框
@@ -129,20 +129,20 @@ searchBtn.onclick = function () {
     } else {
         console.log("点击搜索的接口" + searchText.value);
         $.ajax({
-            url: 'productAction_recommendProduct.action',//页面一进来的接口
+            url: 'productManageAction_searchProduct.action',
             type: 'post',//方法
             cache: false,//是否缓存
             dataType: 'json',//返回值的类型
             data: {
-                "index": searchText.value,
-                "page": 1
+                "panme": searchText.value,
+                "currentPage": 1
             },
             success: function (getComResult) {
                 if (getComResult.code == "1" || getComResult.code == 1) {
                     //函数调用
                     goPage(1, getComResult.count, getComResult.data, getComResult.total);
                 } else {
-                    alert(getComResult.msg);
+                    alert(getComResult.message);
                 }
             },
             error: function () {
@@ -150,7 +150,7 @@ searchBtn.onclick = function () {
                     //函数调用
                     goPage(1, getComResult.count, getComResult.data, getComResult.total);
                 } else {
-                    alert(getComResult.msg);
+                    alert(getComResult.message);
                 }
             }
         });
@@ -182,9 +182,9 @@ var getTable = function (i, page, orders) {
     //var b = i + page;
     for (i = 0; i < orders.length; i++) {
         var comName = '';
-        if (orders[i].goodsStatus == 0) {
+        if (orders[i].cid == 0) {
             comName = '生活家电';
-        } else if (orders[i].goodsStatus == 1) {
+        } else if (orders[i].cid == 1) {
             comName = '衣物服饰';
         } else {
             comName = '食品生鲜';
@@ -193,7 +193,7 @@ var getTable = function (i, page, orders) {
             "<tr>" +
             "<td>" +
             "<input type='checkbox' name='check'/>" +
-            "<img src='" + orders[i].imgUrl + "' alt='" + orders[i].goodsStatus + '/' + orders[i].id + "'>" +
+            "<img src='" + orders[i].src1 + "' alt='" + orders[i].cid + '/' + orders[i].pid + "'>" +
             "</td>" +
             "<td style='text-align:center;'>" +
             "<span>" + comName + "</span>" +
@@ -202,24 +202,24 @@ var getTable = function (i, page, orders) {
             "<span class='title'>" + orders[i].title + "</span>" +
             "</td>" +
             "<td class='price'>" +
-            "¥<span>" + orders[i].price + "</span>" +
+            "¥<span>" + orders[i].market_price + "</span>" +
             "</td>" +
             "</td>" +
             "<td class='price'>" +
-            "¥<span>" + orders[i].disPrice + "</span>" +
+            "¥<span>" + orders[i].shop_price + "</span>" +
             "</td>" +
             "<td class='price'>" +
-            "<span>" + orders[i].isCount + "</span>" +
+            "<span>" + orders[i].pstatus + "</span>" +
             "</td>" +
             "</td>" +
             "<td class='amount'>" +
-            "<span>" + orders[i].address + "</span>" +
+            "<span>" + orders[i].paddress + "</span>" +
             "</td>" +
             "<td class='style'>" +
-            "<span>" + orders[i].styleOne + "</span>" +
+            "<span>" + orders[i].classify1 + "</span>" +
             "</td>" +
             "<td class='style'>" +
-            "<span>" + orders[i].styleTwo + "</span>" +
+            "<span>" + orders[i].classify2 + "</span>" +
             "<td class='status'>" +
             "<button>" + '编辑' + "</button>" +
             "</td>" +
@@ -321,7 +321,7 @@ function goPage(pageIndex, pageStep, orders, allLength) {
                         console.log("页数" + pageIndex);
                         getOrders(pageIndex);
                     } else {
-                        alert(getComResult.msg);
+                        alert(getComResult.message);
                     }
                 },
                 error: function () {
@@ -331,7 +331,7 @@ function goPage(pageIndex, pageStep, orders, allLength) {
                         console.log("页数" + pageIndex);
                         getOrders(pageIndex);
                     } else {
-                        alert(getComResult.msg);
+                        alert(getComResult.message);
                     }
                 }
             });
@@ -368,62 +368,62 @@ function goPage(pageIndex, pageStep, orders, allLength) {
             console.log("类别" + status);
             console.log("编号" + id);
             $.ajax({
-                url: 'productAction_recommendProduct.action',
+                url: 'productManageAction_editProduct.action',
                 type: 'post',//方法
                 cache: false,//是否缓存
                 dataType: 'json',//返回值的类型
                 data: {
-                    "status": status,
-                    "id": id
+                    "cid": status,
+                    "pid": id
                 },
                 success: function (getModComResult) {
                     if (getModComResult.code == "1" || getModComResult.code == 1) {
                         reset();
-                        if (getModComResult.order.goodsStatus == 0)
+                        if (getModComResult.data.cid == 0)
                             classify.innerText = '生活家电';
-                        else if (getModComResult.order.goodsStatus == 1)
+                        else if (getModComResult.data.cid == 1)
                             classify.innerText = '衣物服饰';
                         else
                             classify.innerText = '食品生鲜';
-                        title.value = getModComResult.order.title;
-                        oPrice.value = getModComResult.order.price;
-                        nPrice.value = getModComResult.order.disPrice;
-                        isPrice.value = getModComResult.order.isCount;
-                        address.value = getModComResult.order.address;
-                        styleOne.value = getModComResult.order.styleOne;
-                        styleTwo.value = getModComResult.order.styleTwo;
-                        img1[0].src = getModComResult.order.imgUrl1;
-                        img1[1].src = getModComResult.order.imgUrl2;
-                        img1[2].src = getModComResult.order.imgUrl3;
-                        img2[0].src = getModComResult.order.imgUrl4;
-                        img2[1].src = getModComResult.order.imgUrl5;
+                        title.value = getModComResult.data.title;
+                        oPrice.value = getModComResult.data.market_price;
+                        nPrice.value = getModComResult.data.shop_price;
+                        isPrice.value = getModComResult.data.pstatus;
+                        address.value = getModComResult.data.paddress;
+                        styleOne.value = getModComResult.data.classify1;
+                        styleTwo.value = getModComResult.data.classify2;
+                        img1[0].src = getModComResult.data.psrc1;
+                        img1[1].src = getModComResult.data.psrc2;
+                        img1[2].src = getModComResult.data.psrc3;
+                        img2[0].src = getModComResult.data.psrc4;
+                        img2[1].src = getModComResult.data.psrc5;
                     } else {
-                        alert(getModComResult.msg);
+                        alert(getModComResult.message);
                     }
                 },
                 error: function () {
                     if (getModComResult.code == "1" || getModComResult.code == 1) {
                         reset();
-                        if (getModComResult.order.goodsStatus == 0)
+                        if (getModComResult.data.cid == 0)
                             classify.innerText = '生活家电';
-                        else if (getModComResult.order.goodsStatus == 1)
+                        else if (getModComResult.data.cid == 1)
                             classify.innerText = '衣物服饰';
                         else
                             classify.innerText = '食品生鲜';
-                        title.value = getModComResult.order.title;
-                        oPrice.value = getModComResult.order.price;
-                        nPrice.value = getModComResult.order.disPrice;
-                        isPrice.value = getModComResult.order.isCount;
-                        address.value = getModComResult.order.address;
-                        styleOne.value = getModComResult.order.styleOne;
-                        styleTwo.value = getModComResult.order.styleTwo;
-                        img1[0].src = getModComResult.order.imgUrl1;
-                        img1[1].src = getModComResult.order.imgUrl2;
-                        img1[2].src = getModComResult.order.imgUrl3;
-                        img2[0].src = getModComResult.order.imgUrl4;
-                        img2[1].src = getModComResult.order.imgUrl5;
+                        title.value = getModComResult.data.title;
+                        oPrice.value = getModComResult.data.market_price;
+                        nPrice.value = getModComResult.data.shop_price;
+                        isPrice.value = getModComResult.data.pstatus;
+                        address.value = getModComResult.data.paddress;
+                        styleOne.value = getModComResult.data.classify1;
+                        styleTwo.value = getModComResult.data.classify2;
+                        img1[0].src = getModComResult.data.psrc1;
+                        img1[1].src = getModComResult.data.psrc2;
+                        img1[2].src = getModComResult.data.psrc3;
+                        img2[0].src = getModComResult.data.psrc4;
+                        img2[1].src = getModComResult.data.psrc5;
                     } else {
-                        alert(getModComResult.msg);
+                        alert(getModComResult.message);
                     }
                 }
             });
@@ -462,7 +462,7 @@ function goPage(pageIndex, pageStep, orders, allLength) {
                             shade.className = "dn";
                             document.getElementsByTagName("body")[0].style.overflow = "auto";
                         } else {
-                            alert(getModComResult.msg);
+                            alert(getModComResult.message);
                         }
                     },
                     error: function () {
@@ -470,7 +470,7 @@ function goPage(pageIndex, pageStep, orders, allLength) {
                             shade.className = "dn";
                             document.getElementsByTagName("body")[0].style.overflow = "auto";
                         } else {
-                            alert(getModComResult.msg);
+                            alert(getModComResult.message);
                         }
                     }
                 });
@@ -511,19 +511,19 @@ function goPage(pageIndex, pageStep, orders, allLength) {
 function getOrders(pageIndex) {
     console.log("获得每页订单得接口" + pageIndex);
     $.ajax({
-        url: 'productAction_recommendProduct.action',//页面一进来的接口
+        url: 'productManageAction_AllProductList.action',//页面一进来的接口
         type: 'post',//方法
         cache: false,//是否缓存
         dataType: 'json',//返回值的类型
         data: {
-            "index": pageIndex
+            "currentPage": pageIndex
         },
         success: function (getComResult) {
             if (getComResult.code == "1" || getComResult.code == 1) {
                 //函数调用
                 goPage(pageIndex, getComResult.count, getComResult.data, getComResult.total);
             } else {
-                alert(getComResult.msg);
+                alert(getComResult.message);
             }
         },
         error: function () {
@@ -531,7 +531,7 @@ function getOrders(pageIndex) {
                 //函数调用
                 goPage(pageIndex, getComResult.count, getComResult.data, getComResult.total);
             } else {
-                alert(getComResult.msg);
+                alert(getComResult.message);
             }
         }
     });
@@ -601,7 +601,7 @@ function addComInfo(src1, src2, src3, src4, src5) {
         console.log("分类1：" + styleOne.value);
         console.log("分类2：" + styleTwo.value);
         $.ajax({
-            url: 'productAction_recommendProduct.action',//页面一进来的接口
+            url: 'productAction_recommendProduct.action',
             type: 'post',//方法
             cache: false,//是否缓存
             dataType: 'json',//返回值的类型
@@ -627,7 +627,7 @@ function addComInfo(src1, src2, src3, src4, src5) {
                     shade.className = "dn";
                     document.getElementsByTagName("body")[0].style.overflow = "auto";
                 } else {
-                    alert(getModComResult.msg);
+                    alert(getModComResult.message);
                 }
             },
             error: function () {
@@ -635,7 +635,7 @@ function addComInfo(src1, src2, src3, src4, src5) {
                     shade.className = "dn";
                     document.getElementsByTagName("body")[0].style.overflow = "auto";
                 } else {
-                    alert(getModComResult.msg);
+                    alert(getModComResult.message);
                 }
             }
         });

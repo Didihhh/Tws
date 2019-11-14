@@ -40,13 +40,20 @@ public class UserAction extends BaseAction<User> {
 		User user = userService.login(model);	   //将数据传输给service层	
 		ServletActionContext.getResponse().setContentType("application/json; charset=UTF-8");
 		JSONObject json;
-		if(user !=null){
+		if(user !=null&&!user.getUid().equals("admin")){
 			//登录成功,将user对象放入session，跳转到首页
 			ServletActionContext.getRequest().getSession().setAttribute("loginUser", user);
 			rest.setCode(1);
 			rest.setMsg("登录成功");
-			
-		}else{
+		}
+		else if(user !=null&&user.getUid().equals("admin"))
+		{
+			//管理员登录成功,将user对象放入session，跳转到首页
+			ServletActionContext.getRequest().getSession().setAttribute("loginUser", user);
+			rest.setCode(2);
+			rest.setMsg("管理员登录成功");
+		}
+		else{
 			rest.setCode(0);
 			rest.setMsg("账号或者密码错误");
 			

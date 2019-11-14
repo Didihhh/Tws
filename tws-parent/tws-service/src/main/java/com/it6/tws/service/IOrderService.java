@@ -29,6 +29,8 @@ public interface IOrderService {
 	public String addToOredrsInCast(JSONArray jsonArray, String total, String address, String pconsignee,
 			String telephone);
 
+	public void deleteOrderItemById(String itemid);
+
 
 
 

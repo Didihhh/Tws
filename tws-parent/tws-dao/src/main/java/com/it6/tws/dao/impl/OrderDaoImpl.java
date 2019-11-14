@@ -171,5 +171,15 @@ public class OrderDaoImpl extends BaseDaoImpl<OrderItem> implements IOrderDao{
 	}
 
 
+	@Override
+	public void deleteOrderItemById(String itemid) {
+		// TODO Auto-generated method stub
+		OrderItem oitem=new OrderItem();
+		oitem.setItemid(itemid);
+		this.getHibernateTemplate().delete(oitem);
+		
+	}
+
+
 
 }

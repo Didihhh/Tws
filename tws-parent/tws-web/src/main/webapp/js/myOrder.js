@@ -36,12 +36,14 @@ var Ftotal = 3;
 //全局数据
 var orderList = [];
 var orderTotal = 0;
+var mainStep = 0; //规定每页显示数量
 
 
 /**************************接口********************************/
 var orderDocking = {
     //获取全部订单信息
     getOrderRecommend: function(indexPage) {
+    	console.log(indexPage)
         $.ajax({
             url:"orderAction_findAllOrderItem.action",//路径
             type:"post",//方法
@@ -56,18 +58,14 @@ var orderDocking = {
                     //将数据写入全局数据
                     orderList = getComResult.data;
                     orderTotal = parseInt(getComResult.total);
-                    
+                    mainStep = getComResult.count;
                 }
                 else{
                     alert(getComResult.msg);
                 }
             },
             error: function error() {
-                alert("网络传输有误！请检查网络连接！");
-                 //函数调用
-                 orderList = orders11;
-                 orderTotal = parseInt(Ftotal);
-                
+                alert("网络传输有误！请检查网络连接！"); 
             }
         })
     },
@@ -105,7 +103,7 @@ var orderDocking = {
     //搜索订单接口
     searchOrderRecommend: function(str) {
         $.ajax({
-            url:"orderAction_findOrdersByPname.action",//路径
+            url:"orderAction_findOredrsByPname.action",//路径
             type:"post",//方法
             async:false,//是否缓存
             dataType:"json",//返回值类型
@@ -119,7 +117,8 @@ var orderDocking = {
                     //将数据写入全局数据
                     orderList = getComResult.data;
                     orderTotal = parseInt(getComResult.total);
-                    
+                    mainStep = getComResult.count;
+                    goSearchPage(1);
                 }
                 else{
                     alert(getComResult.msg);
@@ -140,6 +139,7 @@ var orderDocking = {
 /************************函数方法*************************/
 //获取拼接表格行 
 var getTable = function(orders){
+	console.log("orders",orders);
     var thHtml = 
     "<tr>"+
         "<th>"+
@@ -161,9 +161,10 @@ var getTable = function(orders){
     var statusStr3 = "<span>已收货</span>" ;
     var status = ""
     for(i=0; i< orders.length ;i++){
-        if(orders[i].state === "-1") status = statusStr1;
-        if(orders[i].state === "0") status = statusStr2;
-        if(orders[i].state === "1") status = statusStr3;
+    	console.log("order[]",orders[0]);
+        if(orders[i].state === -1 || orders[i].state === "-1" ) status = statusStr1;
+        if(orders[i].state === 0 || orders[i].state === "0") status = statusStr2;
+        if(orders[i].state === 1 || orders[i].state === "1") status = statusStr3;
         tdHtml +=
             "<tr>"+
             "<td>"+
@@ -180,7 +181,7 @@ var getTable = function(orders){
                 "<span>"+orders[i].classify1+ " " +orders[i].classify2+"</span>"+
             "</td>"+
             "<td class='amount'>"+
-                "<span>"+orders[i].punm+"</span>"+
+                "<span>"+orders[i].pnum+"</span>"+
             "</td>"+
             "<td class='status'>"+
                 status + "<span id='afterStatus'>已收货</span>" +
@@ -245,10 +246,9 @@ var jsPage = function(el, count, mainStep, pageNum, fnGo) {
 //展示订单内容
 function goPage(pageIndex) {
     //调用接口
-    console.log("循环")
     orderDocking.getOrderRecommend(pageIndex);//调接口取数据
-    var mainStep = 5;//规定每页显示数量
     // var pageStep = orders.length<5?orders.length:5//每页显示数量
+    console.log(this.orderList)
     document.querySelector('table').innerHTML = getTable(this.orderList) //传参数为第n页的第一件商品的
     //赋itemid
     // console.log($("#orderTable tr"));
@@ -257,7 +257,22 @@ function goPage(pageIndex) {
     //     // console.log(orderList[index]);
     //     $(this).attr("itemid",this.orderList[index].itemid)
     // })
-    jsPage('divPage', this.orderTotal , mainStep , pageIndex, 'goPage');
+    jsPage('divPage', this.orderTotal , this.mainStep , pageIndex, 'goPage');
+}
+function goSearchPage(pageIndex) {
+//    //调用接口
+//    orderDocking.searchOrderRecommend(pageIndex);//调接口取数据
+    // var pageStep = orders.length<5?orders.length:5//每页显示数量
+    console.log(this.orderList)
+    document.querySelector('table').innerHTML = getTable(this.orderList) //传参数为第n页的第一件商品的
+    //赋itemid
+    // console.log($("#orderTable tr"));
+    // $("#orderTable tr").each(function(index){
+    //     console.log($(this));
+    //     // console.log(orderList[index]);
+    //     $(this).attr("itemid",this.orderList[index].itemid)
+    // })
+    jsPage('divPage', this.orderTotal , this.mainStep , pageIndex, 'goPage');
 }
 
 
@@ -312,7 +327,7 @@ $(document).ready(function(){
     //点击搜索
     $("#searchBtn").click(function(){
         var str=document.getElementById("searchIp").value;
-        orderDocking.searchOrderRecommend(str)
+        orderDocking.searchOrderRecommend(str);
     });
 })
 
