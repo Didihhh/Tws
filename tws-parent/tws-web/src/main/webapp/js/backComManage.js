@@ -1,82 +1,82 @@
 //数据
-var getComResult = {
-    "code": "1",
-    "message": "成功",
-    "count": 4,//每页数量
-    "total": 10,
-    "data": [
-        {
-            src1: '../image/pic1.jpg',
-            title: '面卡其2019新款泫雅风条纹宽松打底针织衫长袖平色字母套头毛衣女fadsfdsajk手段狠辣尽快',
-            cid: "0",
-            pid: 1,
-            market_price: '79.00',
-            shop_price: '69.00',
-            pstatus: 1,
-            paddress: '广东广州',
-            classify1: '尺寸,36码,37码,38码',
-            classify2: '颜色,白色,黑色,米色',
-        },
-        {
-            src1: '../image/pic1.jpg',
-            title: '面卡其2019新款泫雅风条纹宽松打底针织衫长袖平色字母套头毛衣女fadsfdsajk手段狠辣尽快',
-            cid: "0",
-            pid: 2,
-            market_price: '79.00',
-            shop_price: '69.00',
-            pstatus: 1,
-            paddress: '广东广州',
-            classify1: '尺寸,36码,37码,38码',
-            classify2: '颜色,白色,黑色,米色',
-        },
-        {
-            src1: '../image/pic1.jpg',
-            title: '面卡其2019新款泫雅风条纹宽松打底针织衫长袖平色字母套头毛衣女fadsfdsajk手段狠辣尽快',
-            cid: "0",
-            pid: 3,
-            market_price: '79.00',
-            shop_price: '69.00',
-            pstatus: 1,
-            paddress: '广东广州',
-            classify1: '尺寸,36码,37码,38码',
-            classify2: '颜色,白色,黑色,米色',
-        },
-        {
-            src1: '../image/pic1.jpg',
-            title: '面卡其2019新款泫雅风条纹宽松打底针织衫长袖平色字母套头毛衣女fadsfdsajk手段狠辣尽快',
-            cid: "1",
-            pid: 4,
-            market_price: '79.00',
-            shop_price: '69.00',
-            pstatus: 1,
-            paddress: '广东广州',
-            classify1: '尺寸,36码,37码,38码',
-            classify2: '颜色,白色,黑色,米色',
-        }
+// var getComResult = {
+//     "code": "1",
+//     "message": "成功",
+//     "count": 4,//每页数量
+//     "total": 10,
+//     "data": [
+//         {
+//             src1: '../image/pic1.jpg',
+//             title: '面卡其2019新款泫雅风条纹宽松打底针织衫长袖平色字母套头毛衣女fadsfdsajk手段狠辣尽快',
+//             cid: "0",
+//             pid: 1,
+//             market_price: '79.00',
+//             shop_price: '69.00',
+//             pstatus: 1,
+//             paddress: '广东广州',
+//             classify1: '尺寸,36码,37码,38码',
+//             classify2: '颜色,白色,黑色,米色',
+//         },
+//         {
+//             src1: '../image/pic1.jpg',
+//             title: '面卡其2019新款泫雅风条纹宽松打底针织衫长袖平色字母套头毛衣女fadsfdsajk手段狠辣尽快',
+//             cid: "0",
+//             pid: 2,
+//             market_price: '79.00',
+//             shop_price: '69.00',
+//             pstatus: 1,
+//             paddress: '广东广州',
+//             classify1: '尺寸,36码,37码,38码',
+//             classify2: '颜色,白色,黑色,米色',
+//         },
+//         {
+//             src1: '../image/pic1.jpg',
+//             title: '面卡其2019新款泫雅风条纹宽松打底针织衫长袖平色字母套头毛衣女fadsfdsajk手段狠辣尽快',
+//             cid: "0",
+//             pid: 3,
+//             market_price: '79.00',
+//             shop_price: '69.00',
+//             pstatus: 1,
+//             paddress: '广东广州',
+//             classify1: '尺寸,36码,37码,38码',
+//             classify2: '颜色,白色,黑色,米色',
+//         },
+//         {
+//             src1: '../image/pic1.jpg',
+//             title: '面卡其2019新款泫雅风条纹宽松打底针织衫长袖平色字母套头毛衣女fadsfdsajk手段狠辣尽快',
+//             cid: "1",
+//             pid: 4,
+//             market_price: '79.00',
+//             shop_price: '69.00',
+//             pstatus: 1,
+//             paddress: '广东广州',
+//             classify1: '尺寸,36码,37码,38码',
+//             classify2: '颜色,白色,黑色,米色',
+//         }
 
-    ]
-}
-var getModComResult = {
-    "code": "1",
-    "messge": "成功",
-    "data":
-    {
-        psrc1: '../image/pic1.jpg',
-        psrc2: '../image/pic2.jpg',
-        psrc3: '../image/pic3.jpg',
-        psrc4: '../image/pic1.jpg',
-        psrc5: '../image/pic1.jpg',
-        title: '面卡其2019新款泫雅风条纹宽松打底针织衫长袖平色字母套头毛衣女fadsfdsajk手段狠辣尽快',
-        cid: "0",
-        pid: 1,
-        market_price: '79.00',
-        shop_price: '69.00',
-        pstatus: 1,
-        paddress: '广东广州',
-        classify1: '尺寸,36码,37码,38码',
-        classify2: '颜色,白色,黑色,米色',
-    }
-}
+//     ]
+// }
+// var getModComResult = {
+//     "code": "1",
+//     "messge": "成功",
+//     "data":
+//     {
+//         psrc1: '../image/pic1.jpg',
+//         psrc2: '../image/pic2.jpg',
+//         psrc3: '../image/pic3.jpg',
+//         psrc4: '../image/pic1.jpg',
+//         psrc5: '../image/pic1.jpg',
+//         title: '面卡其2019新款泫雅风条纹宽松打底针织衫长袖平色字母套头毛衣女fadsfdsajk手段狠辣尽快',
+//         cid: "0",
+//         pid: 1,
+//         market_price: '79.00',
+//         shop_price: '69.00',
+//         pstatus: 1,
+//         paddress: '广东广州',
+//         classify1: '尺寸,36码,37码,38码',
+//         classify2: '颜色,白色,黑色,米色',
+//     }
+// }
 //点击选择订单管理和商品管理的下拉框
 var select = document.getElementsByClassName("select")[0];
 var selPage = document.getElementsByClassName("selPage")[0];
@@ -146,12 +146,13 @@ searchBtn.onclick = function () {
                 }
             },
             error: function () {
-                if (getComResult.code == "1" || getComResult.code == 1) {
-                    //函数调用
-                    goPage(1, getComResult.count, getComResult.data, getComResult.total);
-                } else {
-                    alert(getComResult.message);
-                }
+                // if (getComResult.code == "1" || getComResult.code == 1) {
+                //     //函数调用
+                //     goPage(1, getComResult.count, getComResult.data, getComResult.total);
+                // } else {
+                //     alert(getComResult.message);
+                // }
+                alert("网络传输有误！");
             }
         });
     }
@@ -325,14 +326,15 @@ function goPage(pageIndex, pageStep, orders, allLength) {
                     }
                 },
                 error: function () {
-                    if (getComResult.code == "1" || getComResult.code == 1) {
-                        //函数调用
-                        console.log("删除调用接口成功！");
-                        console.log("页数" + pageIndex);
-                        getOrders(pageIndex);
-                    } else {
-                        alert(getComResult.message);
-                    }
+                    // if (getComResult.code == "1" || getComResult.code == 1) {
+                    //     //函数调用
+                    //     console.log("删除调用接口成功！");
+                    //     console.log("页数" + pageIndex);
+                    //     getOrders(pageIndex);
+                    // } else {
+                    //     alert(getComResult.message);
+                    // }
+                    alert("网络传输有误！");
                 }
             });
         }
@@ -402,29 +404,30 @@ function goPage(pageIndex, pageStep, orders, allLength) {
                     }
                 },
                 error: function () {
-                    if (getModComResult.code == "1" || getModComResult.code == 1) {
-                        reset();
-                        if (getModComResult.data.cid == 0)
-                            classify.innerText = '生活家电';
-                        else if (getModComResult.data.cid == 1)
-                            classify.innerText = '衣物服饰';
-                        else
-                            classify.innerText = '食品生鲜';
-                        title.value = getModComResult.data.title;
-                        oPrice.value = getModComResult.data.market_price;
-                        nPrice.value = getModComResult.data.shop_price;
-                        isPrice.value = getModComResult.data.pstatus;
-                        address.value = getModComResult.data.paddress;
-                        styleOne.value = getModComResult.data.classify1;
-                        styleTwo.value = getModComResult.data.classify2;
-                        img1[0].src = getModComResult.data.psrc1;
-                        img1[1].src = getModComResult.data.psrc2;
-                        img1[2].src = getModComResult.data.psrc3;
-                        img2[0].src = getModComResult.data.psrc4;
-                        img2[1].src = getModComResult.data.psrc5;
-                    } else {
-                        alert(getModComResult.message);
-                    }
+                    // if (getModComResult.code == "1" || getModComResult.code == 1) {
+                    //     reset();
+                    //     if (getModComResult.data.cid == 0)
+                    //         classify.innerText = '生活家电';
+                    //     else if (getModComResult.data.cid == 1)
+                    //         classify.innerText = '衣物服饰';
+                    //     else
+                    //         classify.innerText = '食品生鲜';
+                    //     title.value = getModComResult.data.title;
+                    //     oPrice.value = getModComResult.data.market_price;
+                    //     nPrice.value = getModComResult.data.shop_price;
+                    //     isPrice.value = getModComResult.data.pstatus;
+                    //     address.value = getModComResult.data.paddress;
+                    //     styleOne.value = getModComResult.data.classify1;
+                    //     styleTwo.value = getModComResult.data.classify2;
+                    //     img1[0].src = getModComResult.data.psrc1;
+                    //     img1[1].src = getModComResult.data.psrc2;
+                    //     img1[2].src = getModComResult.data.psrc3;
+                    //     img2[0].src = getModComResult.data.psrc4;
+                    //     img2[1].src = getModComResult.data.psrc5;
+                    // } else {
+                    //     alert(getModComResult.message);
+                    // }
+                    alert("网络传输有误！");
                 }
             });
             //在编辑中点击保存
@@ -440,22 +443,35 @@ function goPage(pageIndex, pageStep, orders, allLength) {
                 console.log("地址：" + address.value);
                 console.log("分类1：" + styleOne.value);
                 console.log("分类2：" + styleTwo.value);
+                console.log("图片：" + img1[0].src);
+                var cla;
+                if (classify.innerText == "生活家电") {
+                    cla = 1;
+                } else if (classify.innerText == "衣物服饰") {
+                    cla = 2;
+                } else {
+                    cla = 3;
+                }
                 $.ajax({
                     url: 'productAction_recommendProduct.action',//页面一进来的接口
                     type: 'post',//方法
                     cache: false,//是否缓存
                     dataType: 'json',//返回值的类型
                     data: {
-                        "status": status,
-                        "id": id,
-                        "classify": classify.innerText,
-                        "title": title.value,
-                        "oPrice": oPrice.value,
-                        "nPrice": nPrice.value,
-                        "isPrice": isPrice.value,
-                        "address": address.value,
-                        "styleOne": styleOne.value,
-                        "styleTwo": styleTwo.value
+                        "pid": id,
+                        "cid": cla,
+                        "pname": title.value,
+                        "market_price": oPrice.value,
+                        "shop_price": nPrice.value,
+                        "pstatus": isPrice.value,
+                        "paddress": address.value,
+                        "classify1": styleOne.value,
+                        "classify2": styleTwo.value,
+                        "psrc1": img1[0].src,
+                        "psrc2": img1[1].src,
+                        "psrc3": img1[2].src,
+                        "psrc4": img2[0].src,
+                        "psrc5": img2[1].src
                     },
                     success: function (getModComResult) {
                         if (getModComResult.code == "1" || getModComResult.code == 1) {
@@ -466,48 +482,47 @@ function goPage(pageIndex, pageStep, orders, allLength) {
                         }
                     },
                     error: function () {
-                        if (getModComResult.code == "1" || getModComResult.code == 1) {
-                            shade.className = "dn";
-                            document.getElementsByTagName("body")[0].style.overflow = "auto";
-                        } else {
-                            alert(getModComResult.message);
-                        }
+                        // if (getModComResult.code == "1" || getModComResult.code == 1) {
+                        //     shade.className = "dn";
+                        //     document.getElementsByTagName("body")[0].style.overflow = "auto";
+                        // } else {
+                        //     alert(getModComResult.message);
+                        // }
+                        alert("网络传输有误！");
                     }
                 });
             }
+
+        }
+
+        //在编辑/新增中点击取消
+        var cancel = document.getElementById("cancel");
+        cancel.onclick = function () {
+            shade.className = "dn";
+            document.getElementsByTagName("body")[0].style.overflow = "auto";
+        }
+        var cancelP = document.getElementById("cover").getElementsByTagName("p")[0];
+        cancelP.onclick = function () {
+            shade.className = "dn";
+            document.getElementsByTagName("body")[0].style.overflow = "auto";
+        }
+
+        //全选
+        document.getElementById("checkAll").onclick = function () {
+            var checked = document.getElementById("checkAll").checked;
+            var checkson = document.getElementsByName("check");
+            if (checked) {
+                for (var i = 0; i < checkson.length; i++) {
+                    checkson[i].checked = true;
+                }
+            } else {
+                for (var i = 0; i < checkson.length; i++) {
+                    checkson[i].checked = false;
+                }
+            }
         }
     }
-
-    //在编辑/新增中点击取消
-    var cancel = document.getElementById("cancel");
-    cancel.onclick = function () {
-        shade.className = "dn";
-        document.getElementsByTagName("body")[0].style.overflow = "auto";
-    }
-    var cancelP = document.getElementById("cover").getElementsByTagName("p")[0];
-    cancelP.onclick = function () {
-        shade.className = "dn";
-        document.getElementsByTagName("body")[0].style.overflow = "auto";
-    }
-
-    //全选
-    document.getElementById("checkAll").onclick = function () {
-        var checked = document.getElementById("checkAll").checked;
-        var checkson = document.getElementsByName("check");
-        if (checked) {
-            for (var i = 0; i < checkson.length; i++) {
-                checkson[i].checked = true;
-            }
-        } else {
-            for (var i = 0; i < checkson.length; i++) {
-                checkson[i].checked = false;
-            }
-        }
-    }
-
 }
-
-
 function getOrders(pageIndex) {
     console.log("获得每页订单得接口" + pageIndex);
     $.ajax({
@@ -527,12 +542,13 @@ function getOrders(pageIndex) {
             }
         },
         error: function () {
-            if (getComResult.code == "1" || getComResult.code == 1) {
-                //函数调用
-                goPage(pageIndex, getComResult.count, getComResult.data, getComResult.total);
-            } else {
-                alert(getComResult.message);
-            }
+            // if (getComResult.code == "1" || getComResult.code == 1) {
+            //     //函数调用
+            //     goPage(pageIndex, getComResult.count, getComResult.data, getComResult.total);
+            // } else {
+            //     alert(getComResult.message);
+            // }
+            alert("网络传输有误！");
         }
     });
 }
@@ -549,10 +565,15 @@ addCom.onclick = function () {
 $("#form1").ajaxForm(function (data) {
     console.log(data);
     console.log("str:" + JSON.stringify(data));
-    addComInfo(src1, src2, src3, src4, src5);
+    var strData = JSON.stringify(data);
+    if (strData.code == 1 || strData.code == "1")
+        addComInfo(strData.psrc1, strData.psrc2, strData.psrc3, strData.psrc4, strData.psrc5);
+    else
+        alert(strData.message);
 });
 
 function addComInfo(src1, src2, src3, src4, src5) {
+    console.log("___________" + "新增");
     var coverLis = document.getElementById("cover").getElementsByTagName("li");
     var classify = coverLis[0].getElementsByTagName("b")[0];
     var title = coverLis[4].getElementsByTagName("input")[0];
@@ -600,27 +621,33 @@ function addComInfo(src1, src2, src3, src4, src5) {
         console.log("地址：" + address.value);
         console.log("分类1：" + styleOne.value);
         console.log("分类2：" + styleTwo.value);
+        var cla;
+        if (classify.innerText == "生活家电") {
+            cla = 1;
+        } else if (classify.innerText == "衣物服饰") {
+            cla = 2;
+        } else {
+            cla = 3;
+        }
         $.ajax({
-            url: 'productAction_recommendProduct.action',
+            url: 'adminProductAction_uploadProduct.action',
             type: 'post',//方法
             cache: false,//是否缓存
             dataType: 'json',//返回值的类型
             data: {
-                "status": status,
-                "id": id,
-                "classify": classify.innerText,
-                "title": title.value,
-                "oPrice": oPrice.value,
-                "nPrice": nPrice.value,
-                "isPrice": isPrice.value,
-                "address": address.value,
-                "styleOne": styleOne.value,
-                "styleTwo": styleTwo.value,
-                "img1": src1,
-                "img1": src2,
-                "img1": src3,
-                "img1": src4,
-                "img1": src5
+                "cid": cla,
+                "pname": title.value,
+                "market_price": oPrice.value,
+                "shop_price": nPrice.value,
+                "pstatus": isPrice.value,
+                "paddress": address.value,
+                "classify1": styleOne.value,
+                "classify2": styleTwo.value,
+                "psrc1": src1,
+                "psrc2": src2,
+                "psrc3": src3,
+                "psrc4": src4,
+                "psrc5": src5
             },
             success: function (getModComResult) {
                 if (getModComResult.code == "1" || getModComResult.code == 1) {
@@ -631,12 +658,13 @@ function addComInfo(src1, src2, src3, src4, src5) {
                 }
             },
             error: function () {
-                if (getModComResult.code == "1" || getModComResult.code == 1) {
-                    shade.className = "dn";
-                    document.getElementsByTagName("body")[0].style.overflow = "auto";
-                } else {
-                    alert(getModComResult.message);
-                }
+                // if (getModComResult.code == "1" || getModComResult.code == 1) {
+                //     shade.className = "dn";
+                //     document.getElementsByTagName("body")[0].style.overflow = "auto";
+                // } else {
+                //     alert(getModComResult.message);
+                // }
+                alert("网络传输有误！");
             }
         });
     }
