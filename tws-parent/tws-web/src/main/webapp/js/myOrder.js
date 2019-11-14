@@ -10,26 +10,7 @@ var orders11 = [
         punm:'1',
         state:"0"
     },
-    {
-        itemid: '2',
-        src:'../image/pic1.jpg',
-        pname:'【电子书赠品】记忆宫殿一本书快速提升记忆力 下载天猫读书读',
-        subtotal:'79.00',
-        classify1:'白色',
-        classify2:'均码',
-        punm:'2',
-        state:"0"
-    },
-    {
-        itemid: '3',
-        src:'../image/pic1.jpg',
-        pname:'【电子书赠品】记忆宫殿一本书快速提升记忆力 下载天猫读书读',
-        subtotal:'79.00',
-        classify1:'白色',
-        classify2:'均码',
-        punm:'3',
-        state:"0"
-    },
+    
     {
         itemid: '4',
         src:'../image/pic1.jpg',
@@ -51,7 +32,7 @@ var orders11 = [
         state:"0"
     },
 ];
-var Ftotal = 10;
+var Ftotal = 3;
 //全局数据
 var orderList = [];
 var orderTotal = 0;
@@ -59,10 +40,10 @@ var orderTotal = 0;
 
 /**************************接口********************************/
 var orderDocking = {
-    //获取详情页信息
+    //获取全部订单信息
     getOrderRecommend: function(indexPage) {
         $.ajax({
-            url:"productAction_detailProduct.action",//路径
+            url:"orderAction_findAllOrderItem.action",//路径
             type:"post",//方法
             async:false,//是否缓存
             dataType:"json",//返回值类型
@@ -225,6 +206,7 @@ var jsPage = function(el, count, mainStep, pageNum, fnGo) {
     
     //总页数
     var pageNumAll = Math.ceil(count / mainStep);
+    var divPage = document.getElementById(el);
     if (pageNumAll == 1) {
         divPage.innerHTML = '';
         return;
@@ -258,7 +240,6 @@ var jsPage = function(el, count, mainStep, pageNum, fnGo) {
     } else {
         s += '<span>下一页</span> ';
     }
-    var divPage = document.getElementById(el);
     divPage.innerHTML = s;
 }
 //展示订单内容
@@ -334,5 +315,4 @@ $(document).ready(function(){
         orderDocking.searchOrderRecommend(str)
     });
 })
-
 

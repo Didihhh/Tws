@@ -144,7 +144,6 @@ function setDifferPrice(shop_price){
 }
 
 
-
 //获取后台数据
 var Docking = {
     //获取详情页信息
@@ -477,6 +476,47 @@ $(document).ready(function(){
     })
 
     //点击页面跳转
+    //遮罩层
+    //弹出层
+    var sheight = document.documentElement.scrolllHeight;
+    var swidth = document.documentElement.scrollWidth;
+    var ilogin = document.getElementById("login");
+    var ibutton = document.getElementById("button");
+    var imask = document.getElementById("mask");
+    var iclose = document.getElementById("close");
+    var nameform = document.getElementById("nameForm");
+    var nameform = document.getElementById("nameForm");
+    var nameform = document.getElementById("nameForm");
+
+    var dheight = document.documentElement.clientHeight;
+    var dwidth = document.documentElement.clientWidth;
+    //点击购买
+    $("#buyIpt").click(function(){
+        console.log("购买")
+        var buyform = document.getElementById("buyForm");
+        buySwift(1,buyform);
+    })
+
+    //遮罩层 #mask用户信息的body里自带。
+    function buySwift(now,form){
+        console.log(form)
+        var dis;
+        if(now == 1){
+            dis = "block";
+        }
+        else if(now == 2){
+            dis = "none";
+        }
+        form.style.display = dis;
+        imask.style.display = dis;
+        iclose.style.display = dis;
+        imask.style.height = sheight+"px";
+        var jwidth = form.offsetWidth;
+        var jheight = form.offsetHeight;
+        form.style.left = (dwidth-jwidth)/2+"px";
+        form.style.top = (dheight-jheight)/2+"px";
+    }
+
 
 });
 
