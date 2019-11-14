@@ -3,6 +3,10 @@
     "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
     "http://struts.apache.org/dtds/struts-2.3.dtd">
 <struts>
+	<bean type= "org.apache.struts2.dispatcher.multipart.MultiPartRequest" 
+		name= "myRequestParser"   class= "com.it6.tws.utils.RequestParseWrapper" 
+		scope= "default"   optional= "true"  /> 
+	<constant name= "struts.multipart.parser"  value= "myRequestParser" />
 	<constant name="struts.devMode" value="false" />
 	<!-- 
 		<constant name="struts.objectFactory" value="spring"/>
@@ -21,11 +25,15 @@
 		</action>
 		
 		
-		<!-- 后台订单管理1-->
+		<!-- 后台订单管理-->
 		<action name="adminOrderAction_*" class="adminOrderAction" method="{1}">
 		</action>
 		
-		<!-- 后台商品管理2-->
+		<!-- 后台商品管理1-->
+		<action name="adminProductAction_*" class="adminProductAction" method="{1}">
+		</action>
+		
+		<!-- 后台商品管理2 -->
 		<action name="productManageAction_*" class="productManageAction" method="{1}">
 		</action>
 	</package>

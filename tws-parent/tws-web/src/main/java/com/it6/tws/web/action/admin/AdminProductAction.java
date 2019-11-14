@@ -47,7 +47,7 @@ public class AdminProductAction extends BaseAction<Product>{
 		Map<String,Object> map = new HashMap<String,Object>();
 		String imgs[] =new String[5];
 		for(int i=0;i<imgs.length;i++)
-			imgs[i]=null;
+			imgs[i]="";
 		try {
 			//创建磁盘文件项工厂
 			DiskFileItemFactory factory = new DiskFileItemFactory();
@@ -56,16 +56,17 @@ public class AdminProductAction extends BaseAction<Product>{
 			//解析request获得文件项对象集合
 			
 			List<FileItem> parseRequest = upload.parseRequest(ServletActionContext.getRequest());
+			
 			for(FileItem item : parseRequest){
 				//判断是否是普通表单项
 				boolean formField = item.isFormField();
 				if(!formField){
 					//文件上传项 获得文件名称 获得文件的内容
 					String fir=UUID.randomUUID().toString().substring(0,5);
-					String fileName = item.getName()+fir;
-					imgs[p]=fileName;
+					String fileName = fir+item.getName();
+					imgs[p]="../upload/"+fileName;
 					p++;
-					String path = ServletActionContext.getServletContext().getRealPath("/img/upload");
+					String  path= ServletActionContext.getServletContext().getRealPath("upload");
 					InputStream in = item.getInputStream();
 					OutputStream out = new FileOutputStream(path+"/"+fileName);//I:/xxx/xx/xxx/xxx.jpg
 					IOUtils.copy(in, out);

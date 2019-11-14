@@ -1,12 +1,12 @@
 //数据
 // var getComResult = {
 //     "code": "1",
-//     "message": "成功",
+//     "msg": "成功",
 //     "count": 4,//每页数量
 //     "total": 10,
 //     "data": [
 //         {
-//             src1: '../image/pic1.jpg',
+//             psrc1: '../image/pic1.jpg',
 //             pname: '面卡其2019新款泫雅风条纹宽松打底针织衫长袖平色字母套头毛衣女fadsfdsajk手段狠辣尽快',
 //             cid: "0",
 //             pid: 1,
@@ -30,7 +30,7 @@
 //             classify2: '颜色,白色,黑色,米色',
 //         },
 //         {
-//             src1: '../image/pic1.jpg',
+//             psrc1: '../image/pic1.jpg',
 //             pname: '面卡其2019新款泫雅风条纹宽松打底针织衫长袖平色字母套头毛衣女fadsfdsajk手段狠辣尽快',
 //             cid: "0",
 //             pid: 3,
@@ -42,7 +42,7 @@
 //             classify2: '颜色,白色,黑色,米色',
 //         },
 //         {
-//             src1: '../image/pic1.jpg',
+//             psrc1: '../image/pic1.jpg',
 //             pname: '面卡其2019新款泫雅风条纹宽松打底针织衫长袖平色字母套头毛衣女fadsfdsajk手段狠辣尽快',
 //             cid: "1",
 //             pid: 4,
@@ -142,7 +142,7 @@ searchBtn.onclick = function () {
                     //函数调用
                     goPage(1, getComResult.count, getComResult.data, getComResult.total);
                 } else {
-                    alert(getComResult.message);
+                    alert(getComResult.msg);
                 }
             },
             error: function () {
@@ -150,7 +150,7 @@ searchBtn.onclick = function () {
                 //     //函数调用
                 //     goPage(1, getComResult.count, getComResult.data, getComResult.total);
                 // } else {
-                //     alert(getComResult.message);
+                //     alert(getComResult.msg);
                 // }
                 alert("网络传输有误！");
             }
@@ -183,9 +183,9 @@ var getTable = function (i, page, orders) {
     //var b = i + page;
     for (i = 0; i < orders.length; i++) {
         var comName = '';
-        if (orders[i].cid == 0) {
+        if (orders[i].cid == 1) {
             comName = '生活家电';
-        } else if (orders[i].cid == 1) {
+        } else if (orders[i].cid == 2) {
             comName = '衣物服饰';
         } else {
             comName = '食品生鲜';
@@ -194,7 +194,7 @@ var getTable = function (i, page, orders) {
             "<tr>" +
             "<td>" +
             "<input type='checkbox' name='check'/>" +
-            "<img src='" + orders[i].src1 + "' alt='" + orders[i].cid + '/' + orders[i].pid + "'>" +
+            "<img src='" + orders[i].psrc1 + "' alt='" + orders[i].cid + '/' + orders[i].pid + "'>" +
             "</td>" +
             "<td style='text-align:center;'>" +
             "<span>" + comName + "</span>" +
@@ -322,7 +322,7 @@ function goPage(pageIndex, pageStep, orders, allLength) {
                         console.log("页数" + pageIndex);
                         getOrders(pageIndex);
                     } else {
-                        alert(getComResult.message);
+                        alert(getComResult.msg);
                     }
                 },
                 error: function () {
@@ -332,7 +332,7 @@ function goPage(pageIndex, pageStep, orders, allLength) {
                     //     console.log("页数" + pageIndex);
                     //     getOrders(pageIndex);
                     // } else {
-                    //     alert(getComResult.message);
+                    //     alert(getComResult.msg);
                     // }
                     alert("网络传输有误！");
                 }
@@ -381,9 +381,9 @@ function goPage(pageIndex, pageStep, orders, allLength) {
                 success: function (getModComResult) {
                     if (getModComResult.code == "1" || getModComResult.code == 1) {
                         reset();
-                        if (getModComResult.data.cid == 0)
+                        if (getModComResult.data.cid == 1)
                             classify.innerText = '生活家电';
-                        else if (getModComResult.data.cid == 1)
+                        else if (getModComResult.data.cid == 2)
                             classify.innerText = '衣物服饰';
                         else
                             classify.innerText = '食品生鲜';
@@ -400,7 +400,7 @@ function goPage(pageIndex, pageStep, orders, allLength) {
                         img2[0].src = getModComResult.data.psrc4;
                         img2[1].src = getModComResult.data.psrc5;
                     } else {
-                        alert(getModComResult.message);
+                        alert(getModComResult.msg);
                     }
                 },
                 error: function () {
@@ -425,7 +425,7 @@ function goPage(pageIndex, pageStep, orders, allLength) {
                     //     img2[0].src = getModComResult.data.psrc4;
                     //     img2[1].src = getModComResult.data.psrc5;
                     // } else {
-                    //     alert(getModComResult.message);
+                    //     alert(getModComResult.msg);
                     // }
                     alert("网络传输有误！");
                 }
@@ -478,7 +478,7 @@ function goPage(pageIndex, pageStep, orders, allLength) {
                             shade.className = "dn";
                             document.getElementsByTagName("body")[0].style.overflow = "auto";
                         } else {
-                            alert(getModComResult.message);
+                            alert(getModComResult.msg);
                         }
                     },
                     error: function () {
@@ -486,7 +486,7 @@ function goPage(pageIndex, pageStep, orders, allLength) {
                         //     shade.className = "dn";
                         //     document.getElementsByTagName("body")[0].style.overflow = "auto";
                         // } else {
-                        //     alert(getModComResult.message);
+                        //     alert(getModComResult.msg);
                         // }
                         alert("网络传输有误！");
                     }
@@ -538,7 +538,7 @@ function getOrders(pageIndex) {
                 //函数调用
                 goPage(pageIndex, getComResult.count, getComResult.data, getComResult.total);
             } else {
-                alert(getComResult.message);
+                alert(getComResult.msg);
             }
         },
         error: function () {
@@ -546,7 +546,7 @@ function getOrders(pageIndex) {
             //     //函数调用
             //     goPage(pageIndex, getComResult.count, getComResult.data, getComResult.total);
             // } else {
-            //     alert(getComResult.message);
+            //     alert(getComResult.msg);
             // }
             alert("网络传输有误！");
         }
@@ -565,11 +565,11 @@ addCom.onclick = function () {
 $("#form1").ajaxForm(function (data) {
     console.log(data);
     console.log("str:" + JSON.stringify(data));
-    var strData = JSON.stringify(data);
-    if (strData.code == 1 || strData.code == "1")
-        addComInfo(strData.psrc1, strData.psrc2, strData.psrc3, strData.psrc4, strData.psrc5);
+//    var strData = JSON.stringify(data);
+    if (data.code == 1 || data.code == "1")
+        addComInfo(data.psrc1, data.psrc2, data.psrc3, data.psrc4, data.psrc5);
     else
-        alert(strData.message);
+        alert(data.msg);
 });
 
 function addComInfo(src1, src2, src3, src4, src5) {
@@ -585,6 +585,7 @@ function addComInfo(src1, src2, src3, src4, src5) {
     var styleTwo = coverLis[10].getElementsByTagName("input")[0];
     var img1 = coverLis[11].getElementsByTagName("img");
     var img2 = coverLis[12].getElementsByTagName("img");
+    console.log("____________"+img1[0].src);
     if (title.value == "") {
         alert("请输入你需要新增的商品名");
     } else if (oPrice.value == "") {
@@ -599,20 +600,20 @@ function addComInfo(src1, src2, src3, src4, src5) {
         alert("请输入商品分类1");
     } else if (styleTwo.value == "") {
         alert("请输入商品分类2");
-    } else if (img1[0].src = "../img/backManage/upload.png") {
+    } else if (img1[0].src == "../img/backManage/upload.png") {
         alert("请上传你的商品图片1");
-    } else if (img1[1].src = "../img/backManage/upload.png") {
+    } else if (img1[1].src == "../img/backManage/upload.png") {
         alert("请上传你的商品图片2");
-    } else if (img1[2].src = "../img/backManage/upload.png") {
+    } else if (img1[2].src == "../img/backManage/upload.png") {
         alert("请上传你的商品图片3");
-    } else if (img2[0].src = "../img/backManage/upload.png") {
+    } else if (img2[0].src == "../img/backManage/upload.png") {
         alert("请上传你的商品图片4");
-    } else if (img2[1].src = "../img/backManage/upload.png") {
+    } else if (img2[1].src == "../img/backManage/upload.png") {
         alert("请上传你的商品图片5");
     } else {
         //调用接口
         console.log("保存分类：" + status);
-        console.log("保存编号：" + id);
+//        console.log("保存编号：" + id);
         console.log("分类：" + classify.innerText);
         console.log("标题：" + title.value);
         console.log("原价：" + oPrice.value);
@@ -654,7 +655,7 @@ function addComInfo(src1, src2, src3, src4, src5) {
                     shade.className = "dn";
                     document.getElementsByTagName("body")[0].style.overflow = "auto";
                 } else {
-                    alert(getModComResult.message);
+                    alert(getModComResult.msg);
                 }
             },
             error: function () {
@@ -662,7 +663,7 @@ function addComInfo(src1, src2, src3, src4, src5) {
                 //     shade.className = "dn";
                 //     document.getElementsByTagName("body")[0].style.overflow = "auto";
                 // } else {
-                //     alert(getModComResult.message);
+                //     alert(getModComResult.msg);
                 // }
                 alert("网络传输有误！");
             }
@@ -822,6 +823,7 @@ for (var i = 0; i < img2.length; i++) {
                         ctx.drawImage(this, 0, 0, imgWidth, imgHeight);
                     }
                     img2[curretIndex].src = canvas.toDataURL("image/jpeg", 0.8);
+//                    console.log("++++"+img2[curretIndex].src);
                 }
             }
             reader.readAsDataURL(file);

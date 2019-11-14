@@ -71,7 +71,7 @@ public class ProductDaoImpl extends BaseDaoImpl<Product> implements IProductDao{
 	@Override
 	public void saveProduct(Product model) {
 		// TODO Auto-generated method stub
-		model.setPid(UUID.randomUUID().toString());
+		model.setPid(UUID.randomUUID().toString().substring(0,5));
 		model.setPstatus(-1);
 		this.getHibernateTemplate().save(model);
 	}
