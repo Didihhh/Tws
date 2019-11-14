@@ -10,26 +10,7 @@ var orders11 = [
         punm:'1',
         state:"0"
     },
-    {
-        itemid: '2',
-        src:'../image/pic1.jpg',
-        pname:'【电子书赠品】记忆宫殿一本书快速提升记忆力 下载天猫读书读',
-        subtotal:'79.00',
-        classify1:'白色',
-        classify2:'均码',
-        punm:'2',
-        state:"0"
-    },
-    {
-        itemid: '3',
-        src:'../image/pic1.jpg',
-        pname:'【电子书赠品】记忆宫殿一本书快速提升记忆力 下载天猫读书读',
-        subtotal:'79.00',
-        classify1:'白色',
-        classify2:'均码',
-        punm:'3',
-        state:"0"
-    },
+    
     {
         itemid: '4',
         src:'../image/pic1.jpg',
@@ -51,7 +32,7 @@ var orders11 = [
         state:"0"
     },
 ];
-var Ftotal = 10;
+var Ftotal = 3;
 //全局数据
 var orderList = [];
 var orderTotal = 0;
@@ -349,5 +330,4 @@ $(document).ready(function(){
         orderDocking.searchOrderRecommend(str);
     });
 })
-
 

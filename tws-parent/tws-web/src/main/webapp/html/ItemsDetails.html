@@ -230,6 +230,21 @@
 		</div>
 	</div>	  
  </div>
+ <!-- 遮罩层和弹出框 -->
+ <div id="mask"></div>
+ <form id="buyForm" name="buyForm" method="post" onsubmit="return checkName()">
+	<div class="Fhead"><span class="title">请确认收货地址</span></div>
+	<div class="content">
+		<span id="w1">用 户 名:</span>
+		<input id="username" type="text" name="text1" onblur="checkName()"> 
+		<span id="div1"></span>
+		<div class="formFoot">
+			<input type="reset" value="取消" id="closeBtn">
+			<input type="submit" value="确认修改" id="submitBtn">    
+		</div>
+	</div>
+	<div id="close"></div>
+</form>
  <!-- 侧边栏 -->
  <!-- <iframe src="sidebar.html"></iframe> -->
  <div class="sidebar">

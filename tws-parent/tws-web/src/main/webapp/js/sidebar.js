@@ -227,7 +227,7 @@ var sidebarDocking = {
         var object={};
         object['orderJson'] = goodsList;
         $.ajax({
-            url:"productAction_getCart.action",//路径
+            url:"orderAction_addToOrdersInCast.action",//路径
             type:"post",//方法
             async:false,//是否缓存
             dataType:"json",//返回值类型
