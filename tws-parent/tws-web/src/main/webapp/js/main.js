@@ -337,7 +337,7 @@ var Docking = {
     buyRecommend:function(num,name,address,phone){
         console.log("立即购买接口")
         $.ajax({
-            url:"orderAction_addToOredrsInCart.action",//路径
+            url:"orderAction_addToOredrs.action",//路径
             type:"post",//方法
             async:false,//是否缓存
             dataType:"json",//返回值类型

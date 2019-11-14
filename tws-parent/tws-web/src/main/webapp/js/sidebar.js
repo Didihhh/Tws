@@ -226,9 +226,9 @@ var sidebarDocking = {
     CartCountRecommend: function(goodsList) {
         console.log("结算接口",goodsList);
         var object={};
-        object['orderJson'] = goodsList;
+        object['orderArray'] = goodsList;
         $.ajax({
-            url:"orderAction_addToOrdersInCast.action",//路径
+            url:"orderAction_addToOredrsInCast.action",//路径
             type:"post",//方法
             async:false,//是否缓存
             dataType:"json",//返回值类型

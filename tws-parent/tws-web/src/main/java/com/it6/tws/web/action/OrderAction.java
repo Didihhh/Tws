@@ -203,6 +203,7 @@ public class OrderAction extends BaseAction<OrderItem>{
 	/**
 	 * 购物车结算
 	 */
+	            
 	public String addToOredrsInCast(){
 		String flag=null;
 		JSONObject jsonObject=JSONObject.fromObject(orderJson);
