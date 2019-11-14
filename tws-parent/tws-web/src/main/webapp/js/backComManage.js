@@ -7,7 +7,7 @@
 //     "data": [
 //         {
 //             src1: '../image/pic1.jpg',
-//             title: '面卡其2019新款泫雅风条纹宽松打底针织衫长袖平色字母套头毛衣女fadsfdsajk手段狠辣尽快',
+//             pname: '面卡其2019新款泫雅风条纹宽松打底针织衫长袖平色字母套头毛衣女fadsfdsajk手段狠辣尽快',
 //             cid: "0",
 //             pid: 1,
 //             market_price: '79.00',
@@ -18,8 +18,8 @@
 //             classify2: '颜色,白色,黑色,米色',
 //         },
 //         {
-//             src1: '../image/pic1.jpg',
-//             title: '面卡其2019新款泫雅风条纹宽松打底针织衫长袖平色字母套头毛衣女fadsfdsajk手段狠辣尽快',
+//             : '../image/pic1.jpg',
+//             pname: '面卡其2019新款泫雅风条纹宽松打底针织衫长袖平色字母套头毛衣女fadsfdsajk手段狠辣尽快',
 //             cid: "0",
 //             pid: 2,
 //             market_price: '79.00',
@@ -31,7 +31,7 @@
 //         },
 //         {
 //             src1: '../image/pic1.jpg',
-//             title: '面卡其2019新款泫雅风条纹宽松打底针织衫长袖平色字母套头毛衣女fadsfdsajk手段狠辣尽快',
+//             pname: '面卡其2019新款泫雅风条纹宽松打底针织衫长袖平色字母套头毛衣女fadsfdsajk手段狠辣尽快',
 //             cid: "0",
 //             pid: 3,
 //             market_price: '79.00',
@@ -43,7 +43,7 @@
 //         },
 //         {
 //             src1: '../image/pic1.jpg',
-//             title: '面卡其2019新款泫雅风条纹宽松打底针织衫长袖平色字母套头毛衣女fadsfdsajk手段狠辣尽快',
+//             pname: '面卡其2019新款泫雅风条纹宽松打底针织衫长袖平色字母套头毛衣女fadsfdsajk手段狠辣尽快',
 //             cid: "1",
 //             pid: 4,
 //             market_price: '79.00',
@@ -66,7 +66,7 @@
 //         psrc3: '../image/pic3.jpg',
 //         psrc4: '../image/pic1.jpg',
 //         psrc5: '../image/pic1.jpg',
-//         title: '面卡其2019新款泫雅风条纹宽松打底针织衫长袖平色字母套头毛衣女fadsfdsajk手段狠辣尽快',
+//         pname: '面卡其2019新款泫雅风条纹宽松打底针织衫长袖平色字母套头毛衣女fadsfdsajk手段狠辣尽快',
 //         cid: "0",
 //         pid: 1,
 //         market_price: '79.00',
@@ -200,7 +200,7 @@ var getTable = function (i, page, orders) {
             "<span>" + comName + "</span>" +
             "</td>" +
             "<td>" +
-            "<span class='title'>" + orders[i].title + "</span>" +
+            "<span class='title'>" + orders[i].pname + "</span>" +
             "</td>" +
             "<td class='price'>" +
             "¥<span>" + orders[i].market_price + "</span>" +
@@ -387,7 +387,7 @@ function goPage(pageIndex, pageStep, orders, allLength) {
                             classify.innerText = '衣物服饰';
                         else
                             classify.innerText = '食品生鲜';
-                        title.value = getModComResult.data.title;
+                        title.value = getModComResult.data.pname;
                         oPrice.value = getModComResult.data.market_price;
                         nPrice.value = getModComResult.data.shop_price;
                         isPrice.value = getModComResult.data.pstatus;
@@ -412,7 +412,7 @@ function goPage(pageIndex, pageStep, orders, allLength) {
                     //         classify.innerText = '衣物服饰';
                     //     else
                     //         classify.innerText = '食品生鲜';
-                    //     title.value = getModComResult.data.title;
+                    //     title.value = getModComResult.data.;
                     //     oPrice.value = getModComResult.data.market_price;
                     //     nPrice.value = getModComResult.data.shop_price;
                     //     isPrice.value = getModComResult.data.pstatus;
