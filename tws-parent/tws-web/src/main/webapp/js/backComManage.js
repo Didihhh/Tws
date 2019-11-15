@@ -453,7 +453,7 @@ function goPage(pageIndex, pageStep, orders, allLength) {
                     cla = 3;
                 }
                 $.ajax({
-                    url: 'productAction_recommendProduct.action',//页面一进来的接口
+                    url: 'productManageAction_editProductInfo',//页面一进来的接口
                     type: 'post',//方法
                     cache: false,//是否缓存
                     dataType: 'json',//返回值的类型
