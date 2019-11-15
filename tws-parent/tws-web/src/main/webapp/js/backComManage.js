@@ -18,7 +18,7 @@
 //             classify2: '颜色,白色,黑色,米色',
 //         },
 //         {
-//             : '../image/pic1.jpg',
+//             psrc1: '../image/pic1.jpg',
 //             pname: '面卡其2019新款泫雅风条纹宽松打底针织衫长袖平色字母套头毛衣女fadsfdsajk手段狠辣尽快',
 //             cid: "0",
 //             pid: 2,
@@ -404,35 +404,38 @@ function goPage(pageIndex, pageStep, orders, allLength) {
                     }
                 },
                 error: function () {
-                    // if (getModComResult.code == "1" || getModComResult.code == 1) {
-                    //     reset();
-                    //     if (getModComResult.data.cid == 0)
-                    //         classify.innerText = '生活家电';
-                    //     else if (getModComResult.data.cid == 1)
-                    //         classify.innerText = '衣物服饰';
-                    //     else
-                    //         classify.innerText = '食品生鲜';
-                    //     title.value = getModComResult.data.;
-                    //     oPrice.value = getModComResult.data.market_price;
-                    //     nPrice.value = getModComResult.data.shop_price;
-                    //     isPrice.value = getModComResult.data.pstatus;
-                    //     address.value = getModComResult.data.paddress;
-                    //     styleOne.value = getModComResult.data.classify1;
-                    //     styleTwo.value = getModComResult.data.classify2;
-                    //     img1[0].src = getModComResult.data.psrc1;
-                    //     img1[1].src = getModComResult.data.psrc2;
-                    //     img1[2].src = getModComResult.data.psrc3;
-                    //     img2[0].src = getModComResult.data.psrc4;
-                    //     img2[1].src = getModComResult.data.psrc5;
-                    // } else {
-                    //     alert(getModComResult.msg);
-                    // }
+                    if (getModComResult.code == "1" || getModComResult.code == 1) {
+                        reset();
+                        if (getModComResult.data.cid == 0)
+                            classify.innerText = '生活家电';
+                        else if (getModComResult.data.cid == 1)
+                            classify.innerText = '衣物服饰';
+                        else
+                            classify.innerText = '食品生鲜';
+                        title.value = getModComResult.data.pname;
+                        oPrice.value = getModComResult.data.market_price;
+                        nPrice.value = getModComResult.data.shop_price;
+                        isPrice.value = getModComResult.data.pstatus;
+                        address.value = getModComResult.data.paddress;
+                        styleOne.value = getModComResult.data.classify1;
+                        styleTwo.value = getModComResult.data.classify2;
+                        img1[0].src = getModComResult.data.psrc1;
+                        img1[1].src = getModComResult.data.psrc2;
+                        img1[2].src = getModComResult.data.psrc3;
+                        img2[0].src = getModComResult.data.psrc4;
+                        img2[1].src = getModComResult.data.psrc5;
+                    } else {
+                        alert(getModComResult.msg);
+                    }
                     alert("网络传输有误！");
                 }
             });
-            //在编辑中点击保存
             var save = document.getElementById("save");
-            save.onclick = function () {
+            save.className = "dn";
+            //在编辑中点击保存
+            var edit = document.getElementById("edit");
+            edit.className = "dib";
+            edit.onclick = function () {
                 console.log("保存分类：" + status);
                 console.log("保存编号：" + id);
                 console.log("分类：" + classify.innerText);
@@ -453,7 +456,7 @@ function goPage(pageIndex, pageStep, orders, allLength) {
                     cla = 3;
                 }
                 $.ajax({
-                    url: 'productManageAction_editProductInfo',//页面一进来的接口
+                    url: 'productManageAction_saveProductInfo',
                     type: 'post',//方法
                     cache: false,//是否缓存
                     dataType: 'json',//返回值的类型
@@ -560,12 +563,17 @@ addCom.onclick = function () {
     shade.className = "db";
     document.getElementsByTagName("body")[0].style.overflow = "hidden";
     reset();
+    var save = document.getElementById("save");
+    save.className = "dib";
+    //在编辑中点击保存
+    var edit = document.getElementById("edit");
+    edit.className = "dn";
 }
 
 $("#form1").ajaxForm(function (data) {
     console.log(data);
     console.log("str:" + JSON.stringify(data));
-//    var strData = JSON.stringify(data);
+    //    var strData = JSON.stringify(data);
     if (data.code == 1 || data.code == "1")
         addComInfo(data.psrc1, data.psrc2, data.psrc3, data.psrc4, data.psrc5);
     else
@@ -585,7 +593,7 @@ function addComInfo(src1, src2, src3, src4, src5) {
     var styleTwo = coverLis[10].getElementsByTagName("input")[0];
     var img1 = coverLis[11].getElementsByTagName("img");
     var img2 = coverLis[12].getElementsByTagName("img");
-    console.log("____________"+img1[0].src);
+    console.log("____________" + img1[0].src);
     if (title.value == "") {
         alert("请输入你需要新增的商品名");
     } else if (oPrice.value == "") {
@@ -613,7 +621,7 @@ function addComInfo(src1, src2, src3, src4, src5) {
     } else {
         //调用接口
         console.log("保存分类：" + status);
-//        console.log("保存编号：" + id);
+        //        console.log("保存编号：" + id);
         console.log("分类：" + classify.innerText);
         console.log("标题：" + title.value);
         console.log("原价：" + oPrice.value);
@@ -823,7 +831,7 @@ for (var i = 0; i < img2.length; i++) {
                         ctx.drawImage(this, 0, 0, imgWidth, imgHeight);
                     }
                     img2[curretIndex].src = canvas.toDataURL("image/jpeg", 0.8);
-//                    console.log("++++"+img2[curretIndex].src);
+                    //                    console.log("++++"+img2[curretIndex].src);
                 }
             }
             reader.readAsDataURL(file);

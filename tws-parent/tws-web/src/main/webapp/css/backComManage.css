@@ -47,6 +47,9 @@ a{
 .db{
     display: block!important;
 }
+.dib{
+    display: inline-block!important;
+}
 .select ul li{
     width: 70px;
     height: 19px;
@@ -403,11 +406,23 @@ table tr td button{
     cursor: pointer;
 }
 #cover #save{
+    display: none;
     width: 360px;
     height: 28px;
     border-radius: 5px;
     margin-left: 30px;
     background: #f0e688;
     cursor: pointer;
+}
+#cover #edit{
+    display: none;
+    width: 360px;
+    height: 28px;
+    line-height: 28px;
+    border-radius: 5px;
+    margin-left: 30px;
+    background: #f0e688;
+    cursor: pointer;
+    text-align: center;
 }
 
