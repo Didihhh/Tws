@@ -223,8 +223,9 @@ var sidebarDocking = {
         });
     },
     //购物车结算接口
-    CartCountRecommend: function(goodsList) {
+    CartCountRecommend: function(goodsList,total) {
         console.log("结算接口",goodsList);
+        console.log("总金额",total);
         var object={};
         object['orderArray'] = goodsList;
         $.ajax({
@@ -234,6 +235,7 @@ var sidebarDocking = {
             dataType:"json",//返回值类型
             data:{
                 //传数组
+                "total" : total,
                 "orderJson" : JSON.stringify(object)
             },
             success: function(getComResult) {
@@ -518,7 +520,8 @@ $(document).ready(function(){
             Docking.buyRecommend(txt.value,name,address,phone);
         }else{
             //购物车结算接口
-            sidebarDocking.CartCountRecommend(countList);
+            console.log("总金额1",$("#cartTotal")[0].innerText);
+            sidebarDocking.CartCountRecommend(countList,$("#cartTotal")[0].innerText);
             $(this).remove();
         }
         buySwift(2,buyform);
