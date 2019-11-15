@@ -79,12 +79,15 @@ public class ProductManageAction extends BaseAction<Product> {
 
 	public String searchProduct(){
 		//System.out.println(model.getPname());
-		PageBean pageBean=productManageService.findProductByProName("裙子",currentPage,pageSize);
+		PageBean pageBean=productManageService.findProductByProName(model.getPname(),currentPage,pageSize);
 		ServletActionContext.getResponse().setContentType("application/json; charset=UTF-8");
+		List<Product> proList=null;
+		System.out.println(proList);
+		proList=pageBean.getList();
 		rest.setCode(1);
 		rest.setMsg("成功返回搜索的商品");
 		JSONObject json= JSONObject.fromObject(rest);
-		json.put("data", pageBean.getList());
+		json.put("data", proList==null?"":proList);
 		json.put("total", pageBean.getTotalCount());
 		json.put("count",pageSize);
 		String jsonStr=json.toString();

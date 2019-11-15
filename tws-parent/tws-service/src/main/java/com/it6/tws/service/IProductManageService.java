@@ -17,7 +17,6 @@ public interface IProductManageService {
 	
 	public void editProductInfo(Product model);//编辑商品
 	
-	public void editProductInfo(String cid, String pid);//编辑商品
 	
 	public List<Product> addProduct(Product product);//增加商品
 	

@@ -105,7 +105,7 @@ public class ProductManageDaoImpl extends BaseDaoImpl<Product> implements IProdu
 			Long len=list.get(0);
 			return len.intValue();
 		}
-		else return null;
+		else return 0;
 	}
 
 

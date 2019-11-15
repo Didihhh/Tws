@@ -134,7 +134,7 @@ searchBtn.onclick = function () {
             cache: false,//是否缓存
             dataType: 'json',//返回值的类型
             data: {
-                "panme": searchText.value,
+                "pname": searchText.value,
                 "currentPage": 1
             },
             success: function (getComResult) {
@@ -180,6 +180,7 @@ var getTable = function (i, page, orders) {
         "<th style='width:100px;font-weight:normal;'>操作状态</th>" +
         "</tr>";
     var tdHtml = "";
+//    alert(orders.length);
     //var b = i + page;
     for (i = 0; i < orders.length; i++) {
         var comName = '';
@@ -404,29 +405,29 @@ function goPage(pageIndex, pageStep, orders, allLength) {
                     }
                 },
                 error: function () {
-                    if (getModComResult.code == "1" || getModComResult.code == 1) {
-                        reset();
-                        if (getModComResult.data.cid == 0)
-                            classify.innerText = '生活家电';
-                        else if (getModComResult.data.cid == 1)
-                            classify.innerText = '衣物服饰';
-                        else
-                            classify.innerText = '食品生鲜';
-                        title.value = getModComResult.data.pname;
-                        oPrice.value = getModComResult.data.market_price;
-                        nPrice.value = getModComResult.data.shop_price;
-                        isPrice.value = getModComResult.data.pstatus;
-                        address.value = getModComResult.data.paddress;
-                        styleOne.value = getModComResult.data.classify1;
-                        styleTwo.value = getModComResult.data.classify2;
-                        img1[0].src = getModComResult.data.psrc1;
-                        img1[1].src = getModComResult.data.psrc2;
-                        img1[2].src = getModComResult.data.psrc3;
-                        img2[0].src = getModComResult.data.psrc4;
-                        img2[1].src = getModComResult.data.psrc5;
-                    } else {
-                        alert(getModComResult.msg);
-                    }
+//                    if (getModComResult.code == "1" || getModComResult.code == 1) {
+//                        reset();
+//                        if (getModComResult.data.cid == 0)
+//                            classify.innerText = '生活家电';
+//                        else if (getModComResult.data.cid == 1)
+//                            classify.innerText = '衣物服饰';
+//                        else
+//                            classify.innerText = '食品生鲜';
+//                        title.value = getModComResult.data.pname;
+//                        oPrice.value = getModComResult.data.market_price;
+//                        nPrice.value = getModComResult.data.shop_price;
+//                        isPrice.value = getModComResult.data.pstatus;
+//                        address.value = getModComResult.data.paddress;
+//                        styleOne.value = getModComResult.data.classify1;
+//                        styleTwo.value = getModComResult.data.classify2;
+//                        img1[0].src = getModComResult.data.psrc1;
+//                        img1[1].src = getModComResult.data.psrc2;
+//                        img1[2].src = getModComResult.data.psrc3;
+//                        img2[0].src = getModComResult.data.psrc4;
+//                        img2[1].src = getModComResult.data.psrc5;
+//                    } else {
+//                        alert(getModComResult.msg);
+//                    }
                     alert("网络传输有误！");
                 }
             });
@@ -480,6 +481,7 @@ function goPage(pageIndex, pageStep, orders, allLength) {
                         if (getModComResult.code == "1" || getModComResult.code == 1) {
                             shade.className = "dn";
                             document.getElementsByTagName("body")[0].style.overflow = "auto";
+                            getOrders(pageIndex);
                         } else {
                             alert(getModComResult.msg);
                         }
