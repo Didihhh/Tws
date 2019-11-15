@@ -70,24 +70,9 @@ public class ProductManageDaoImpl extends BaseDaoImpl<Product> implements IProdu
 	
 	//更新编辑后商品
 	@Override
-	public void editProductInfo(String cid,String pid,String psrc1,String psrc2,String psrc3,String psrc4,String psrc5,int pstatus,String pname,double market_price,double shop_price,String paddress,String classify1,String classify2) {
+	public void editProductInfo(Product model) {
 		// TODO Auto-generated method stub
-		Product product=new Product();
-		product.setCid(cid);
-		product.setPid(pid);
-		product.setPsrc1(psrc1);
-		product.setPsrc2(psrc2);
-		product.setPsrc3(psrc3);
-		product.setPsrc4(psrc4);
-		product.setPsrc5(psrc5);
-		product.setPstatus(pstatus);
-		product.setPname(pname);
-		product.setMarket_price(market_price);
-		product.setShop_price(shop_price);
-		product.setClassify1(classify1);
-		product.setClassify2(classify2);
-		product.setPaddress(paddress);
-		this.getHibernateTemplate().update(product);
+		this.getHibernateTemplate().update(model);
 	}
 	 
 	//点击增加商品
@@ -107,7 +92,8 @@ public class ProductManageDaoImpl extends BaseDaoImpl<Product> implements IProdu
 		this.getHibernateTemplate().delete(product);
 		
 	}
-
+    
+	//获得搜索的商品总数量
 	@Override
 	public Integer getTotalCount(String pname) {
 		// TODO Auto-generated method stub
@@ -122,17 +108,6 @@ public class ProductManageDaoImpl extends BaseDaoImpl<Product> implements IProdu
 		else return null;
 	}
 
-
-
-
-//	@Override
-//	public void deleteAllProduct() {
-//		// TODO Auto-generated method stub
-//		DetachedCriteria detached=DetachedCriteria.forClass(Product.class);
-//		List productLists =  this.getHibernateTemplate().findByCriteria(detached,0,10);
-//		this.getHibernateTemplate().deleteAll(productLists);
-//	}
-//
 
 
 }

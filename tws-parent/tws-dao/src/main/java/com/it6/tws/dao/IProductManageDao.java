@@ -17,6 +17,7 @@ public interface IProductManageDao extends IBaseDao<Product>{
 	
 	public List<Product> editProduct(DetachedCriteria criteria);//点击编辑商品
 	
+	public void editProductInfo(Product model);//编辑商品
 	
 	public List<Product> addProduct(Product product);//增加商品
 	
@@ -24,5 +25,4 @@ public interface IProductManageDao extends IBaseDao<Product>{
 
 	public Integer getTotalCount(String pname);
 
-	public void editProductInfo(String cid,String pid,String psrc1,String psrc2,String psrc3,String psrc4,String psrc5,int pstatus,String pname,double market_price,double shop_price,String paddress,String classify1,String classify2);
 }

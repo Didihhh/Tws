@@ -52,10 +52,12 @@ public class ProductManageServiceImpl implements IProductManageService{
 	
 	//更新编辑后商品
 	@Override
-	public void editProductInfo(String cid, String pid) {
+	public void editProductInfo(Product model) {
 		// TODO Auto-generated method stub
+		productManageDao.editProductInfo(model);
 		
 	}
+
 		
     //增加商品
 	@Override
@@ -68,13 +70,6 @@ public class ProductManageServiceImpl implements IProductManageService{
 	@Override
 	public void deleteProductByPid(String pid) {
 		// TODO Auto-generated method stub
-//		DetachedCriteria criteria=DetachedCriteria.forClass(Product.class);
-//		for(int i=0;i<pid.length;i++)
-//		{	
-//			criteria.add(Restrictions.eq("pid",pid));
-//			productManageDao.deleteProductByPid(criteria);
-//		}
-//	}
 		productManageDao.deleteProductByPid(pid);
 	}
 

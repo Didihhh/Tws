@@ -126,6 +126,25 @@ public class ProductManageAction extends BaseAction<Product> {
 	}
 	
 	/**
+	 *  更新编辑过的商品信息
+	 */
+	public String saveProductInfo(){
+		ServletActionContext.getResponse().setContentType("application/json; charset=UTF-8");
+		productManageService.editProductInfo(model);
+		rest.setCode(1);
+		rest.setMsg("成功更新商品");
+		JSONObject json= JSONObject.fromObject(rest);
+		String jsonStr=json.toString();
+		try {		
+			ServletActionContext.getResponse().getWriter().write(jsonStr);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	/**
 	 * 商品管理页面删除商品
 	 */
 	public String deleteProductByPid(){
