@@ -498,18 +498,21 @@ $(document).ready(function(){
         buySwift(2,buyform);
         //解除禁止滚动条
         $(document).unbind("scroll.unable");
+        window.parent.location.reload();  //刷新
     })
     //点击遮罩层
     $('#mask').click(function(){
         buySwift(2,buyform);
         //解除禁止滚动条
         $(document).unbind("scroll.unable");
+        window.parent.location.reload();  //刷新
     })
      //点击关闭弹框
      $('#close').click(function(){
         buySwift(2,buyform);
         //解除禁止滚动条
         $(document).unbind("scroll.unable");
+        window.parent.location.reload();  //刷新
     })
     //确认下单
     $('#BsubmitBtn').click(function(){   

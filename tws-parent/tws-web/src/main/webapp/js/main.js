@@ -3,6 +3,7 @@ var c1Value = ""; //分类1
 var c2Value = ""; //分类2
 var goodsId = ""; //商品id
 var firstClassify = ""; //商品一级分类
+var Iusername = "tammie";//用户名
     
 var NowBox ="";//记录是否打折
 var NowPrice = ""; //记录显示的价格
@@ -125,6 +126,10 @@ function getGoodsData(src1,src2,src3,src4,src5,title,address,historyData){
     }
 }
 
+//显示用户名
+function showName(){
+    document.getElementById("userName").innerHTML = Iusername;
+}
 
 //加载左边图片
 $("#showButtom ul li img").each(function(index){
@@ -153,6 +158,8 @@ var Docking = {
             success: function(getComResult) {
                 //成功
                 if(getComResult.code == "1" ||getComResult.code == 1 ){
+                    //获取用户名
+                    Iusername = getComResult.username;
                     //获取id
                     goodsId = getComResult.data.pid;
                     //获取一级分类
@@ -376,6 +383,9 @@ $(document).ready(function(){
     //调用接口
     Docking.recommend1();
 
+    //显示用户名
+    showName();
+
     //首部搜索框
     Dom.topSearch.aside.onclick = function () {
         if (Dom.topSearch.input.value == "" || Dom.topSearch.input.value == " ")
@@ -496,7 +506,6 @@ $(document).ready(function(){
         Docking.toDetail($(this).attr('pid'));
     })
 
-    //点击页面跳转
     //遮罩层
     //弹出层
     var sheight = document.documentElement.scrolllHeight;

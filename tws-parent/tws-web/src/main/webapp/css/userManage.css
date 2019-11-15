@@ -1,25 +1,33 @@
 #user{
-    margin:0px 45px;
+    margin:13px 45px;
+    height:20px;
+}
+#userName{
+    font-size:1.7rem;
 }
 .manageUl {
+    line-height:30px;
+    text-align: center;
     display: none;
     position: absolute;
     background-color: #f9f9f9;
-    width: 140px;
+    width: 200px;
     overflow: auto;
+    margin:9px 0px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
     list-style-type: none;
 }
 
 .manageUl li {
+    line-height:30px;
+    text-align: center;
     color: black;
-    width:80px;
-    padding: 16px 50px;
-    margin:0px -40px;
+    padding: 17px 0px;
     text-decoration: none;
     display: block;
     list-style-type: none;
+    font-size:2rem;
 }
 
 .manageUl li:hover {
@@ -29,7 +37,7 @@
 
 .show {display:block;}
 
-#mask{
+#Umask{
     background: rgba(0,0,0,0.5);
     opacity:0.75;
     height:100%;
@@ -40,21 +48,22 @@
     z-index:1000;
     display:none;
 }
-#close{ 
-    background:url(http://img.mukewang.com/532c272100018d1600300030.jpg) no-repeat; 
+.Uclose{ 
+    background:url("../image/wrong.png") no-repeat; 
+    background-size:59%;
     width:30px;
     height:30px; 
     cursor:pointer; 
     position:absolute;
-    right:8px; 
-    top:8px; 
+    right:4px; 
+    top:15px; 
     text-indent:-999em;
 }
 #nameForm{
     /* border: 1.5px solid #e6e6e6; */
     padding:0px 0px;
     height:270px;
-    width:450px;
+    width:500px;
     position:fixed;
     z-index:1001;
     /* margin:140px 630px;  */
@@ -64,7 +73,35 @@
     background-color:white;
     color:#6b6868;
 }
-#username{
+#pswordForm{
+    /* border: 1.5px solid #e6e6e6; */
+    padding:0px 0px;
+    height:500px;
+    width:500px;
+    position:fixed;
+    z-index:1001;
+    /* margin:140px 630px;  */
+    font-size:20px;
+    font-family:微软雅黑;
+    display:none;
+    background-color:white;
+    color:#6b6868;
+}
+#addressForm{
+    /* border: 1.5px solid #e6e6e6; */
+    padding:0px 0px;
+    height:500px;
+    width:500px;
+    position:fixed;
+    z-index:1001;
+    /* margin:140px 630px;  */
+    font-size:20px;
+    font-family:微软雅黑;
+    display:none;
+    background-color:white;
+    color:#6b6868;
+}
+.Ubtn{
     height:36px;
     width:230px;
     outline: none;
@@ -73,26 +110,29 @@
     margin:0px 12px;
     border:1.5px solid #cacaca;
 }
-.Fhead{
-    width:398px;
+.Uhead{
+    width:448px;
     height:31px;
     background-color:#dff2ff;
     padding: 13px 26px;
 }
-.title{
+.Utitle{
     font-size:20px;
     display:block;
     margin:0px 0px;
     font-weight: bold;
 }
-.content{
+.Ucontent{
     height:250px;
     width:420px;
-    margin:40px 51px;
+    margin:40px 77px;   
 }
-#closeBtn{
+.Ucontent span{
+    font-size:2rem;
+}
+.UcloseBtn{
     height:40px;
-    width:91px;
+    width:97px;
     background-color:#cacaca;
     border-radius: 5px;
     outline: none;
@@ -101,14 +141,22 @@
     font-size:16px;
     color:#6b6868;
 }
-#submitBtn{
+.UsubmitBtn{
     height:40px;
-    width:187px;
+    width:191px;
     background-color:#f0e688;
     border-radius: 5px;
     outline: none;
     cursor: pointer;
-    margin:0px 46px;
+    margin:0px 55px;
     font-size:16px;
     color:#6b6868;
+}
+#Uaddres{
+    height:100px;
+    width:230px;
+    outline: none;
+    font-size:16px;
+    margin:-46px 117px;
+    border:1.5px solid #cacaca;
 }

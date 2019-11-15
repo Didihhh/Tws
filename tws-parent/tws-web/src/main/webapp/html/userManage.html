@@ -8,9 +8,10 @@
 
 </head>
 <body>
+    <!-- 首部，下拉框 -->
     <div id="user">
         <span id="userName" class="userName">tammie</span>
-        <span>，欢迎来到淘物社</span>
+        <span >，欢迎来到淘物社</span>
         <ul id="manageUl" class="manageUl">
             <li id="changeName">修改用户名</li>
             <li id="changePsword">修改密码</li>
@@ -18,20 +19,59 @@
             <li id="logOut">退出登录</li>
         </ul>
     </div>
-    <div id="mask"></div>
+    <div id="Umask"></div>
     <form id="nameForm" name="nameForm" method="post" onsubmit="return checkName()">
-        <div class="Fhead"><span class="title">修改用户名</span></div>
-        <div class="content">
-            <span id="w1">用 户 名:</span>
-            <input id="username" type="text" name="text1" onblur="checkName()"> 
+        <div class="Uhead"><span class="Utitle">修改用户名</span></div>
+        <div class="Ucontent">
+            <span>用 户 &nbsp;名：</span>
+            <input id="username" class="Ubtn" type="text" name="text1" onblur="checkName()"> 
             <span id="div1"></span>
-            <div class="formFoot">
-                <input type="reset" value="取消" id="closeBtn">
-                <input type="submit" value="确认修改" id="submitBtn">    
+            <div class="UformFoot">
+                <input type="reset" value="取消" id="Unameclose" class="UcloseBtn">
+                <input type="submit" value="确认修改" id="UnameSubmit" class="UsubmitBtn">    
             </div>
         </div>
-        <div id="close"></div>
+        <div id="Uuclose" class="Uclose"></div>
     </form>
+    <form id="pswordForm" name="nameForm" method="post" onsubmit="return checkName()">
+        <div class="Uhead"><span class="Utitle">修改密码</span></div>
+        <div class="Ucontent">
+            <span>旧 密 &nbsp;码：</span>
+            <input id="oldpsword" class="Ubtn" type="password" name="text1" onblur="checkName()">
+            <br><br><br>
+            <spa>新 密 &nbsp;码：</span>
+            <input id="newpsword" class="Ubtn" type="password" name="text1" onblur="checkName()"> 
+            <br><br><br>
+            <span>确认密码：</span>
+            <input id="confirmpsw" class="Ubtn" type="password" name="text1" onblur="checkName()">  
+            <span id="div1"></span>
+            <div class="UformFoot">
+                <input type="reset" value="取消" id="Upswclose" style="margin-top:60px;" class="UcloseBtn">
+                <input type="submit" value="确认修改" id="UpswSubmit" class="UsubmitBtn">    
+            </div>
+        </div>
+        <div id="Upclose" class="Uclose"></div>
+    </form>
+    <form id="addressForm" name="buyForm" method="post" onsubmit="">
+        <div class="Uhead"><span class="Utitle">地址管理</span></div>
+        <div class="Ucontent">
+            <span>收&nbsp;货 &nbsp;人：</span>
+            <input id="Uconsignee" class="Ubtn" type="text" name="text1" onblur="">
+            <br><br><br>
+            <span>手机号码：</span>
+            <input id="Uphone" class="Ubtn" type="text" name="text1" onblur="">
+            <br><br><br>
+            <span style="margin-top:24px;display:block;">收货地址：</span>
+            <textarea id="Uaddres" onblur="checkAddress()"></textarea>
+            <span id="div1"></span>
+            <div class="formFoot">
+                <input type="button" value="取消" id="Uadsclose" style="margin-top:101px;" class="UcloseBtn">
+                <input type="button" value="确认下单" id="UadsSubmit" class="UsubmitBtn" style="margin-left:61px;">    
+            </div>
+        </div>
+        <div id="Uaclose" class="Uclose"></div>
+    </form>
+    <!-- 首部，下拉框 -->
     <!-- <form name="pswordForm" method="post" onsubmit="return checkPsword()"> 
         <div id="login">
             <div id="title"></div>
