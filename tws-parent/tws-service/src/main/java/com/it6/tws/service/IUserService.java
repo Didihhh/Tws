@@ -12,4 +12,6 @@ public interface IUserService {
 
 	public void updateAddress(User user);
 
+	public boolean findUserByUsernameAndPassword(User u);
+
 }

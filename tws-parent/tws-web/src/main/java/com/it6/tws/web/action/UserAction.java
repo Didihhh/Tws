@@ -108,7 +108,7 @@ public class UserAction extends BaseAction<User> {
 		user.setAutopconsignee(model.getAutopconsignee());
 		user.setAutotelephone(model.getAutotelephone());
 		userService.updateAddress(user);
-
+		ServletActionContext.getRequest().getSession().setAttribute("loginUser", user);
 
 		rest.setCode(1);
 		rest.setMsg("修改成功");
@@ -130,7 +130,7 @@ public class UserAction extends BaseAction<User> {
 		User user = (User) ServletActionContext.getRequest().getSession().getAttribute("loginUser");
 		user.setUsername(model.getUsername());
 		userService.updateAddress(user);
-
+		ServletActionContext.getRequest().getSession().setAttribute("loginUser", user);
 
 		rest.setCode(1);
 		rest.setMsg("修改成功");
@@ -151,15 +151,18 @@ public class UserAction extends BaseAction<User> {
 	public String updatePassword() {
 		User u = (User) ServletActionContext.getRequest().getSession().getAttribute("loginUser");
 		u.setPassword(oldPassword);
-		User user = userService.login(u);	   //将数据传输给service层	
+		User user = userService.login(u);
 		ServletActionContext.getResponse().setContentType("application/json; charset=UTF-8");
 		JSONObject json;
+		System.out.println(newPassword);
+		System.out.println(oldPassword);
+		System.out.println(u !=null);
 		if(user !=null){
-			u.setPassword(newPassword);
-			userService.updateAddress(u);
+			user.setPassword(newPassword);
+			userService.updateAddress(user);
 			rest.setCode(1);
 			rest.setMsg("修改密码成功");
-			
+			ServletActionContext.getRequest().getSession().setAttribute("loginUser", user);
 		}else{
 			rest.setCode(0);
 			rest.setMsg("密码错误");
@@ -200,4 +203,24 @@ public class UserAction extends BaseAction<User> {
 	}
 
 
+	public String getOldPassword() {
+		return oldPassword;
+	}
+
+
+	public void setOldPassword(String oldPassword) {
+		this.oldPassword = oldPassword;
+	}
+
+
+	public String getNewPassword() {
+		return newPassword;
+	}
+
+
+	public void setNewPassword(String newPassword) {
+		this.newPassword = newPassword;
+	}
+
+	
 }

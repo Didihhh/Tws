@@ -13,6 +13,18 @@
         <property name="username" type="java.lang.String">
             <column name="username"/>
         </property>
+        
+         <property name="autoaddress" type="java.lang.String">
+            <column name="autoaddress"/>
+        </property>
+        
+         <property name="autopconsignee" type="java.lang.String">
+            <column name="autopconsignee"/>
+        </property>
+        
+         <property name="autotelephone" type="java.lang.String">
+            <column name="autotelephone"/>
+        </property>
 
     </class>
 </hibernate-mapping>

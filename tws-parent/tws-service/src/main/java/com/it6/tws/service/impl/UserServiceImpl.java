@@ -38,4 +38,9 @@ public class UserServiceImpl implements IUserService{
 		// TODO Auto-generated method stub
 		userDao.updateAddress(user);
 	}
+	@Override
+	public boolean findUserByUsernameAndPassword(User u) {
+		// TODO Auto-generated method stub
+		return userDao.findUserByUsernameAndPassword(u);
+	}
 }

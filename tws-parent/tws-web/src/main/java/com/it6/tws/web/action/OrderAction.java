@@ -205,6 +205,10 @@ public class OrderAction extends BaseAction<OrderItem>{
 	 */
 	            
 	public String addToOredrsInCast(){
+		System.out.println(address);
+		System.out.println(pconsignee);
+		System.out.println(telephone);
+		System.out.println(total);
 		String flag=null;
 		JSONObject jsonObject=JSONObject.fromObject(orderJson);
 		JSONArray jsonArray=jsonObject.getJSONArray("orderArray");
