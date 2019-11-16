@@ -48,6 +48,16 @@ public class UserDaoImpl extends BaseDaoImpl<User> implements IUserDao {
 	@Override
 	public void updateAddress(User user) {
 		// TODO Auto-generated method stub
-		this.save(user);
+		this.getHibernateTemplate().update(user);
+	}
+
+	@Override
+	public boolean findUserByUsernameAndPassword(User u) {
+		String hql = "FROM User u WHERE u.uid = ? AND u.password = ?";
+		List<User> list = (List<User>) this.getHibernateTemplate().find(hql, u.getUid(),u.getPassword());
+		if(list != null && list.size() > 0){
+			return true;
+		}
+		return false;
 	}
 }

@@ -6,6 +6,8 @@ import com.it6.tws.entity.User;
 public interface IUserDao extends IBaseDao<User> {
 
 	public User findUserByUsernameAndPassword(String uid, String password);
+	
+	public boolean findUserByUsernameAndPassword(User u);
 
 	public String saveUser(User user);
 

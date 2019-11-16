@@ -1,4 +1,4 @@
-
+var receive = {};
 //接口
 var userManageDocking = {
     //修改用户名
@@ -14,10 +14,11 @@ var userManageDocking = {
             success: function(getComResult) {
                 //成功
                 if(getComResult.code == "1" ||getComResult.code == 1 ){
-                    alert(getComResult.message);
+                	
+                    alert(getComResult.msg);
                 }
                 else{
-                    alert(getComResult.message);
+                    alert(getComResult.msg);
                 }   
             },
             error: function error() {
@@ -40,10 +41,10 @@ var userManageDocking = {
             success: function(getComResult) {
                 //成功
                 if(getComResult.code == "1" ||getComResult.code == 1 ){
-                    alert(getComResult.message);
+                    alert(getComResult.msg);
                 }
                 else{
-                    alert(getComResult.message);
+                    alert(getComResult.msg);
                 }   
             },
             error: function error() {
@@ -64,7 +65,7 @@ var userManageDocking = {
             success: function(getComResult) {
                 //成功
                 if(getComResult.code == "1" ||getComResult.code == 1 ){
-                    return getComResult.data;
+                	receive = getComResult.data;
                 }
                 else{
                     alert(getComResult.msg)
@@ -79,22 +80,22 @@ var userManageDocking = {
     //修改地址
     changeaddressRecommend: function(name,address,phone) {
         $.ajax({
-            url:"userAction_updateUserName.action",//路径
+            url:"userAction_updateAddress.action",//路径
             type:"post",//方法
             async:false,//是否缓存
             dataType:"json",//返回值类型
             data: {
-                "pconsignee": name,
-                "address" : address,
-                "telephone" : phone
+                "autopconsignee": name,
+                "autoaddress" : address,
+                "autotelephone" : phone
             },
             success: function(getComResult) {
                 //成功
                 if(getComResult.code == "1" ||getComResult.code == 1 ){
-                    alert(getComResult.message);
+                    alert(getComResult.msg);
                 }
                 else{
-                    alert(getComResult.message);
+                    alert(getComResult.msg);
                 }   
             },
             error: function error() {
@@ -139,10 +140,10 @@ $(document).ready(function(){
     $('#changeAddress').click(function(){
         Uswift(1,addressform);
         //获取信息
-        let Receiving = userManageDocking.getReceivingRecommend();
-        document.getElementById("Uconsignee").value = Receiving.autopconsignee;
-        document.getElementById("Uphone").value = Receiving.autotelephone;
-        document.getElementById("Uaddres").value = Receiving.autoaddress;
+        userManageDocking.getReceivingRecommend();
+        document.getElementById("Uconsignee").value = receive.autopconsignee;
+        document.getElementById("Uphone").value = receive.autotelephone;
+        document.getElementById("Uaddres").value = receive.autoaddress;
     })
     //点击退出登录
     $('#logOut').click(function(){

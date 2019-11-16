@@ -553,10 +553,6 @@ $(document).ready(function(){
         var phone = document.getElementById("Bphone").value;//电话
         if(placeOrder == false){//判断是立即购买还是结算下单,调用不同接口
             Docking.buyRecommend(txt.value,name,address,phone);
-        }else{
-            //购物车结算接口
-            sidebarDocking.CartCountRecommend(countList);
-            $(this).remove();
         }
         buySwift(2,buyform);
         window.parent.location.reload();  //刷新

@@ -1,6 +1,7 @@
 ////////////////////////////////////// 侧 边 栏 ///////////////////////////////////////////////
 var countList = [];//结算商品列表
 var placeOrder = false;//判断是立即购买还是结算，false为立即购买
+var Receiving = {};//
 //获取侧边栏足迹数据
 function getHistoryData(hData){
     var str = "";
@@ -223,9 +224,12 @@ var sidebarDocking = {
         });
     },
     //购物车结算接口
-    CartCountRecommend: function(goodsList,total) {
+    CartCountRecommend: function(goodsList,total,name,address,phone) {
         console.log("结算接口",goodsList);
         console.log("总金额",total);
+        console.log('shouhuo',name);
+        console.log('shouhuo',address);
+        console.log('shouhuo',phone);
         var object={};
         object['orderArray'] = goodsList;
         $.ajax({
@@ -236,7 +240,10 @@ var sidebarDocking = {
             data:{
                 //传数组
                 "total" : total,
-                "orderJson" : JSON.stringify(object)
+                "orderJson" : JSON.stringify(object),
+                "pconsignee" : name,
+                "address" : address,
+                "telephone" : phone
             },
             success: function(getComResult) {
                 //成功
@@ -264,7 +271,7 @@ var sidebarDocking = {
             success: function(getComResult) {
                 //成功
                 if(getComResult.code == "1" ||getComResult.code == 1 ){
-                    return getComResult.data;
+                	Receiving = getComResult.data;
                 }
                 else{
                     alert(getComResult.msg)
@@ -384,7 +391,7 @@ $(document).ready(function(){
 
         //点击图片跳到详情页
         $(this).find("#cartPic").click(function(){
-            sidebarDocking.toDetail(pid);
+//            sidebarDocking.toDetail(pid);
         })
     })
 
@@ -488,13 +495,15 @@ $(document).ready(function(){
         placeOrder = true;//判断是立即购买还是结算下单
         buySwift(1,buyform);
         //调接口取收货信息
-        var Receiving = Docking.getReceivingRecommend();
+        sidebarDocking.getReceivingRecommend();
+        console.log("shouhuoxinxi",Receiving);
         document.getElementById("Bconsignee").value = Receiving.autopconsignee;
         document.getElementById("Bphone").value = Receiving.autotelephone;
         document.getElementById("Baddres").value = Receiving.autoaddress;
     })
     //点击取消
     $('#BcloseBtn').click(function(){
+ 
         buySwift(2,buyform);
         //解除禁止滚动条
         $(document).unbind("scroll.unable");
@@ -524,11 +533,11 @@ $(document).ready(function(){
         }else{
             //购物车结算接口
             console.log("总金额1",$("#cartTotal")[0].innerText);
-            sidebarDocking.CartCountRecommend(countList,$("#cartTotal")[0].innerText);
+            sidebarDocking.CartCountRecommend(countList,$("#cartTotal")[0].innerText,name,address,phone);
             $(this).remove();
         }
         buySwift(2,buyform);
-        window.parent.location.reload();  //刷新
+//        window.parent.location.reload();  //刷新
     })
     //遮罩层 #mask用户信息的body里自带。
     function buySwift(now,form){
