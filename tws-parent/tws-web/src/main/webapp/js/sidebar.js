@@ -1,6 +1,6 @@
 ////////////////////////////////////// 侧 边 栏 ///////////////////////////////////////////////
 var countList = [];//结算商品列表
-var placeOrder = false;//判断是立即购买还是结算，false为立即购买
+var placeOrder = "";//判断是立即购买还是结算，false为立即购买
 var Receiving = {};//
 //获取侧边栏足迹数据
 function getHistoryData(hData){
@@ -528,9 +528,7 @@ $(document).ready(function(){
         var name = document.getElementById("Bconsignee").value;//收货人
         var address = document.getElementById("Baddres").value;//地址
         var phone = document.getElementById("Bphone").value;//电话
-        if(placeOrder == false){//判断是立即购买还是结算下单,调用不同接口
-            Docking.buyRecommend(txt.value,name,address,phone);
-        }else{
+        if(placeOrder == true){
             //购物车结算接口
             console.log("总金额1",$("#cartTotal")[0].innerText);
             sidebarDocking.CartCountRecommend(countList,$("#cartTotal")[0].innerText,name,address,phone);

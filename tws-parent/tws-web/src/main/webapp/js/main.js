@@ -11,7 +11,7 @@ var NowPrice = ""; //记录显示的价格
 var highPri = "";
 var lowPri = "";
 
-var placeOrder = false;//判断是立即购买还是结算，false为立即购买
+var placeOrder = "";//判断是立即购买还是结算，false为立即购买
 
 // 侧边栏全局变量
 
