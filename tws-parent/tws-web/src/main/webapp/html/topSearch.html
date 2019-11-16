@@ -10,14 +10,96 @@
     <!-- <link href="../css/bootstrap.min.css" rel="stylesheet"/> -->
     <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
     <link type="text/css" rel="stylesheet" href="../css/topSearch.css" />
-
+    <link rel="stylesheet" type="text/css" href="../css/sidebar.css">
+	<link rel="stylesheet" type="text/css" href="../css/userManage.css">
+    <style>
+        .cartHead input{
+            margin:4px 19px;
+        }
+        .sCartUl input{
+            margin:47px 10px;
+        }
+        .cartFoot{
+            padding-top:0px;
+        }
+        .Uhead {
+            width: 500px;
+            height: 53px;
+        }
+    </style>
 </head>
 
 <body>
     <!-- 用户名显示 -->
-    <p id="user"><span>社会</span>你好！欢迎来到淘物社！</p>
+    <!-- <p id="user"><span>社会</span>你好！欢迎来到淘物社！</p> -->
+    <!-- 首部用户信息管理，下拉框 -->
+    <div id="Umask"></div>
+    <form id="nameForm" name="nameForm" method="post" onsubmit="return checkName()">
+        <div class="Uhead"><span class="Utitle">修改用户名</span></div>
+        <div class="Ucontent">
+            <span>用 户 &nbsp;名：</span>
+            <input id="username" class="Ubtn" type="text" name="text1" onblur="checkName()"> 
+            <span id="div1"></span>
+            <div class="UformFoot">
+                <input type="reset" value="取消" id="Unameclose" class="UcloseBtn">
+                <input type="button" value="确认修改" id="UnameSubmit" class="UsubmitBtn">    
+            </div>
+        </div>
+        <div id="Uuclose" class="Uclose"></div>
+    </form>
+    <form id="pswordForm" name="nameForm" method="post" onsubmit="return checkName()">
+        <div class="Uhead"><span class="Utitle">修改密码</span></div>
+        <div class="Ucontent">
+            <span>旧 密 &nbsp;码：</span>
+            <input id="oldpsword" class="Ubtn" type="password" name="text1" onblur="checkName()">
+            <br><br><br>
+            <span>新 密 &nbsp;码：</span>
+            <input id="newpsword" class="Ubtn" type="password" name="text1" onblur="checkName()"> 
+            <br><br><br>
+            <span>确认密码：</span>
+            <input id="confirmpsw" class="Ubtn" type="password" name="text1" onblur="checkPassword()">  
+            <span id="div1"></span>
+            <div class="UformFoot">
+                <input type="reset" value="取消" id="Upswclose" style="margin-top:60px;" class="UcloseBtn">
+                <input type="button" value="确认修改" id="UpswSubmit" class="UsubmitBtn">    
+            </div>
+        </div>
+        <div id="Upclose" class="Uclose"></div>
+    </form>
+    <form id="addressForm" name="buyForm" method="post" onsubmit="">
+        <div class="Uhead"><span class="Utitle">地址管理</span></div>
+        <div class="Ucontent">
+            <span>收&nbsp;货 &nbsp;人：</span>
+            <input id="Uconsignee" class="Ubtn" type="text" name="text1" onblur="">
+            <br><br>
+            <span>手机号码：</span>
+            <input id="Uphone" class="Ubtn" type="text" name="text1" onblur="">
+            <br><br>
+            <span style="margin-top:24px;display:block;">收货地址：</span>
+            <textarea id="Uaddres" onblur="checkAddress()"></textarea>
+            <span id="div1"></span>
+            <div class="formFoot">
+                <input type="button" value="取消" id="Uadsclose" style="margin-top:101px;" class="UcloseBtn">
+                <input type="button" value="确认修改" id="UadsSubmit" class="UsubmitBtn" style="margin-left:61px;">    
+            </div>
+        </div>
+        <div id="Uaclose" class="Uclose"></div>
+    </form>
+    <!-- 首部用户信息管理，下拉框 -->
     <!--首页搜索栏-->
     <header>
+        <!-- 首部用户信息管理，显示用户名 -->
+		<div id="user">
+				<span id="userName" class="userName">tammie</span>
+				<span style="font-size:1.7rem;">你好！欢迎来到淘物社！</span>
+				<ul id="manageUl" class="manageUl">
+					<li id="changeName">修改用户名</li>
+					<li id="changePsword">修改密码</li>
+					<li id="changeAddress">地址管理</li>
+					<li id="logOut">退出登录</li>
+				</ul>
+        </div>
+        <!-- 首部用户信息管理，显示用户名 -->
         <img src="../img/homePage/logo.jpg" />
         <div class="top_search" style="box-sizing: content-box;">
             <input type="text" placeholder="请输入你想要搜索的商品" />
@@ -89,11 +171,77 @@
         <h3>为你推荐</h3>
         <ul></ul>
     </div>
-
+    <!-- 侧边栏及遮罩层 -->
+ <!-- <iframe src="sidebar.html"></iframe> -->
+ <div class="sidebar">
+        <!-- 侧边栏购物车 -->
+        <div class="cartBox" id="cartBox">
+            <div class="cartHead">
+                <input type='checkbox' class='cartAll' id='cartCheckAll'/>
+                <span>全选</span>
+                <img src='../image/dele.png'/>
+                <span id='cartDelete'>删除</span>
+            </div>
+            <span id="emptyFont1">空空如也...</span>
+            <ul class="sCartUl" id="sCartUl">         
+            </ul>
+            <div class="cartFoot">
+                <span style="margin-left:47px;">已选 </span>
+                <span id="cartSum">0</span>
+                <span> 件</span>
+                <div class="totalDiv">
+                    <span id="cartTotal">0.00</span>
+                    <span>¥</span>
+                </div>
+                <button id="accountBtn">结算</button>
+            </div>
+        </div>
+        <!-- 侧边栏历史浏览 -->
+        <div class="historyBox" id="historyBox">
+            <div class="historyHead">
+                <span class="historySpan">我看过的</span>
+                <span id="historyClean">清空</span>
+            </div>
+            <span id="emptyFont2">空空如也...</span>
+            <ul class="sHistoryUl" id="sHistoryUl">
+            </ul>
+        </div>
+        <div class="sidebarLeft" id="sidebarLeft" style="height:337px;">
+            <img src="../image/history.png" id="historySty" class="sidebarIcon"/>
+            <div style="width:35px;height:1px;margin:0px auto;padding:0px;background-color:#D5D5D5;overflow:hidden;"></div>
+            <img src="../image/cart.png" id="cartSty" class="sidebarIcon"/>
+            <div style="width:35px;height:1px;margin:0px auto;padding:0px;background-color:#D5D5D5;overflow:hidden;"></div>
+            <img src="../image/order.png" id="bagSty" class="sidebarIcon"/>
+        </div>
+    </div>
+    <!-- 遮罩层和弹出框 -->
+    <div id="mask"></div>
+    <form id="buyForm" name="buyForm" method="post" onsubmit="">
+       <div class="Fhead"><span class="Ftitle">请确认收货地址</span></div>
+       <div class="content">
+           <span>收&nbsp;货 &nbsp;人：</span>
+           <input id="Bconsignee" type="text" name="text1" onblur="">
+           <br><br><br>
+           <span>手机号码：</span>
+           <input id="Bphone" type="text" name="text1" onblur="">
+           <br><br><br>
+           <span style="margin-top:24px;display:block;">收货地址：</span>
+           <textarea id="Baddres" onblur="checkAddress()"></textarea>
+           <span id="div1"></span>
+           <div class="formFoot">
+               <input type="button" value="取消" id="BcloseBtn">
+               <input type="button" value="确认下单" id="BsubmitBtn">    
+           </div>
+       </div>
+       <div id="close"></div>
+    </form>
+      <!-- 侧边栏及遮罩层 -->
     <script src="../js/jquery.min.js"></script>
     <!-- <script src="../js/bootstrap.min.js"></script> -->
     <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="../js/topSearchES5.js"></script>
+    <script type="text/javascript" src="../js/sidebar.js"> </script>
+    <script type="text/javascript" src="../js/userManage.js"> </script>
     <!-- <script src="../js/topSearch.js"></script> -->
 </body>
 

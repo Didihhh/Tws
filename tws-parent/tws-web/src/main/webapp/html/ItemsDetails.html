@@ -11,17 +11,17 @@
 </head>
 
 <body>
- <!-- 首部，下拉框 -->
- <div id="user">
+ <!-- 首部用户信息管理，下拉框 -->
+ <!-- <div id="user">
         <span id="userName" class="userName"></span>
-        <span style="font-size:1.7rem;">，欢迎来到淘物社</span>
+        <span style="font-size:1.7rem;">你好！欢迎来到淘物社！</span>
         <ul id="manageUl" class="manageUl">
             <li id="changeName">修改用户名</li>
             <li id="changePsword">修改密码</li>
             <li id="changeAddress">地址管理</li>
             <li id="logOut">退出登录</li>
         </ul>
- </div>
+ </div> -->
  <div id="Umask"></div>
  <form id="nameForm" name="nameForm" method="post" onsubmit="return checkName()">
 	<div class="Uhead"><span class="Utitle">修改用户名</span></div>
@@ -74,8 +74,22 @@
 	</div>
 	<div id="Uaclose" class="Uclose"></div>
  </form>
- <!-- 首部，下拉框 -->
- <header>
+ <!-- 首部用户信息管理，下拉框 -->
+ <header>	 
+		 <!-- 首部用户信息管理，显示用户名 -->
+		 <!-- 回到首页 -->
+		 <a href="topSearch.html" id="backhome">首页</a>
+		<div id="user">
+				<span id="userName" class="userName"></span>
+				<span style="font-size:1.7rem;">你好！欢迎来到淘物社！</span>
+				<ul id="manageUl" class="manageUl">
+					<li id="changeName">修改用户名</li>
+					<li id="changePsword">修改密码</li>
+					<li id="changeAddress">地址管理</li>
+					<li id="logOut">退出登录</li>
+				</ul>
+		</div>
+		<!-- 首部用户信息管理，显示用户名 -->
         <img src="../image/logo.jpg" />
         <div class="top_search" style="box-sizing: content-box;">
             <input type="text" placeholder="请输入你想要搜索的商品" />

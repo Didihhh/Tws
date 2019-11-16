@@ -15,7 +15,7 @@ var topSearch = void 0,
 //使用单例模式将页面所有dom管理起来
 var Dom = {
     user: {
-        userName: document.getElementById("user").getElementsByTagName("span")[0]
+        userName: document.getElementById("userName").getElementsByTagName("span")[0]
     },
     topSearch: {
         input: document.getElementsByTagName("header")[0].getElementsByTagName("input")[0],
