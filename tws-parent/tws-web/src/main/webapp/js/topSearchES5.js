@@ -15,7 +15,7 @@ var topSearch = void 0,
 //使用单例模式将页面所有dom管理起来
 var Dom = {
     user: {
-        userName: document.getElementById("userName").getElementsByTagName("span")[0]
+        userName: document.getElementById("userName")
     },
     topSearch: {
         input: document.getElementsByTagName("header")[0].getElementsByTagName("input")[0],
@@ -61,7 +61,6 @@ var Dom = {
                          Dynamic.createCommodity(getComResult.data[i]);
                      }
                      _recommend.initital();
-                	
                 	Dom.user.userName.innerText = getComResult.username;
                 } else {
                     alert(getComResult.msg);

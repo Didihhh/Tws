@@ -4,6 +4,8 @@ var c2Value = ""; //分类2
 var goodsId = ""; //商品id
 var firstClassify = ""; //商品一级分类
 var Iusername = "tammie";//用户名
+
+var receiving = {};//收货信息
     
 var NowBox ="";//记录是否打折
 var NowPrice = ""; //记录显示的价格
@@ -318,6 +320,7 @@ var Docking = {
     },
     //获取收货信息
     getReceivingRecommend:function(){
+    	console.log("getReceivingRecommend")
         $.ajax({
             url:"userAction_getUserInform.action",//路径
             type:"post",//方法
@@ -328,7 +331,7 @@ var Docking = {
             success: function(getComResult) {
                 //成功
                 if(getComResult.code == "1" ||getComResult.code == 1 ){
-                    return getComResult.data;
+                	receiving = getComResult.data;
                 }
                 else{
                     alert(getComResult.msg)
@@ -520,13 +523,15 @@ $(document).ready(function(){
 
     //点击立即购买
     $("#buyIpt").click(function(){
+    	console.log("11")
         placeOrder = false;//判断是立即购买还是结算下单
         buySwift(1,buyform);
         //调接口取收货信息
-        var Receiving = Docking.getReceivingRecommend();
-        document.getElementById("Bconsignee").value = Receiving.autopconsignee
-        document.getElementById("Bphone").value = Receiving.autotelephone
-        document.getElementById("Baddres").value = Receiving.autoaddress
+        Docking.getReceivingRecommend();
+        console.log('收货信息 ',receiving)
+        document.getElementById("Bconsignee").value = receiving.autopconsignee
+        document.getElementById("Bphone").value = receiving.autotelephone
+        document.getElementById("Baddres").value = receiving.autoaddress
     })
     //点击取消
     $('#BcloseBtn').click(function(){

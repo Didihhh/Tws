@@ -97,7 +97,7 @@ var orderDocking = {
         })
     },
     //搜索订单接口
-    searchOrderRecommend: function(str) {
+    searchOrderRecommend: function(str,page) {
         $.ajax({
             url:"orderAction_findOredrsByPname.action",//路径
             type:"post",//方法
@@ -105,7 +105,7 @@ var orderDocking = {
             dataType:"json",//返回值类型
             data: {
                 "pname": str,
-                "currentPage" : 1
+                "currentPage" : page
             },
             success: function(getComResult) {
                 //成功
@@ -114,7 +114,6 @@ var orderDocking = {
                     orderList = getComResult.data;
                     orderTotal = parseInt(getComResult.total);
                     mainStep = getComResult.count;
-                    goSearchPage(1);
                 }
                 else{
                     alert(getComResult.msg);
@@ -163,7 +162,6 @@ var orderDocking = {
 /************************函数方法*************************/
 //获取拼接表格行 
 var getTable = function(orders){
-	console.log("orders",orders);
     var thHtml = 
     "<tr id='Ohead'>"+
         "<th>"+
@@ -185,7 +183,6 @@ var getTable = function(orders){
     var statusStr3 = "<span>已收货</span>" ;
     var status = ""
     for(i=0; i< orders.length ;i++){
-    	console.log("order[]",orders[0]);
         if(orders[i].state === -1 || orders[i].state === "-1" ) status = statusStr1;
         if(orders[i].state === 0 || orders[i].state === "0") status = statusStr2;
         if(orders[i].state === 1 || orders[i].state === "1") status = statusStr3;
@@ -272,7 +269,6 @@ function goPage(pageIndex) {
     //调用接口
     orderDocking.getOrderRecommend(pageIndex);//调接口取数据
     // var pageStep = orders.length<5?orders.length:5//每页显示数量
-    console.log(this.orderList)
     document.querySelector('table').innerHTML = getTable(this.orderList) //传参数为第n页的第一件商品的
     //赋itemid
     $("#orderTable tr").each(function(index){
@@ -283,19 +279,19 @@ function goPage(pageIndex) {
     jsPage('divPage', this.orderTotal , this.mainStep , pageIndex, 'goPage');
 }
 function goSearchPage(pageIndex) {
-//    //调用接口
-//    orderDocking.searchOrderRecommend(pageIndex);//调接口取数据
+    //调用接口
+	var str=document.getElementById("searchIp").value;
+    orderDocking.searchOrderRecommend(str,pageIndex);
     // var pageStep = orders.length<5?orders.length:5//每页显示数量
-    console.log(this.orderList)
+    console.log("搜索",this.orderList)
     document.querySelector('table').innerHTML = getTable(this.orderList) //传参数为第n页的第一件商品的
     //赋itemid
-    // console.log($("#orderTable tr"));
-    // $("#orderTable tr").each(function(index){
-    //     console.log($(this));
-    //     // console.log(orderList[index]);
-    //     $(this).attr("itemid",this.orderList[index].itemid)
-    // })
-    jsPage('divPage', this.orderTotal , this.mainStep , pageIndex, 'goPage');
+    $("#orderTable tr").each(function(index){
+        if($(this).attr("id") != "Ohead"){ //除去表头
+            $(this).attr("itemid",orderList[index-1].itemid)
+        }
+    })
+    jsPage('divPage', this.orderTotal , this.mainStep , pageIndex, 'goSearchPage');
 }
 
 
@@ -351,8 +347,7 @@ $(document).ready(function(){
 
     //点击搜索
     $("#searchBtn").click(function(){
-        var str=document.getElementById("searchIp").value;
-        orderDocking.searchOrderRecommend(str);
+        goSearchPage(1);
     });
 })
 
