@@ -447,8 +447,9 @@ $(document).ready(function(){
 
     //清空历史浏览
     $("#historyClean").click(function(){
+    	sidebarDocking.cleanHistoryRecommend();
         $("#sHistoryUl li").remove();
-        document.getElementById("emptyFont2").style.display = "block"
+        document.getElementById("emptyFont2").style.display = "block";
     })
 
     //点击订单 ，跳转页面
@@ -476,14 +477,14 @@ $(document).ready(function(){
             if($(this).find("input[name='cCheck']:checked").is(":checked")) {
                 var countObj = {
                             pid : '',
-                            punm : '',
+                            pnum : '',
                             classify1 : '',
                             classify2 : '',
                             subtotal : '',
                             state : ''
                         };//一组商品对象，必须写在循环里，每次循环都创建新对象，如不创建新对象，只改变值，则数组全是对象最新的值。
                 countObj.pid = $(this).attr('pid');
-                countObj.punm = $(this).find("#cartNum")[0].innerText;
+                countObj.pnum = $(this).find("#cartNum")[0].innerText;
                 countObj.classify1 = $(this).find("#cartClassify1")[0].innerText;
                 countObj.classify2 = $(this).find("#cartClassify2")[0].innerText;
                 countObj.subtotal = $(this).find("#cPirce")[0].innerText;

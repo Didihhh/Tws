@@ -495,6 +495,7 @@ $(document).ready(function(){
     $("#addIpt").click(function(){
         //调用购物车接口
         Docking.recommend2(txt.value);
+        window.parent.location.reload();  //刷新
     })
 
     //点击看了又看跳到详情页

@@ -4,12 +4,16 @@ import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.HttpSession;
 
 import org.apache.struts2.ServletActionContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
+import com.it6.tws.entity.CartItem;
 import com.it6.tws.entity.MyOrderItem;
 import com.it6.tws.entity.OrderItem;
 import com.it6.tws.entity.PageBean;
@@ -205,13 +209,11 @@ public class OrderAction extends BaseAction<OrderItem>{
 	 */
 	            
 	public String addToOredrsInCast(){
-		System.out.println(address);
-		System.out.println(pconsignee);
-		System.out.println(telephone);
-		System.out.println(total);
 		String flag=null;
 		JSONObject jsonObject=JSONObject.fromObject(orderJson);
 		JSONArray jsonArray=jsonObject.getJSONArray("orderArray");
+		
+		
 		if(jsonArray.size()>0){
 			flag=orderService.addToOredrsInCast(jsonArray,total,address,pconsignee,telephone);
 		}

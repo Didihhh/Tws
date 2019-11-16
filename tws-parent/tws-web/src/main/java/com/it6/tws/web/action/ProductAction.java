@@ -341,19 +341,17 @@ public class ProductAction extends BaseAction<Product> {
 	 */
 	public String clearHistoryProduct(){
 		User user = (User) ServletActionContext.getRequest().getSession().getAttribute("loginUser");
-		int size=20;
-		//定义一个记录历史商品信息的集合
-		List<Product> historyProductList = new ArrayList<Product>();
-		// 获得客户端携带名字叫pids的cookie
-		Cookie[] cookies = ServletActionContext.getRequest().getCookies();
+		
 		String pids="";
+		
 		Cookie cookie_pids = new Cookie(user.getUid(),pids);
+		cookie_pids.setMaxAge(60*60*24*30);
+		ServletActionContext.getResponse().addCookie(cookie_pids);
 		
 		ServletActionContext.getResponse().setContentType("application/json; charset=UTF-8");
 		rest.setCode(1);
 		rest.setMsg("成功清空游览记录");
 		JSONObject json= JSONObject.fromObject(rest);
-		json.put("historyData", historyProductList);
 		String jsonStr=json.toString();
 		
 		try {
@@ -430,8 +428,12 @@ public class ProductAction extends BaseAction<Product> {
 			//取出原有商品的数量
 			CartItem cartItem = cart.get(model.getPid());
 			int oldBuyNum = cartItem.getBuyNum();
+			double oldBuyMoney=cartItem.getShop_price();
+			oldBuyMoney+=buyMoney;
+			
 			oldBuyNum+=buyNum;
 			cartItem.setBuyNum(oldBuyNum);
+			cartItem.setShop_price(oldBuyMoney);
 		}else{
 			//如果车中没有该商品
 			cart.put(product.getPid(), item);

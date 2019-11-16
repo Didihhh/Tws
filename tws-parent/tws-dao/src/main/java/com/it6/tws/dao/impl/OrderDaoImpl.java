@@ -1,7 +1,10 @@
 package com.it6.tws.dao.impl;
 
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
+
+import javax.servlet.http.HttpSession;
 
 import org.apache.struts2.ServletActionContext;
 import org.springframework.orm.hibernate5.HibernateCallback;
@@ -9,6 +12,7 @@ import org.springframework.stereotype.Repository;
 
 import com.it6.tws.dao.IOrderDao;
 import com.it6.tws.dao.base.impl.BaseDaoImpl;
+import com.it6.tws.entity.CartItem;
 import com.it6.tws.entity.OrderItem;
 import com.it6.tws.entity.Orders;
 import com.it6.tws.entity.PageBean;
@@ -96,6 +100,9 @@ public class OrderDaoImpl extends BaseDaoImpl<OrderItem> implements IOrderDao{
 		User user = (User) ServletActionContext.getRequest().getSession().getAttribute("loginUser");
 		String Itemid=null;
 		String oid=UUID.randomUUID().toString();
+		Map<String,CartItem> cart = (Map<String, CartItem>) ServletActionContext.getRequest().getSession().getAttribute(user.getUid());;
+		
+		
 		
 		//保存到订单表
 		Orders order=new Orders();
@@ -112,6 +119,11 @@ public class OrderDaoImpl extends BaseDaoImpl<OrderItem> implements IOrderDao{
 			Itemid=UUID.randomUUID().toString();
 			JSONObject job = jsonArray.getJSONObject(i);  
 			OrderItem orderItem=(OrderItem) JSONObject.toBean(job,OrderItem.class);
+			//删除购物车的商品
+			if(cart!=null){
+				//删除
+				cart.remove(orderItem.getPid());
+			}
 			orderItem.setItemid(Itemid);
 			orderItem.setOid(oid);
 			str=(String)this.getHibernateTemplate().save(orderItem);
