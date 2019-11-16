@@ -116,10 +116,10 @@ var sidebarDocking = {
             }
         });
     },
-    //清空足迹 未完成
+    //清空足迹
     cleanHistoryRecommend: function() {
         $.ajax({
-            url:"",//路径
+            url:"productAction_clearHistoryProduct.action",//路径
             type:"post",//方法
             async:false,//是否缓存
             dataType:"json",//返回值类型
@@ -129,7 +129,7 @@ var sidebarDocking = {
             success: function(getComResult) {
                 //成功
                 if(getComResult.code == "1" ||getComResult.code == 1 ){
-
+                    alert(getComResult.msg);
                 }
                 else{
                     alert(getComResult.msg);
@@ -200,7 +200,7 @@ var sidebarDocking = {
     //删除购物车
     cleanCartRecommend: function(pid) {
         $.ajax({
-            url:"",//路径
+            url:"productAction_delProFromCart.action",//路径
             type:"post",//方法
             async:false,//是否缓存
             dataType:"json",//返回值类型
@@ -211,7 +211,6 @@ var sidebarDocking = {
             success: function(getComResult) {
                 //成功
                 if(getComResult.code == "1" ||getComResult.code == 1 ){
-                    
                 }
                 else{
                     alert(getComResult.msg);
@@ -436,6 +435,7 @@ $(document).ready(function(){
         $("#cartSum")[0].innerText = "0";
         //点击删除后，金额变为0
         $("#cartTotal")[0].innerText = "0.00";
+        alert("删除成功！");
     })
 
     //清空历史浏览

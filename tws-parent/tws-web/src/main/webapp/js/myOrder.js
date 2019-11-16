@@ -72,23 +72,19 @@ var orderDocking = {
             }
         })
     },
-    //删除订单 未完成
-    deleteOrderRecommend: function() {
+    //删除订单 
+    deleteOrderRecommend: function(id) {
         $.ajax({
-            url:"adminOrderAction_deleteOrderItemById.action",//路径
+            url:"orderAction_deleteOrderItemById.action",//路径
             type:"post",//方法
             async:false,//是否缓存
             dataType:"json",//返回值类型
             data: {
-                
+                "itemid" : id
             },
             success: function(getComResult) {
                 //成功
                 if(getComResult.code == "1" ||getComResult.code == 1 ){
-                    //将数据写入全局数据
-                    orderList = getComResult.data;
-                    orderTotal = parseInt(getComResult.total);
-                    
                 }
                 else{
                     alert(getComResult.msg);
@@ -96,9 +92,6 @@ var orderDocking = {
             },
             error: function error() {
                 alert("网络传输有误！请检查网络连接！");
-                 //函数调用
-                 orderList = orders11;
-                 orderTotal = parseInt(Ftotal);
                 
             }
         })
@@ -325,8 +318,8 @@ $(document).ready(function(){
                 $(this).remove();
             }
         });
-        //重新请求数据
-        // goPage(1);//第一页
+        alert("删除成功！");
+        window.parent.location.reload();  //刷新
     });
 
     //全选
