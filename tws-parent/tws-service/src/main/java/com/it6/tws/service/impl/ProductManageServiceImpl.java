@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.it6.tws.dao.IOrderDao;
 import com.it6.tws.dao.IProductManageDao;
 import com.it6.tws.entity.PageBean;
 import com.it6.tws.entity.Product;
@@ -18,7 +19,8 @@ public class ProductManageServiceImpl implements IProductManageService{
 
 	@Autowired
 	private IProductManageDao productManageDao;
-	
+	@Autowired
+	private IOrderDao iOrderDao;
 	//显示所有商品
 	@Override
 	public PageBean displayAllProduct(Integer currentPage, Integer pageSize) {
@@ -70,6 +72,7 @@ public class ProductManageServiceImpl implements IProductManageService{
 	@Override
 	public void deleteProductByPid(String pid) {
 		// TODO Auto-generated method stub
+		iOrderDao.delteOrderItemByPid(pid);
 		productManageDao.deleteProductByPid(pid);
 	}
 

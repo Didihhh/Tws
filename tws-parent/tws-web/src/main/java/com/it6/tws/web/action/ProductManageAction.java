@@ -153,11 +153,11 @@ public class ProductManageAction extends BaseAction<Product> {
 	public String deleteProductByPid(){
 		String pid=null;
 		ServletActionContext.getResponse().setContentType("application/json; charset=UTF-8");
-		JSONArray jsonArray = JSONArray.fromObject(productJSON);
+		JSONObject jsonObject=JSONObject.fromObject(productJSON);
+		JSONArray jsonArray=jsonObject.getJSONArray("itemJSON");
 		if(jsonArray !=null && jsonArray.size()>0){ 
 			for( int i=0; i< jsonArray.size(); i++){ 
-				JSONObject object = jsonArray.getJSONObject(i);
-				pid=object.toString();
+				pid=jsonArray.get(i).toString();
 				productManageService.deleteProductByPid(pid);
 			} 
 		}

@@ -57,7 +57,7 @@ public class ProductManageDaoImpl extends BaseDaoImpl<Product> implements IProdu
 			return null;
 
 	}
-	
+
 	//点击编辑商品
 	@Override
 	public List<Product> editProduct(DetachedCriteria criteria){
@@ -87,8 +87,7 @@ public class ProductManageDaoImpl extends BaseDaoImpl<Product> implements IProdu
 	@Override
 	public void deleteProductByPid(String pid) {
 		// TODO Auto-generated method stub
-		Product product = new Product();
-		product.setPid(pid);
+		Product product = this.findById(pid);
 		this.getHibernateTemplate().delete(product);
 		
 	}

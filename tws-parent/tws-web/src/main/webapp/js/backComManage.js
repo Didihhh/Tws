@@ -314,7 +314,7 @@ function goPage(pageIndex, pageStep, orders, allLength) {
                 cache: false,//是否缓存
                 dataType: 'json',//返回值的类型
                 data: {
-                    "index": JSON.stringify(object)
+                    "productJSON": JSON.stringify(object)
                 },
                 success: function (getComResult) {
                     if (getComResult.code == "1" || getComResult.code == 1) {

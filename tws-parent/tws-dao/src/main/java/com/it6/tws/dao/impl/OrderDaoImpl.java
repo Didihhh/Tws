@@ -67,6 +67,16 @@ public class OrderDaoImpl extends BaseDaoImpl<OrderItem> implements IOrderDao{
 		else
 			return null;
 	}
+	@Override
+	public void delteOrderItemByPid(String pid) {
+		// TODO Auto-generated method stub
+		String hql="FROM OrderItem where pid = ?";
+		List<OrderItem> orderList=(List<OrderItem>) this.getHibernateTemplate().find(hql, pid);
+		for(int i=0;i<orderList.size();i++)
+		{
+			this.getHibernateTemplate().delete(orderList.get(i));
+		}
+	}
 
 
 	@Override
