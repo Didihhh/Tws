@@ -10,12 +10,12 @@
     color:#8ec9e2;
     font-size:50px;
     font-weight:bold;
-    margin:0px 170px;
+    margin:0px -18px;
     width:100px;
 }
 .search{
     float:right;
-    margin:47px 140px;
+    margin:47px 150px;
 }
 .search input{
     width:350px;
