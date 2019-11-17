@@ -309,7 +309,7 @@ function goPage(pageIndex, pageStep, orders, allLength) {
         console.log("删除接口" + JSON.stringify(object));
         if (delArray.length != 0) {
             $.ajax({
-                url: 'productAction_recommendProduct.action',//页面一进来的接口
+                url: 'productManageAction_deleteProductByPid.action',
                 type: 'post',//方法
                 cache: false,//是否缓存
                 dataType: 'json',//返回值的类型
